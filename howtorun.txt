@@ -1,0 +1,7 @@
+Cara run:
+1. pindah dan pastikan berada dalam folder bookingBLI. | cd bookingBLI atau cd PathKEbookingBLI.
+2. Run Command "composer install".
+3. Copy .env.example dan simpan file sebagai .env
+4. Run Command "php artisan migrate"
+5. Run Command "php artisan serve"
+6. Ya harusnya uda jalan
