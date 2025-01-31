@@ -1,0 +1,109 @@
+@font-face {
+    font-family: 'Albert Sans Black';
+    src: url('./login/Albert_Sans/static/AlbertSans-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Albert Sans regular';
+    src: url('./login/Albert_Sans/static/AlbertSans-Regular.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background: url('D:\Documents\Cawu 4\Software Engineer Lecture\mine\login\BLI_fullview.jpg'); */
+    background-image: url('./login/BLI_fullview.jpg');
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.logo {
+    margin-bottom: 0rem;
+}
+
+.welcome-text {
+    text-align: center;
+    margin-bottom: 1.8rem;
+    font-family: 'Albert Sans';
+    color: white;
+}
+
+.welcome-text h1 {
+    font-size: 4rem;
+    margin: 0;
+    font-family: 'Albert Sans Black';
+}
+
+.welcome-text p {
+    font-size: 1rem;
+    font-family: 'Albert Sans regular';
+    margin: 0.2rem 0 0;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    align-items: center;
+}
+
+.form input {
+    padding: 0.8rem;
+    margin: 0.8rem 0;
+    border-radius: 15px;
+    border-color: white;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.form input[type="text"],
+.form input[type="password"] {
+    background: transparent;
+    color: white;
+    border-color: white;
+}
+
+.form input::placeholder {
+    color: white; /* Placeholder text color */
+}
+
+.form button {
+    padding: 0.8rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 15px;
+    background-color: #007BFF;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 150px;
+    
+}
+
+.form button:hover {
+    background-color: #0056b3;
+}
+
+.forgot-password {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.forgot-password a {
+    color: white;
+    text-decoration: underline;
+}
+
+.forgot-password a:hover {
+    color: #ccc;
+} 
