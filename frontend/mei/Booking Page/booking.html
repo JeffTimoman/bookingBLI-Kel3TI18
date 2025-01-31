@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar with Custom Font & Filter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Albert Sans', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav
+        class="bg-[#174AA9] text-[#FFF] py-4 px-6 flex items-center justify-between shadow-md rounded-b-[22px] relative z-10">
+        <div class="flex items-center gap-4 md:gap-8">
+            <img src="./assets/LOGO BLI.png" alt="Logo" class="h-10 md:h-16 w-auto ml-2 md:ml-4">
+            <img src="./assets/bca learning.png" alt="BCA Learning" class="h-10 md:h-14 w-auto">
+        </div>
+        <div class="hidden lg:flex gap-8 md:gap-14 text-[16px] md:text-[18px] font-semibold tracking-[1.08px] ml-auto">
+            <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">FAVORITE</a>
+            <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">BOOK</a>
+            <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">HISTORY</a>
+        </div>
+        <div class="hidden lg:flex items-center gap-6 md:gap-10 ml-6 md:ml-14">
+            <img src="./assets/icon.png" alt="Bell"
+                class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+            <img src="./assets/base.png" alt="Logout"
+                class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+        </div>
+        <div class="lg:hidden flex items-center">
+            <button id="hamburger-icon" class="text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="lg:hidden fixed top-0 right-0 w-72 max-w-full h-full bg-[#2D5C97] text-[#FFF] z-50 transform translate-x-full transition-transform duration-300">
+        <div class="flex justify-end p-4">
+            <button id="close-menu" class="text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="flex flex-col items-start p-4">
+            <a href="#"
+                class="py-3 text-[18px] font-semibold hover:text-gray-300 hover:scale-110 transition-transform duration-200">FAVORITE</a>
+            <a href="#"
+                class="py-3 text-[18px] font-semibold hover:text-gray-300 hover:scale-110 transition-transform duration-200">BOOK</a>
+            <a href="#"
+                class="py-3 text-[18px] font-semibold hover:text-gray-300 hover:scale-110 transition-transform duration-200">HISTORY</a>
+            <div class="flex items-center gap-10 mt-8">
+                <img src="./assets/icon.png" alt="Bell"
+                    class="h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+                <img src="./assets/base.png" alt="Logout"
+                    class="h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+            </div>
+        </div>
+    </div>
+
+     <!-- Header -->
+    <div class="flex flex-wrap items-center justify-start rounded-lg mx-auto mt-6 md:mt-12 mb-4 md:mb-7 px-6 md:px-24">
+        <button id="filter-button"
+            class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 mb-2 md:mb-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3.75 5.25h16.5M6 12h12m-7.5 6.75h3" />
+            </svg>
+            <span class="ml-1">Filters</span>
+        </button>
+        <div class="h-6 md:h-8 border-l-2 border-dashed border-gray-400 mx-2 md:mx-4 mb-2 md:mb-0"></div>
+        <div id="selected-filters" class="flex flex-wrap gap-2">
+        </div>
+    </div>
+
+    <!-- Filter Modal -->
+    <div id="filter-modal"
+        class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 hidden items-center justify-center">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 md:mx-0">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold">Filters</h2>
+                <button id="close-filter-modal" class="text-gray-500 hover:text-gray-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-lg font-medium mb-2">Availability</h3>
+                <div class="flex items-center justify-between">
+                    <span>Show available rooms only</span>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="availability-toggle" value="" class="sr-only peer">
+                        <div
+                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-lg font-medium mb-2">Room Type</h3>
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="discussion-room" value="Discussion Room" class="mr-2 room-type-checkbox">
+                        <label for="discussion-room">Discussion Room</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="stadium-classroom" value="Stadium Classroom" class="mr-2 room-type-checkbox">
+                        <label for="stadium-classroom">Stadium Classroom</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="regular-classroom" value="Regular Classroom" class="mr-2 room-type-checkbox">
+                        <label for="regular-classroom">Regular Classroom</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="computer-room" value="Computer Room" class="mr-2 room-type-checkbox">
+                        <label for="computer-room">Computer Room</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="think-tank" value="Think Tank" class="mr-2 room-type-checkbox">
+                        <label for="think-tank">Think Tank</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="innovation-room" value="Innovation Room" class="mr-2 room-type-checkbox">
+                        <label for="innovation-room">Innovation Room</label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-lg font-medium mb-2">Time</h3>
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="time-1" value="08:00 AM - 09:30 AM" class="mr-2 time-checkbox">
+                        <label for="time-1">08:00 AM - 09:30 AM</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="time-2" value="10:00 AM - 11:30 AM" class="mr-2 time-checkbox">
+                        <label for="time-2">10:00 AM - 11:30 AM</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="time-3" value="01:00 PM - 02:30 PM" class="mr-2 time-checkbox">
+                        <label for="time-3">01:00 PM - 02:30 PM</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="time-4" value="03:00 PM - 05:00 PM" class="mr-2 time-checkbox">
+                        <label for="time-4">03:00 PM - 05:00 PM</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="time-5" value="05:00 PM - 06:00 PM" class="mr-2 time-checkbox">
+                        <label for="time-5">05:00 PM - 06:00 PM</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="time-6" value="06:00 PM - 07:30 PM" class="mr-2 time-checkbox">
+                        <label for="time-6">06:00 PM - 07:30 PM</label>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between items-center mt-6">
+                <button id="clear-filter" class="text-gray-500 hover:text-gray-700">Clear</button>
+                <button id="apply-filter"
+                    class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room Cards Container -->
+    <div class="flex flex-wrap items-center justify-start rounded-lg mx-auto mt-6 md:mt-12 mb-4 md:mb-7 px-6 md:px-24">
+        <div class="flex flex-col gap-4 md:gap-6 w-full" id="room-cards-container">
+            <!-- Room A2001 -->
+            <div class="flex flex-col md:flex-row bg-blue-100 rounded-lg overflow-hidden shadow-md"
+                data-room-type="Discussion Room" data-time="08:00 AM - 09:30 AM,10:00 AM - 11:30 AM">
+                <!-- Image -->
+                <div class="w-full md:w-1/3">
+                    <div class="relative h-48 md:h-auto">
+                        <div class="carousel relative overflow-hidden">
+                            <div class="carousel-container h-full flex transition-transform duration-300">
+                                <img src="./assets/pic1.png" alt="Room Image"
+                                    class="w-full h-full object-cover flex-shrink-0">
+                                <img src="./assets/pic1.png" alt="Room Image"
+                                    class="w-full h-full object-cover flex-shrink-0">
+                                <img src="./assets/pic1.png" alt="Room Image"
+                                    class="w-full h-full object-cover flex-shrink-0">
+                            </div>
+                            <button
+                                class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
+                                onclick="prevSlide(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                </svg>
+
+                            </button>
+                            <button
+                                class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
+                                onclick="nextSlide(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Description -->
+                <div class="p-4 md:p-6 w-full md:w-2/3">
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room A2001</h2>
+                    <p class="text-gray-600 mt-1 text-sm">Floor A2, discussion room</p>
+                    <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out
+                    </p>
+                    <div class="mt-2">
+                        <button class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm">
+                            Check available hours →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room A3001 -->
+            <div class="flex flex-col md:flex-row bg-blue-100 rounded-lg overflow-hidden shadow-md"
+                data-room-type="Discussion Room" data-time="01:00 PM - 02:30 PM,03:00 PM - 05:00 PM">
+                <!-- Image -->
+                <div class="w-full md:w-1/3">
+                    <div class="relative h-48 md:h-auto">
+                        <div class="carousel relative overflow-hidden">
+                            <div class="carousel-container h-full flex transition-transform duration-300">
+                                <img src="./assets/pic1.png" alt="Room Image"
+                                    class="w-full h-full object-cover flex-shrink-0">
+                                <img src="./assets/pic1.png" alt="Room Image"
+                                    class="w-full h-full object-cover flex-shrink-0">
+                                <img src="./assets/pic1.png" alt="Room Image"
+                                    class="w-full h-full object-cover flex-shrink-0">
+                            </div>
+                            <button
+                                class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
+                                onclick="prevSlide(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                </svg>
+
+                            </button>
+                            <button
+                                class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
+                                onclick="nextSlide(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Description -->
+                <div class="p-4 md:p-6 w-full md:w-2/3">
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room A3001</h2>
+                    <p class="text-gray-600 mt-1 text-sm">Floor A3, discussion room</p>
+                    <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out
+                    </p>
+                    <div class="mt-2">
+                        <button class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm">
+                            Check available hours →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room A3002 (Unavailable) -->
+            <div class="relative flex flex-col md:flex-row bg-blue-100 shadow-lg rounded-xl overflow-hidden"
+                data-room-type="Regular Classroom" data-time="08:00 AM - 09:30 AM,06:00 PM - 07:30 PM">
+                <!-- Image -->
+                <div class="w-full md:w-1/3 opacity-50">
+                    <div class="relative h-48 md:h-auto">
+                        <div class="carousel relative overflow-hidden">
+                            <div class="carousel-container h-full flex transition-transform duration-300">
+                                <img src="./assets/pic1.png" alt="Room Image"
+                                    class="w-full h-full object-cover flex-shrink-0">
+                                <img src="./assets/pic1.png" alt="Room Image"
+                                    class="w-full h-full object-cover flex-shrink-0">
+                                <img src="./assets/pic1.png" alt="Room Image"
+                                    class="w-full h-full object-cover flex-shrink-0">
+                            </div>
+                            <button
+                                class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
+                                onclick="prevSlide(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                </svg>
+
+                            </button>
+                            <button
+                                class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
+                                onclick="nextSlide(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Description -->
+                <div class="p-4 md:p-6 w-full md:w-2/3">
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room A3002</h2>
+                    <p class="text-gray-600 mt-1 text-sm">Floor A3, multipurpose classroom</p>
+                    <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out
+                    </p>
+                    <div class="mt-2">
+                        <button class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm">
+                            Check available hours →
+                        </button>
+                    </div>
+                </div>
+                <!-- Dark Overlay -->
+                <div class="absolute inset-0 bg-black opacity-50"></div>
+                <!-- Room Unavailable Text -->
+                <div class="absolute bottom-0 right-0 m-4 z-10">
+                    <span class="text-lg font-bold uppercase text-white">
+                        Room Unavailable
+                    </span>
+                </div>
+            </div>
+
+            <!-- Room A8000 -->
+            <div class="flex flex-col md:flex-row bg-blue-100 rounded-lg overflow-hidden shadow-md"
+                data-room-type="Computer Room" data-time="10:00 AM - 11:30 AM,01:00 PM - 02:30 PM">
+                <!-- Image -->
+                <div class="w-full md:w-1/3">
+                    <div class="relative h-48 md:h-auto">
+                        <div class="carousel relative overflow-hidden">
+                            <div class="carousel-container h-full flex transition-transform duration-300">
+                                <img src="./assets/pic1.png" alt="Room Image"
+                                    class="w-full h-full object-cover flex-shrink-0">
+                                <img src="./assets/pic1.png" alt="Room Image"
+                                    class="w-full h-full object-cover flex-shrink-0">
+                                <img src="./assets/pic1.png" alt="Room Image"
+                                    class="w-full h-full object-cover flex-shrink-0">
+                            </div>
+                            <button
+                                class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
+                                onclick="prevSlide(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                </svg>
+
+                            </button>
+                            <button
+                                class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
+                                onclick="nextSlide(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Description -->
+                <div class="p-4 md:p-6 w-full md:w-2/3">
+                    <h2 class="text-xl md:text-2xl font-semibold mb-2">Room A8000</h2>
+                    <p class="text-gray-600 mt-1 text-sm">Floor A5, computer classroom</p>
+                    <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out
+                    </p>
+                    <div class="mt-2">
+                        <button class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm">
+                            Check available hours →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room A8001 -->
+            <div class="flex flex-col md:flex-row bg-blue-100 rounded-lg overflow-hidden shadow-md"
+                data-room-type="Stadium Classroom" data-time="03:00 PM - 05:00 PM,05:00 PM - 06:00 PM">
+                <!-- Image -->
+                <div class="w-full md:w-1/3">
+                    <div class="relative h-48 md:h-auto">
+                        <div class="carousel relative overflow-hidden">
+                            <div class="carousel-container h-full flex transition-transform duration-300">
+                                <img src="./assets/pic1.png" alt="Room Image"
+                                    class="w-full h-full object-cover flex-shrink-0">
+                                <img src="./assets/pic1.png" alt="Room Image"
+                                    class="w-full h-full object-cover flex-shrink-0">
+                                <img src="./assets/pic1.png" alt="Room Image"
+                                    class="w-full h-full object-cover flex-shrink-0">
+                            </div>
+                            <button
+                                class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
+                                onclick="prevSlide(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                </svg>
+
+                            </button>
+                            <button
+                                class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
+                                onclick="nextSlide(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Description -->
+                <div class="p-4 md:p-6 w-full md:w-2/3">
+                    <h2 class="text-xl md:text-2xl font-semibold mb-2">Room A8001</h2>
+                    <p class="text-gray-600 mt-1 text-sm">Floor A5, auditorium classroom</p>
+                    <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out
+                    </p>
+                    <div class="mt-2">
+                        <button class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm">
+                            Check available hours →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="bg-gradient-to-b from-[#004AAD] to-[#00092D] text-white mt-10">
+        <footer class="w-full py-6 md:py-10 px-6 md:px-12 lg:px-24">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Left Section - Logo -->
+                <div class="flex flex-col items-start gap-2">
+                    <img src="footer/logos.svg" alt="BCA Logo" class="h-28 md:h-40">
+                </div>
+
+                <!-- Middle Left - Lokasi -->
+                <div>
+                    <h3 class="text-sm font-normal mb-3">Lokasi</h3>
+                    <p class="text-xs md:text-sm leading-6 md:leading-8 font-normal tracking-wider">
+                        Sentul City<br>
+                        Jl. Pakuan No. 3, Sumur Batu, Babakan Madang, <br>
+                        Bogor 16810
+                    </p>
+                </div>
+
+                <!-- Middle Right - Hubungi Kami -->
+                <div>
+                    <h3 class="text-sm font-normal mb-3">Hubungi Kami</h3>
+                    <ul class="text-xs md:text-sm leading-8 md:leading-10">
+                        <li class="flex items-center gap-2">
+                            <img src="footer/6.png" alt="Phone" class="h-5">
+                            <span>Halo BCA 1500888</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <img src="footer/7.png" alt="Email" class="h-5">
+                            <span>halobca@bca.co.id</span>
+                        </li>
+                        
+                        <li class="flex items-center gap-2">
+                            <img src="footer/5.png" alt="Phone 2" class="h-5">
+                            <span>62-922-0355-800</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right Section - Media Sosial -->
+                <div>
+                    <h3 class="text-sm font-normal mb-2">Media Sosial</h3>
+                    <ul class="flex flex-col space-y-2 md:space-y-3 text-xs md:text-sm">
+                        <li class="flex items-center gap-2">
+                            <img src="footer/2.png" alt="Facebook" class="h-4 md:h-5">
+                            <span>GoodLife BCA</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <img src="footer/3.png" alt="Twitter" class="h-4 md:h-5">
+                            <span>@goodlifebca</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <img src="footer/1.png" alt="Instagram" class="h-4 md:h-5">
+                            <span>Solusi BCA</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <img src="footer/4.png" alt="YouTube" class="h-4 md:h-5">
+                            <span>@BankBCA</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        function nextSlide(button) {
+            const carousel = button.parentElement;
+            const container = carousel.querySelector('.carousel-container');
+            const slideWidth = carousel.offsetWidth;
+
+            container.style.transition = 'transform 0.3s ease-in-out';
+            container.style.transform = `translateX(-${slideWidth}px)`;
+
+            setTimeout(() => {
+                container.appendChild(container.firstElementChild);
+                container.style.transition = 'none';
+                container.style.transform = 'translateX(0)';
+                setTimeout(() => {
+                    container.style.transition = 'transform 0.3s ease-in-out';
+                }, 0);
+            }, 300);
+        }
+
+        function prevSlide(button) {
+            const carousel = button.parentElement;
+            const container = carousel.querySelector('.carousel-container');
+            const slideWidth = carousel.offsetWidth;
+
+            container.style.transition = 'none';
+            container.insertBefore(container.lastElementChild, container.firstElementChild);
+            container.style.transform = `translateX(-${slideWidth}px)`;
+            setTimeout(() => {
+                container.style.transition = 'transform 0.3s ease-in-out';
+                container.style.transform = 'translateX(0)';
+            }, 0);
+        }
+
+        // Mobile menu toggle
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+
+        hamburgerIcon.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+
+        // JavaScript for filter modal
+        const filterButton = document.getElementById('filter-button');
+        const filterModal = document.getElementById('filter-modal');
+        const closeFilterModal = document.getElementById('close-filter-modal');
+        const clearFilterButton = document.getElementById('clear-filter');
+        const applyFilterButton = document.getElementById('apply-filter');
+        const selectedFiltersContainer = document.getElementById('selected-filters');
+        const roomCardsContainer = document.getElementById('room-cards-container');
+
+        let selectedFilters = {
+            availability: false,
+            roomTypes: [],
+            times: []
+        };
+
+        function updateSelectedFilters() {
+            selectedFiltersContainer.innerHTML = ''; // Clear previous filters
+            let filterBadges = [];
+
+            if (selectedFilters.availability) {
+                filterBadges.push(
+                    '<span class="bg-green-200 text-green-800 py-1 px-2 rounded-full text-xs">Available Only</span>'
+                );
+            }
+
+            selectedFilters.roomTypes.forEach(type => {
+                filterBadges.push(
+                    `<span class="bg-blue-200 text-blue-800 py-1 px-2 rounded-full text-xs">${type}</span>`
+                );
+            });
+
+            selectedFilters.times.forEach(time => {
+                filterBadges.push(
+                    `<span class="bg-purple-200 text-purple-800 py-1 px-2 rounded-full text-xs">${time}</span>`
+                );
+            });
+
+            selectedFiltersContainer.innerHTML = filterBadges.join('');
+        }
+
+        function filterRooms() {
+            const roomCards = roomCardsContainer.querySelectorAll('[data-room-type]');
+            roomCards.forEach(card => {
+                const roomType = card.dataset.roomType;
+                const roomTime = card.dataset.time ? card.dataset.time.split(',') : [];
+                const matchesRoomType = selectedFilters.roomTypes.length === 0 || selectedFilters.roomTypes.includes(roomType);
+                const matchesTime = selectedFilters.times.length === 0 || selectedFilters.times.some(time => roomTime.includes(time));
+                const isAvailable = !card.classList.contains('opacity-50');
+
+                const matchesAvailability = !selectedFilters.availability || (selectedFilters.availability && isAvailable);
+
+                if (matchesRoomType && matchesTime && matchesAvailability) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        filterButton.addEventListener('click', () => {
+            filterModal.classList.remove('hidden');
+            filterModal.classList.add('flex');
+        });
+
+        closeFilterModal.addEventListener('click', () => {
+            filterModal.classList.add('hidden');
+            filterModal.classList.remove('flex');
+        });
+
+        clearFilterButton.addEventListener('click', () => {
+            // Uncheck all checkboxes
+            const checkboxes = filterModal.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            selectedFilters = {
+                availability: false,
+                roomTypes: [],
+                times: []
+            };
+            updateSelectedFilters();
+            filterRooms();
+        });
+
+        applyFilterButton.addEventListener('click', () => {
+            filterModal.classList.add('hidden');
+            filterModal.classList.remove('flex');
+
+            const availabilityToggle = document.getElementById('availability-toggle');
+            selectedFilters.availability = availabilityToggle.checked;
+
+            const roomTypeCheckboxes = filterModal.querySelectorAll('.room-type-checkbox:checked');
+            selectedFilters.roomTypes = Array.from(roomTypeCheckboxes).map(checkbox => checkbox.value);
+
+            const timeCheckboxes = filterModal.querySelectorAll('.time-checkbox:checked');
+            selectedFilters.times = Array.from(timeCheckboxes).map(checkbox => checkbox.value);
+
+            updateSelectedFilters();
+            filterRooms();
+        });
+    </script>
+</body>
+
+</html>
