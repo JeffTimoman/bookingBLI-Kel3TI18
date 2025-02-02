@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="container py-5">
+        @include('component/message')
         @yield('content')
     </div>
 </body>
