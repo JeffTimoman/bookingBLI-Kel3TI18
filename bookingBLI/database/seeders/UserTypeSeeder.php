@@ -6,6 +6,7 @@ use App\Models\UserType;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserTypeSeeder extends Seeder
 {
