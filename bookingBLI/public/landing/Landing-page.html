@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Rooms This Week</title>
+    <style>
+    @font-face {
+    font-family: 'Albert Sans Black';
+    src: url('./tulisan/AlbertSans-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Albert Sans Medium';
+    src: url('./tulisan/AlbertSans-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Albert Sans Light';
+    src: url('./tulisan/AlbertSans-Light.ttf') format('truetype');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+    color: #333;
+}
+
+.container {
+    background-image: url('./bg1.png'); /* Ganti dengan nama file gambar Anda */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0;
+    width: 100%;
+}
+
+.top-header {
+    text-align: center;
+    color: white;
+    padding: 38px;
+    font-size: 3rem;
+    width: 100%;
+    font-family: 'Albert Sans Light';
+}
+
+.top-rooms {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+}
+
+.room {
+    text-align: center;
+    flex: 1;
+    margin: 0;
+    position: relative;
+}
+
+.room img {
+    width: 100%;
+    aspect-ratio: 6 / 11;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+
+.room-number {
+    font-size: 10rem;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    bottom: -15%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    z-index: 2;
+    font-family: 'Albert Sans Black';
+}
+
+.room-description {
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+    color: white;
+    padding: 10px;
+    border-radius: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    text-align: left;
+    z-index:3;
+    font-family: 'Albert Sans Medium';
+}
+
+.room:hover .room-description {
+    opacity: 1;
+    transform: translateY(-15px);
+}
+
+.room:hover img {
+    filter: blur(2px);
+    transform: translateY(-15px); /* Moves image up and scales it slightly */
+}
+
+.room:hover .room-number {
+    position: absolute;
+    bottom: -28%;
+    transition: 0.5s;
+}
+
+.aboveheader {
+    height: 140px;
+    width: 100%;
+}
+
+.footer-section {
+    background-color: #e0e7ff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-section div {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.footer-section img {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+    margin: 0 auto 10px;
+}
+
+.footer {
+    text-align: center;
+    background-color: #002f6c;
+    color: white;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.nav {
+    background-color: #174AA9;
+    color: #FFF;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+    position: relative;
+    z-index: 10;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-left img {
+    height: 2.5rem;
+    width: auto;
+    margin-left: 0.5rem;
+}
+
+.nav-left img:last-child {
+    height: 2.5rem;
+}
+
+.nav-links {
+    gap: 2rem;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1.08px;
+}
+
+.nav-links a {
+    color: inherit;
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #D1D5DB;
+    transform: scale(1.1);
+}
+.circle {
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            cursor: pointer;
+            text-decoration: none;
+            color: black;
+            overflow: hidden;
+            position: relative;
+        }
+        .circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 5px;
+        }
+
+        .section h3 {
+            margin-top: 50px;
+            margin-bottom: 40px;
+            font-family: 'Albert Sans Regular';
+            font-size: 35px;
+        }
+
+        .section p {
+            margin-top: 40px;
+            margin-bottom: 50px;
+            width: 50%;
+            font-family: 'Albert Sans Regular';
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-header">TOP ROOMS OF THIS WEEK</div>
+        <div class="top-rooms">
+            <div class="room">
+                <img src="room1.png" alt="Room 1">
+                <div class="room-number">1</div>
+                <div class="room-description">This is a detailed description of Discussion Room 5. It is perfect for collaborative sessions and has all the necessary amenities for productive discussions.</div>
+            </div>
+
+            <div class="room">
+                <img src="room1.png" alt="Room 2">
+                <div class="room-number">2</div>
+                <div class="room-description">This is a detailed description of Classroom A8002. It is an ideal space for structured learning and presentations.</div>
+            </div>
+
+            <div class="room">
+                <img src="room1.png" alt="Room 3">
+                <div class="room-number">3</div>
+                <div class="room-description">This is a detailed description of Discussion Room 6001. Equipped for brainstorming sessions with cutting-edge technology.</div>
+            </div>
+
+            <div class="room">
+                <img src="room1.png" alt="Room 4">
+                <div class="room-number">4</div>
+                <div class="room-description">This is a detailed description of Discussion Room 10001. Perfect for large team collaborations and project planning.</div>
+            </div>
+
+            <div class="room">
+                <img src="room1.png" alt="Room 5">
+                <div class="room-number">5</div>
+                <div class="room-description">This is a detailed description of Classroom A10003. It offers an excellent environment for interactive learning sessions.</div>
+            </div>
+        </div>
+        <div class="aboveheader"></div>
+        
+        <div class ="nav">
+            <div class="nav-left">
+                <img src="./logo.png" alt="Logo">
+                <img src="./bca learning.png" alt="BCA Learning">
+            </div>
+            <div class="nav-links">
+                <a href="#">FAVORITE</a>
+                <a href="#">BOOK</a>
+                <a href="#">HISTORY</a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <div class="section">
+                <h3>FAVORITES</h3>
+                <a href="favorites.html" class="circle">
+                    <img src="./BLI_aerialview 1.png" alt="Favorites">
+                </a>
+                <p>See all your favorite rooms for easier booking access</p>
+            </div>
+    
+            <div class="section">
+                <h3>BOOK</h3>
+                <a href="book.html" class="circle">
+                    <img src="./BLI_aerialview 1.png" alt="Book">
+                </a>
+                <p>Browse all of today’s available rooms for booking</p>
+            </div>
+    
+            <div class="section">
+                <h3>HISTORY</h3>
+                <a href="history.html" class="circle">
+                    <img src="./BLI_aerialview 1.png" alt="History">
+                </a>
+                <p>Take a look at all of your bookings, including ongoing ones</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2025 BCA Learning Institute. All Rights Reserved.
+    </div>
+</body>
+</html>

@@ -1,28 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Login page of BLI Booking website">
-    <meta name="author" content="Kelompok 3">
-    <title>Login Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @font-face {
-            font-family: 'AlbertSansBlack';
-            src: url('./login/Albert_Sans/static/AlbertSans-Black.ttf') format('truetype');
-            font-weight: bold;
-        }
+{{-- @extends ('layout/app')
 
-        @font-face {
-            font-family: 'AlbertSansRegular';
-            src: url('./login/Albert_Sans/static/AlbertSans-Regular.ttf') format('truetype');
-            font-weight: normal;
-        }
-    </style>
-</head>
-<body class="bg-cover bg-center h-screen" style="background-image: url('./login/bg_afterblur.svg');">
-    <div class="flex flex-col justify-center items-center h-full">
+@section('content')
+    <div class='w-50 center border rounded px-3 py-3 mx-auto'>
+        <h1>Login</h1>
+        <form action="/session/login" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" name="username" id="username">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" id="password">
+            </div>
+            <div class="mb-3 d-grid">
+                <button name="submit" type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+    </div>
+@endsection --}}
+@extends('layout/login')
+
+@section('content')
         <a href="#" class="mb-0">
             <img src="./login/logo.png" alt="Logo" class="w-36">
         </a>
@@ -30,16 +29,16 @@
             <h1 class="text-6xl" style="font-family: 'AlbertSansBlack'">Welcome!</h1>
             <p class="text-lg mt-1" style="font-family: 'AlbertSansRegular'">Please login using your employee ID and birthday</p>
         </div>
-        
-        <form class="flex flex-col items-center w-full max-w-md" style="font-family: 'AlbertSansBlack'">
-            {{-- @csrf --}}
+        <form action="./session/login" method="POST" class="flex flex-col items-center w-full max-w-md" style="font-family: 'AlbertSansBlack'">
+            @csrf
             <!-- Username Input -->
             <div class="relative w-full mb-4">
                 <img src="./login/1.png" alt="User Icon" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-10 h-10">
                 <input 
                     type="text" 
                     placeholder="Enter your username" 
-                    class="w-full p-3 pl-16 bg-transparent border-[3px] border-white rounded-lg text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    class="w-full p-3 pl-16 bg-transparent border-[3px] border-white rounded-lg text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    name="username" id="username">
             </div>
             <!-- Password Input -->
             <div class="relative w-full mb-4">
@@ -47,7 +46,8 @@
                 <input 
                     type="password" 
                     placeholder="Enter your password" 
-                    class="w-full p-3 pl-16 bg-transparent border-[3px] border-white rounded-lg text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    class="w-full p-3 pl-16 bg-transparent border-[3px] border-white rounded-lg text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    name="password" id="password">
             </div>
             <!-- Forgot Password -->
             <div class="w-full text-right text-white text-sm mb-4" style="font-family: 'AlbertSansRegular'">
@@ -60,7 +60,4 @@
                 LOG IN
             </button>
         </form>
-    </div>
-</body>
-</html>
-
+@endsection
