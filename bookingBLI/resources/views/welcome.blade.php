@@ -30,7 +30,9 @@
             <h1 class="text-6xl" style="font-family: 'AlbertSansBlack'">Welcome!</h1>
             <p class="text-lg mt-1" style="font-family: 'AlbertSansRegular'">Please login using your employee ID and birthday</p>
         </div>
+        
         <form class="flex flex-col items-center w-full max-w-md" style="font-family: 'AlbertSansBlack'">
+            {{-- @csrf --}}
             <!-- Username Input -->
             <div class="relative w-full mb-4">
                 <img src="./login/1.png" alt="User Icon" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-10 h-10">
