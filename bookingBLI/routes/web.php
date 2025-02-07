@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\BookController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
@@ -16,5 +16,5 @@ Route::get('/home', function () {
 Route::get('/session', [SessionController::class, 'index']);
 Route::post('/session/login', [SessionController::class, 'login']);
 
-Route::get('/book', [BookController::class, 'index']);
+Route::get('/room', [RoomController::class, 'index']);
 
