@@ -92,7 +92,7 @@
     
             <div class="flex flex-col items-center">
                 <h3 class="text-4xl mb-10 mt-12 font-medium">BOOK</h3>
-                <a href="book.html" class="w-96 h-96 rounded-full overflow-hidden relative">
+                <a href="/book" class="w-96 h-96 rounded-full overflow-hidden relative">
                     <img src="./landing/BLI_aerialview 1.png" alst="Book" class="w-full h-full object-cover">
                 </a>
                 <p class="mt-10 mb-12 text-lg px-8 w-2/3">Browse all of today’s available rooms for booking</p>
