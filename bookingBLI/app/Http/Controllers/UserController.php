@@ -106,4 +106,5 @@ class UserController extends Controller
         user::where('username', $id)->delete();
         return redirect('/user')->with('success', 'Delete Successful');
     }
+    
 }

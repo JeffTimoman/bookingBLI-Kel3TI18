@@ -9,15 +9,25 @@ Route::get('/', [SessionController::class, 'index']);
 
 route::resource('user', UserController::class);
 
-Route::get('/home', function () {
-    return view('landing');
-});
-
 Route::get('/session', [SessionController::class, 'index']);
 Route::post('/session/login', [SessionController::class, 'login']);
 
-// Route::get('/room', [RoomController::class, 'index']);
-// Route::get('/room/{name}', [RoomController::class, 'show'])->name('room.show');
 
-route::resource('room', RoomController::class);
+Route::middleware(['auth'])->group(function () {
 
+    Route::middleware(['user'])->group(function () {
+        Route::get('/home', function () {
+            return view('landing');
+        });
+
+        route::resource('room', RoomController::class);
+
+    });
+
+    
+    Route::middleware(['admin'])->group(function () {
+        Route::get('/admin/home', function () {
+            return view('admin.home');
+        })->name('admin.home');
+    });
+});
