@@ -12,6 +12,7 @@ route::resource('user', UserController::class);
 Route::get('/session', [SessionController::class, 'index']);
 Route::post('/session/login', [SessionController::class, 'login']);
 
+
 Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['user'])->group(function () {
@@ -19,7 +20,7 @@ Route::middleware(['auth'])->group(function () {
             return view('landing');
         });
 
-        Route::get('/room', [RoomController::class, 'index']);
+        route::resource('room', RoomController::class);
 
     });
 
