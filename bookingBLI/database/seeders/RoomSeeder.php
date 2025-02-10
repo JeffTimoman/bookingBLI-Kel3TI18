@@ -13,10 +13,66 @@ class RoomSeeder extends Seeder
      */
     public function run(): void
     {
-        Room::factory()->create(['name' => 'Room A2006',]);
-        Room::factory()->create(['name' => 'Room A3002',]);
-        Room::factory()->create(['name' => 'Room A2007',]);
-        Room::factory()->create(['name' => 'Room B8002', 'room_type_id' => 3]);
-        Room::factory()->create(['name' => 'Room A5007',]);
+            // Room::factory()->create(['name' => 'A10001', 'room_type_id' => 1, 'status' => true]);
+            // Room::factory()->create(['name' => 'A10002', 'room_type_id' => 1, 'status' => true]);
+            // Room::factory()->create(['name' => 'A900', 'room_type_id' => 1, 'status' => true]);
+            // Room::factory()->create(['name' => 'A700', 'room_type_id' => 1, 'status' => true]);
+            // Room::factory()->create(['name' => 'A6001', 'room_type_id' => 1, 'status' => true]);
+            // Room::factory()->create(['name' => 'A6002', 'room_type_id' => 1, 'status' => true]);
+            // Room::factory()->create(['name' => 'A500', 'room_type_id' => 1, 'status' => true]);
+            // Room::factory()->create(['name' => 'A300', 'room_type_id' => 1, 'status' => true]);
+            // Room::factory()->create(['name' => 'A200', 'room_type_id' => 1, 'status' => true]);
+
+            // Room::factory()->create(['name' => 'A201', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A202', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A203', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A204', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A205', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A206', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A301', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A302', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A303', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A304', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A305', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A306', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A307', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A501', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A501', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A502', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A503', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A601', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A602', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A701', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A702', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A703', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A704', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A705', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A706', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A707', 'room_type_id' => 2, 'status' => true]);
+            // Room::factory()->create(['name' => 'A708', 'room_type_id' => 2, 'status' => true]);
+
+            // Room::factory()->create(['name' => 'A801', 'room_type_id' => 3, 'status' => true]);
+            // Room::factory()->create(['name' => 'A802', 'room_type_id' => 3, 'status' => true]);
+            // Room::factory()->create(['name' => 'A803', 'room_type_id' => 3, 'status' => true]);
+            // Room::factory()->create(['name' => 'A901', 'room_type_id' => 3, 'status' => true]);
+            // Room::factory()->create(['name' => 'A902', 'room_type_id' => 3, 'status' => true]);
+            // Room::factory()->create(['name' => 'A903', 'room_type_id' => 3, 'status' => true]);
+            // Room::factory()->create(['name' => 'A904', 'room_type_id' => 3, 'status' => true]);
+            // Room::factory()->create(['name' => 'A905', 'room_type_id' => 3, 'status' => true]);
+            // Room::factory()->create(['name' => 'A906', 'room_type_id' => 3, 'status' => true]);
+            // Room::factory()->create(['name' => 'A1001', 'room_type_id' => 3, 'status' => true]);
+            // Room::factory()->create(['name' => 'A1002', 'room_type_id' => 3, 'status' => true]);
+            // Room::factory()->create(['name' => 'A1003', 'room_type_id' => 3, 'status' => true]);
+            // Room::factory()->create(['name' => 'A1004', 'room_type_id' => 3, 'status' => true]);
+
+            // Room::factory()->create(['name' => 'A800', 'room_type_id' => 4, 'status' => true]);
+             Room::factory()->create(['name' => 'A1000001', 'room_type_id' => 1, 'status' => false]);
+
+
+
+
+
+
+            
     }
 }

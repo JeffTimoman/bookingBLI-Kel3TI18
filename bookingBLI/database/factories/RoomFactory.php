@@ -19,11 +19,11 @@ class RoomFactory extends Factory
     public function definition(): array
     {
         return [
-            'room_type_id' => RoomType::inRandomOrder()->first()->id, 
             'description' => $this->faker->text(100), 
             'people' => $this->faker->numberBetween(4, 10), 
             'created_at' => now(), 
-            'updated_at' => now()
+            'updated_at' => now(),
+            'status' => True
         ];
     }
 }

@@ -1,5 +1,5 @@
 
-@extends('layout/book')
+@extends('layout/room')
 
 @section('content')
      <!-- Header -->
@@ -113,268 +113,119 @@
     <!-- Room Cards Container -->
     <div class="flex flex-wrap items-center justify-start rounded-lg mx-auto mt-6 md:mt-12 mb-4 md:mb-7 px-6 md:px-24">
         <div class="flex flex-col gap-4 md:gap-6 w-full" id="room-cards-container">
-            <!-- Room A2001 -->
-            <div class="flex flex-col md:flex-row bg-blue-100 rounded-lg overflow-hidden shadow-md"
-                data-room-type="Discussion Room" data-time="08:00 AM - 09:30 AM,10:00 AM - 11:30 AM">
-                <!-- Image -->
-                <div class="w-full md:w-1/3">
-                    <div class="relative h-48 md:h-auto">
-                        <div class="carousel relative overflow-hidden">
-                            <div class="carousel-container h-full flex transition-transform duration-300">
-                                <img src="./assets/pic1.png" alt="Room Image"
-                                    class="w-full h-full object-cover flex-shrink-0">
-                                <img src="./assets/pic1.png" alt="Room Image"
-                                    class="w-full h-full object-cover flex-shrink-0">
-                                <img src="./assets/pic1.png" alt="Room Image"
-                                    class="w-full h-full object-cover flex-shrink-0">
-                            </div>
-                            <button
-                                class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
-                                onclick="prevSlide(this)">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15.75 19.5L8.25 12l7.5-7.5" />
-                                </svg>
+            @foreach ($data as $item)
+                @if($item->status == True)
+                <!-- Room A2001 -->
+                <div class="flex flex-col md:flex-row bg-blue-100 rounded-lg overflow-hidden shadow-md"
+                    data-room-type="Discussion Room" data-time="08:00 AM - 09:30 AM,10:00 AM - 11:30 AM">
+                    <!-- Image -->
+                    <div class="w-full md:w-1/3">
+                        <div class="relative h-48 md:h-auto">
+                            <div class="carousel relative overflow-hidden">
+                                <div class="carousel-container h-full flex transition-transform duration-300">
+                                    <img src="./assets/pic1.png" alt="Room Image"
+                                        class="w-full h-full object-cover flex-shrink-0">
+                                    <img src="./assets/pic1.png" alt="Room Image"
+                                        class="w-full h-full object-cover flex-shrink-0">
+                                    <img src="./assets/pic1.png" alt="Room Image"
+                                        class="w-full h-full object-cover flex-shrink-0">
+                                </div>
+                                <button
+                                    class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
+                                    onclick="prevSlide(this)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                    </svg>
 
-                            </button>
-                            <button
-                                class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
-                                onclick="nextSlide(this)">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                                </svg>
+                                </button>
+                                <button
+                                    class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
+                                    onclick="nextSlide(this)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Description -->
+                    <div class="p-4 md:p-6 w-full md:w-2/3">
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item->name }}</h2>
+                        <p class="text-gray-600 mt-1 text-sm">Floor {{ substr($item->name,0, 2) }}, {{ $item->roomType->name }}</p>
+                        <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out
+                        </p>
+                        <div class="mt-2">
+                            <button class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm">
+                                Check available hours →
                             </button>
                         </div>
                     </div>
                 </div>
-                <!-- Description -->
-                <div class="p-4 md:p-6 w-full md:w-2/3">
-                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room A2001</h2>
-                    <p class="text-gray-600 mt-1 text-sm">Floor A2, discussion room</p>
-                    <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out
-                    </p>
-                    <div class="mt-2">
-                        <button class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm">
-                            Check available hours →
-                        </button>
-                    </div>
-                </div>
-            </div>
+                @elseif($item->status == False)
+        <!-- Room A3002 (Unavailable) -->
+                <div class="relative flex flex-col md:flex-row bg-blue-100 shadow-lg rounded-xl overflow-hidden"
+                    data-room-type="Regular Classroom" data-time="08:00 AM - 09:30 AM,06:00 PM - 07:30 PM">
+                    <!-- Image -->
+                    <div class="w-full md:w-1/3 opacity-50">
+                        <div class="relative h-48 md:h-auto">
+                            <div class="carousel relative overflow-hidden">
+                                <div class="carousel-container h-full flex transition-transform duration-300">
+                                    <img src="./assets/pic1.png" alt="Room Image"
+                                        class="w-full h-full object-cover flex-shrink-0">
+                                    <img src="./assets/pic1.png" alt="Room Image"
+                                        class="w-full h-full object-cover flex-shrink-0">
+                                    <img src="./assets/pic1.png" alt="Room Image"
+                                        class="w-full h-full object-cover flex-shrink-0">
+                                </div>
+                                <button
+                                    class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
+                                    onclick="prevSlide(this)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                    </svg>
 
-            <!-- Room A3001 -->
-            <div class="flex flex-col md:flex-row bg-blue-100 rounded-lg overflow-hidden shadow-md"
-                data-room-type="Discussion Room" data-time="01:00 PM - 02:30 PM,03:00 PM - 05:00 PM">
-                <!-- Image -->
-                <div class="w-full md:w-1/3">
-                    <div class="relative h-48 md:h-auto">
-                        <div class="carousel relative overflow-hidden">
-                            <div class="carousel-container h-full flex transition-transform duration-300">
-                                <img src="./assets/pic1.png" alt="Room Image"
-                                    class="w-full h-full object-cover flex-shrink-0">
-                                <img src="./assets/pic1.png" alt="Room Image"
-                                    class="w-full h-full object-cover flex-shrink-0">
-                                <img src="./assets/pic1.png" alt="Room Image"
-                                    class="w-full h-full object-cover flex-shrink-0">
+                                </button>
+                                <button
+                                    class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
+                                    onclick="nextSlide(this)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </button>
                             </div>
-                            <button
-                                class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
-                                onclick="prevSlide(this)">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15.75 19.5L8.25 12l7.5-7.5" />
-                                </svg>
-
-                            </button>
-                            <button
-                                class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
-                                onclick="nextSlide(this)">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                                </svg>
+                        </div>
+                    </div>
+                    <!-- Description -->
+                    <div class="p-4 md:p-6 w-full md:w-2/3">
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item->name }}</h2>
+                        <p class="text-gray-600 mt-1 text-sm">Floor {{ substr($item->name, 0, 2) }}, {{ $item->roomType->name }}</p>
+                        <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out
+                        </p>
+                        <div class="mt-2">
+                            <button class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm">
+                                Check available hours →
                             </button>
                         </div>
                     </div>
-                </div>
-                <!-- Description -->
-                <div class="p-4 md:p-6 w-full md:w-2/3">
-                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room A3001</h2>
-                    <p class="text-gray-600 mt-1 text-sm">Floor A3, discussion room</p>
-                    <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out
-                    </p>
-                    <div class="mt-2">
-                        <button class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm">
-                            Check available hours →
-                        </button>
+                    <!-- Dark Overlay -->
+                    <div class="absolute inset-0 bg-black opacity-50"></div>
+                    <!-- Room Unavailable Text -->
+                    <div class="absolute bottom-0 right-0 m-4 z-10">
+                        <span class="text-lg font-bold uppercase text-white">
+                            Room Unavailable
+                        </span>
                     </div>
                 </div>
-            </div>
-
-            <!-- Room A3002 (Unavailable) -->
-            <div class="relative flex flex-col md:flex-row bg-blue-100 shadow-lg rounded-xl overflow-hidden"
-                data-room-type="Regular Classroom" data-time="08:00 AM - 09:30 AM,06:00 PM - 07:30 PM">
-                <!-- Image -->
-                <div class="w-full md:w-1/3 opacity-50">
-                    <div class="relative h-48 md:h-auto">
-                        <div class="carousel relative overflow-hidden">
-                            <div class="carousel-container h-full flex transition-transform duration-300">
-                                <img src="./assets/pic1.png" alt="Room Image"
-                                    class="w-full h-full object-cover flex-shrink-0">
-                                <img src="./assets/pic1.png" alt="Room Image"
-                                    class="w-full h-full object-cover flex-shrink-0">
-                                <img src="./assets/pic1.png" alt="Room Image"
-                                    class="w-full h-full object-cover flex-shrink-0">
-                            </div>
-                            <button
-                                class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
-                                onclick="prevSlide(this)">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15.75 19.5L8.25 12l7.5-7.5" />
-                                </svg>
-
-                            </button>
-                            <button
-                                class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
-                                onclick="nextSlide(this)">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Description -->
-                <div class="p-4 md:p-6 w-full md:w-2/3">
-                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room A3002</h2>
-                    <p class="text-gray-600 mt-1 text-sm">Floor A3, multipurpose classroom</p>
-                    <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out
-                    </p>
-                    <div class="mt-2">
-                        <button class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm">
-                            Check available hours →
-                        </button>
-                    </div>
-                </div>
-                <!-- Dark Overlay -->
-                <div class="absolute inset-0 bg-black opacity-50"></div>
-                <!-- Room Unavailable Text -->
-                <div class="absolute bottom-0 right-0 m-4 z-10">
-                    <span class="text-lg font-bold uppercase text-white">
-                        Room Unavailable
-                    </span>
-                </div>
-            </div>
-
-            <!-- Room A8000 -->
-            <div class="flex flex-col md:flex-row bg-blue-100 rounded-lg overflow-hidden shadow-md"
-                data-room-type="Computer Room" data-time="10:00 AM - 11:30 AM,01:00 PM - 02:30 PM">
-                <!-- Image -->
-                <div class="w-full md:w-1/3">
-                    <div class="relative h-48 md:h-auto">
-                        <div class="carousel relative overflow-hidden">
-                            <div class="carousel-container h-full flex transition-transform duration-300">
-                                <img src="./assets/pic1.png" alt="Room Image"
-                                    class="w-full h-full object-cover flex-shrink-0">
-                                <img src="./assets/pic1.png" alt="Room Image"
-                                    class="w-full h-full object-cover flex-shrink-0">
-                                <img src="./assets/pic1.png" alt="Room Image"
-                                    class="w-full h-full object-cover flex-shrink-0">
-                            </div>
-                            <button
-                                class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
-                                onclick="prevSlide(this)">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15.75 19.5L8.25 12l7.5-7.5" />
-                                </svg>
-
-                            </button>
-                            <button
-                                class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
-                                onclick="nextSlide(this)">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Description -->
-                <div class="p-4 md:p-6 w-full md:w-2/3">
-                    <h2 class="text-xl md:text-2xl font-semibold mb-2">Room A8000</h2>
-                    <p class="text-gray-600 mt-1 text-sm">Floor A5, computer classroom</p>
-                    <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out
-                    </p>
-                    <div class="mt-2">
-                        <button class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm">
-                            Check available hours →
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Room A8001 -->
-            <div class="flex flex-col md:flex-row bg-blue-100 rounded-lg overflow-hidden shadow-md"
-                data-room-type="Stadium Classroom" data-time="03:00 PM - 05:00 PM,05:00 PM - 06:00 PM">
-                <!-- Image -->
-                <div class="w-full md:w-1/3">
-                    <div class="relative h-48 md:h-auto">
-                        <div class="carousel relative overflow-hidden">
-                            <div class="carousel-container h-full flex transition-transform duration-300">
-                                <img src="./assets/pic1.png" alt="Room Image"
-                                    class="w-full h-full object-cover flex-shrink-0">
-                                <img src="./assets/pic1.png" alt="Room Image"
-                                    class="w-full h-full object-cover flex-shrink-0">
-                                <img src="./assets/pic1.png" alt="Room Image"
-                                    class="w-full h-full object-cover flex-shrink-0">
-                            </div>
-                            <button
-                                class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
-                                onclick="prevSlide(this)">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15.75 19.5L8.25 12l7.5-7.5" />
-                                </svg>
-
-                            </button>
-                            <button
-                                class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
-                                onclick="nextSlide(this)">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Description -->
-                <div class="p-4 md:p-6 w-full md:w-2/3">
-                    <h2 class="text-xl md:text-2xl font-semibold mb-2">Room A8001</h2>
-                    <p class="text-gray-600 mt-1 text-sm">Floor A5, auditorium classroom</p>
-                    <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out
-                    </p>
-                    <div class="mt-2">
-                        <button class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm">
-                            Check available hours →
-                        </button>
-                    </div>
-                </div>
-            </div>
+                @endif
+            @endforeach
         </div>
     </div>
     <script>
