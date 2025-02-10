@@ -16,5 +16,8 @@ Route::get('/home', function () {
 Route::get('/session', [SessionController::class, 'index']);
 Route::post('/session/login', [SessionController::class, 'login']);
 
-Route::get('/room', [RoomController::class, 'index']);
+// Route::get('/room', [RoomController::class, 'index']);
+// Route::get('/room/{name}', [RoomController::class, 'show'])->name('room.show');
+
+route::resource('room', RoomController::class);
 
