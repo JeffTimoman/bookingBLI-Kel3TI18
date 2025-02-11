@@ -116,8 +116,33 @@
           alt="Building Image" 
           class="w-full max-w-[721px] h-auto  object-cover rounded-lg shadow-lg"
         />
+        <button id="loveButton" class="absolute top-4 right-4 p-2 focus:outline-none transition-all duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8 text-gray-500" id="heartIcon">
+            <path fill="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21l-1-1c-5.5-5.5-9-9-9-12a5 5 0 0110-4 5 5 0 0110 4c0 3-3.5 6.5-9 12l-1 1z"></path>
+          </svg>
+        </button>
       </div>
-  
+      
+      <script>
+        // Mendapatkan tombol dan ikon heart
+        const loveButton = document.getElementById('loveButton');
+        const heartIcon = document.getElementById('heartIcon');
+        
+        // Menambahkan event listener untuk menangani klik
+        loveButton.addEventListener('click', () => {
+          // Cek apakah tombol sudah dalam keadaan aktif (merah)
+          if (heartIcon.classList.contains('text-gray-500')) {
+            heartIcon.classList.remove('text-gray-500');
+            heartIcon.classList.add('text-red-700'); // Mengubah warna di dalam hati menjadi merah
+            heartIcon.querySelector('path').setAttribute('fill', 'red');  // Mengubah warna fill menjadi merah
+          } else {
+            heartIcon.classList.remove('text-red-700');
+            heartIcon.classList.add('text-gray-500'); // Mengubah warna di dalam hati kembali ke abu-abu
+            heartIcon.querySelector('path').setAttribute('fill', 'gray'); // Mengubah warna fill menjadi abu-abu
+          }
+        });
+      </script>
+      
       <!-- Right: Features & Description Section -->
       <div class="space-y-6 relative z-20">
         <!-- Features Section -->
@@ -174,41 +199,96 @@
     <div class="mt-8">
       <h2 class="text-xl font-bold text-gray-800">SELECT TIME</h2>
         <div class="flex flex-wrap justify-start mt-4">
+          {{-- @foreach($time as $index)
+            @if($index && $index->status == True)
+                <button class="flex flex-col items-center justify-center w-[190px] h-[190px] bg-gray-300 text-gray-500 cursor-not-allowed time-slot" data-time="08:00 - 09:30 AM">
+                    <img src="{{ asset('./assets/time (' . $index . ').svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
+                    <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-39 w-59 mt-2 opacity-40">
+                </button>
+            @else
+                <button class="flex flex-col items-center justify-center w-[190px] h-[190px] bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="08:00 - 09:30 AM">
+                    <img src="{{ asset('./assets/time (' . $index . ').svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
+                    <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
+                </button>
+            @endif
+          @endforeach --}}
         <!-- Time Slot Box 1 -->
+        @if($time->status == 0)
         <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-gray-300 text-gray-500 cursor-not-allowed time-slot" data-time="08:00 - 09:30 AM">
-            <img src="{{ asset('./assets/time.svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
+            <img src="{{ asset('./assets/time (0).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
                <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-39 w-59 mt-2 opacity-40">
           </button>
+        @else
+        <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="08:00 - 09:30 AM">
+            <img src="{{ asset('./assets/time (0).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
+               <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
+          </button>
+        @endif
           
            <!-- Time Slot Box 2 -->
+        @if($time->status == 0)
+           <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-gray-300 text-gray-500 cursor-not-allowed time-slot" data-time="10:00 - 11:30 AM">
+            <img src="{{ asset('./assets/time (1).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
+               <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-39 w-59 mt-2 opacity-40">
+          </button>
+        @else
           <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="10:00 - 11:30 AM">
-             <img src="{{ asset('./assets/time (1).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
-               <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
-        </button>
+            <img src="{{ asset('./assets/time (1).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
+              <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
+          </button>
+        @endif
         
           <!-- Time Slot Box 3 -->
-        <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="01:00 - 02:30 PM">
+        @if($time->status == 0)
+          <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-gray-300 text-gray-500 cursor-not-allowed time-slot" data-time="01:00 - 02:30 PM">
+            <img src="{{ asset('./assets/time (2).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
+               <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-39 w-59 mt-2 opacity-40">
+          </button>
+        @else
+          <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="01:00 - 02:30 PM">
             <img src="{{ asset('./assets/time (2).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
                <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
           </button>
+        @endif
 
         <!-- Time Slot Box 4 -->
-       <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-gray-300 text-gray-500 cursor-not-allowed time-slot" data-time="03:00 - 05:00 PM">
+        @if($time->status == 0)   
+          <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-gray-300 text-gray-500 cursor-not-allowed time-slot" data-time="03:00 - 05:00 PM">
             <img src="{{ asset('./assets/time (3).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
              <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-39 w-59 mt-2 opacity-40">
           </button>
+        @else
+          <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="03:00 - 05:00 PM">
+            <img src="{{ asset('./assets/time (3).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
+             <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
+          </button>
+        @endif
           
         <!-- Time Slot Box 5 -->
+        @if($time->status == 0)
           <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-gray-300 text-gray-500 cursor-not-allowed time-slot" data-time="05:00 - 06:00 PM">
               <img src="{{ asset('./assets/time (4).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
                <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-39 w-59 mt-2 opacity-40">
-         </button>
+          </button>
+        @else
+          <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="05:00 - 06:00 PM">
+              <img src="{{ asset('./assets/time (4).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
+               <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
+          </button>
+        @endif
 
         <!-- Time Slot Box 6 -->
+        @if($time->status == 0)
+          <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-gray-300 text-gray-500 cursor-not-allowed time-slot" data-time="06:00 - 07:00 PM">
+              <img src="{{ asset('./assets/time (5).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
+               <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-39 w-59 mt-2 opacity-40">
+          </button>
+        @else
           <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="06:00 - 07:00 PM">
               <img src="{{ asset('./assets/time (5).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
                <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
         </button>
+        @endif
       </div>
        <div class="mt-8 flex justify-end">
            <button onclick="openModal()" class="px-6 py-2 border-2 border-blue-800 text-blue-800 rounded-lg hover:bg-blue-100">
@@ -321,12 +401,11 @@
                 </div>
             </div>
             <div class="items-center px-4 py-3">
-             <div class="flex justify-between">
-                  <button onclick="closeModal()" class="bg-transparent text-gray-600 py-2 px-4 border rounded-[22px]  hover:bg-gray-100">Cancel</button>
-                 <button onclick="submitBooking()" class="bg-gray-900 text-white py-2 px-4 rounded-[22px] hover:bg-gray-700">Submit</button>
-               </div>
-              
-          </div>
+              <div class="flex justify-between">
+                <button onclick="closeModal()" class="bg-transparent text-gray-600 py-2 px-4 border rounded-[22px]  hover:bg-gray-100">Cancel</button>
+                <button onclick="submitBooking()" class="bg-gray-900 text-white py-2 px-4 rounded-[22px] hover:bg-gray-700">Submit</button>
+              </div>
+            </div>
         </div>
     </div>
 </div>
