@@ -1,11 +1,3 @@
-<div class="absolute inset-0 -z-10">
-    <img
-      src="./assets/bgheader.png"
-      alt="Header Image"
-      class="w-full h-[362px] object-cover"
-    />
-  </div>
-
 <!-- Navbar -->
 <nav
 class="bg-[#174AA9] text-[#FFF] py-4 px-6 flex items-center justify-between shadow-md rounded-b-[22px] relative z-10">

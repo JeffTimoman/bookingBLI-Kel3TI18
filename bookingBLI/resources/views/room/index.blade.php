@@ -153,14 +153,16 @@
                         </div>
                     </div>
                     <!-- Description -->
-                    <div class="p-4 md:p-6 w-full md:w-2/3">
-                        <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item->name }}</h2>
-                        <p class="text-gray-600 mt-1 text-sm">Floor {{ substr($item->name,0, 2) }}, {{ $item->roomType->name }}</p>
-                        <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out
-                        </p>
-                        <div class="mt-2">
+                    <div class="flex justify-between flex-col p-4 md:p-6 w-full md:w-2/3">
+                        
+                        <div class="flex flex-col">
+                            <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item->name }}</h2>
+                            <p class="text-gray-600 mt-1 text-sm">Floor {{ substr($item->name, 0, 2) }}, {{ $item->roomType->name }}</p>
+                            <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out</p>
+                        </div>
+                        <div class="mt-2 w-100 justify-end flex">
                             <a href="{{ url('/room/'.$item->name) }}">
-                                <button class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm" href="{{ url('/room/'.$item->name) }}">
+                                <button class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 text-large" href="{{ url('/room/'.$item->name) }}">
                                     Check available hours →
                                 </button>
                             </a>
@@ -206,16 +208,13 @@
                         </div>
                     </div>
                     <!-- Description -->
-                    <div class="p-4 md:p-6 w-full md:w-2/3">
-                        <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item->name }}</h2>
-                        <p class="text-gray-600 mt-1 text-sm">Floor {{ substr($item->name, 0, 2) }}, {{ $item->roomType->name }}</p>
-                        <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out
-                        </p>
-                        <div class="mt-2">
-                            <button class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm">
-                                Check available hours →
-                            </button>
+                    <div class="p-4 md:p-6 w-full md:w-2/3 flex flex-col justify-between relative">
+                        <div class="flex flex-col">
+                            <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item->name }}</h2>
+                            <p class="text-gray-600 mt-1 text-sm">Floor {{ substr($item->name, 0, 2) }}, {{ $item->roomType->name }}</p>
+                            <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out</p>
                         </div>
+                        
                     </div>
                     <!-- Dark Overlay -->
                     <div class="absolute inset-0 bg-black opacity-50"></div>

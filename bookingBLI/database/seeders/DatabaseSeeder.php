@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             UserTypeSeeder::class,
             RoomSeeder::class,
             UserSeeder::class,
+            TimeSeeder::class,
             // BookSeeder::class,
             // FavoriteSeeder::class,
             // NotificationSeeder::class,
