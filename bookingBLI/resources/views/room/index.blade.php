@@ -117,7 +117,7 @@
                 @if($item->status == True)
                 <!-- Room A2001 -->
                 <div class="flex flex-col md:flex-row bg-blue-100 rounded-lg overflow-hidden shadow-md"
-                    data-room-type="Discussion Room" data-time="08:00 AM - 09:30 AM,10:00 AM - 11:30 AM">
+                    data-room-type="{{ $item->roomType->name }}" data-time="08:00 AM - 09:30 AM,10:00 AM - 11:30 AM">
                     <!-- Image -->
                     <div class="w-full md:w-1/3">
                         <div class="relative h-48 md:h-auto">
@@ -153,22 +153,26 @@
                         </div>
                     </div>
                     <!-- Description -->
-                    <div class="p-4 md:p-6 w-full md:w-2/3">
-                        <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item->name }}</h2>
-                        <p class="text-gray-600 mt-1 text-sm">Floor {{ substr($item->name,0, 2) }}, {{ $item->roomType->name }}</p>
-                        <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out
-                        </p>
-                        <div class="mt-2">
-                            <button class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm">
-                                Check available hours →
-                            </button>
+                    <div class="flex justify-between flex-col p-4 md:p-6 w-full md:w-2/3">
+                        
+                        <div class="flex flex-col">
+                            <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item->name }}</h2>
+                            <p class="text-gray-600 mt-1 text-sm">Floor {{ substr($item->name, 0, 2) }}, {{ $item->roomType->name }}</p>
+                            <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out</p>
+                        </div>
+                        <div class="mt-2 w-100 justify-end flex">
+                            <a href="{{ url('/room/'.$item->name) }}">
+                                <button class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 text-large" href="{{ url('/room/'.$item->name) }}">
+                                    Check available hours →
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
                 @elseif($item->status == False)
         <!-- Room A3002 (Unavailable) -->
                 <div class="relative flex flex-col md:flex-row bg-blue-100 shadow-lg rounded-xl overflow-hidden"
-                    data-room-type="Regular Classroom" data-time="08:00 AM - 09:30 AM,06:00 PM - 07:30 PM">
+                    data-room-type="{{ $item->roomType->name }}" data-time="08:00 AM - 09:30 AM,06:00 PM - 07:30 PM">
                     <!-- Image -->
                     <div class="w-full md:w-1/3 opacity-50">
                         <div class="relative h-48 md:h-auto">
@@ -204,16 +208,13 @@
                         </div>
                     </div>
                     <!-- Description -->
-                    <div class="p-4 md:p-6 w-full md:w-2/3">
-                        <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item->name }}</h2>
-                        <p class="text-gray-600 mt-1 text-sm">Floor {{ substr($item->name, 0, 2) }}, {{ $item->roomType->name }}</p>
-                        <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out
-                        </p>
-                        <div class="mt-2">
-                            <button class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm">
-                                Check available hours →
-                            </button>
+                    <div class="p-4 md:p-6 w-full md:w-2/3 flex flex-col justify-between relative">
+                        <div class="flex flex-col">
+                            <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item->name }}</h2>
+                            <p class="text-gray-600 mt-1 text-sm">Floor {{ substr($item->name, 0, 2) }}, {{ $item->roomType->name }}</p>
+                            <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out</p>
                         </div>
+                        
                     </div>
                     <!-- Dark Overlay -->
                     <div class="absolute inset-0 bg-black opacity-50"></div>
@@ -228,6 +229,33 @@
             @endforeach
         </div>
     </div>
+
+    @if ($data->hasPages())
+    <nav role="navigation" aria-label="Pagination" class="flex justify-center mt-4">
+        {{-- Previous Page Link --}}
+        @if ($data->onFirstPage())
+            <span class="px-3 py-1 mx-1 text-gray-400 bg-gray-200 rounded cursor-not-allowed">« Previous</span>
+        @else
+            <a href="{{ $data->previousPageUrl() }}&{{ http_build_query(request()->except('page')) }}" class="px-3 py-1 mx-1 bg-blue-500 text-white rounded hover:bg-blue-600">« Previous</a>
+        @endif
+
+        {{-- Pagination Links --}}
+        @foreach ($data->links()->elements[0] as $page => $url)
+            @if ($page == $data->currentPage())
+                <span class="px-3 py-1 mx-1 text-white bg-blue-500 rounded">{{ $page }}</span>
+            @else
+                <a href="{{ $url }}&{{ http_build_query(request()->except('page')) }}" class="px-3 py-1 mx-1 bg-gray-200 rounded hover:bg-gray-300">{{ $page }}</a>
+            @endif
+        @endforeach
+
+        {{-- Next Page Link --}}
+        @if ($data->hasMorePages())
+            <a href="{{ $data->nextPageUrl() }}&{{ http_build_query(request()->except('page')) }}" class="px-3 py-1 mx-1 bg-blue-500 text-white rounded hover:bg-blue-600">Next »</a>
+        @else
+            <span class="px-3 py-1 mx-1 text-gray-400 bg-gray-200 rounded cursor-not-allowed">Next »</span>
+        @endif
+    </nav>
+@endif
     <script>
         function nextSlide(button) {
             const carousel = button.parentElement;
