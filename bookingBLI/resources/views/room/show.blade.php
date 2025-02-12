@@ -199,102 +199,36 @@
     <div class="mt-8">
       <h2 class="text-xl font-bold text-gray-800">SELECT TIME</h2>
         <div class="flex flex-wrap justify-start mt-4">
-          {{-- @foreach($time as $index)
-            @if($index && $index->status == True)
-                <button class="flex flex-col items-center justify-center w-[190px] h-[190px] bg-gray-300 text-gray-500 cursor-not-allowed time-slot" data-time="08:00 - 09:30 AM">
-                    <img src="{{ asset('./assets/time (' . $index . ').svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
-                    <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-39 w-59 mt-2 opacity-40">
-                </button>
-            @else
-                <button class="flex flex-col items-center justify-center w-[190px] h-[190px] bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="08:00 - 09:30 AM">
-                    <img src="{{ asset('./assets/time (' . $index . ').svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
-                    <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
-                </button>
-            @endif
-          @endforeach --}}
-        <!-- Time Slot Box 1 -->
-        @if($time->status == 0)
-        <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-gray-300 text-gray-500 cursor-not-allowed time-slot" data-time="08:00 - 09:30 AM">
-            <img src="{{ asset('./assets/time (0).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
-               <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-39 w-59 mt-2 opacity-40">
-          </button>
-        @else
-        <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="08:00 - 09:30 AM">
-            <img src="{{ asset('./assets/time (0).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
-               <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
-          </button>
-        @endif
-          
-           <!-- Time Slot Box 2 -->
-        @if($time->status == 0)
-           <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-gray-300 text-gray-500 cursor-not-allowed time-slot" data-time="10:00 - 11:30 AM">
-            <img src="{{ asset('./assets/time (1).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
-               <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-39 w-59 mt-2 opacity-40">
-          </button>
-        @else
-          <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="10:00 - 11:30 AM">
-            <img src="{{ asset('./assets/time (1).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
-              <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
-          </button>
-        @endif
-        
-          <!-- Time Slot Box 3 -->
-        @if($time->status == 0)
-          <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-gray-300 text-gray-500 cursor-not-allowed time-slot" data-time="01:00 - 02:30 PM">
-            <img src="{{ asset('./assets/time (2).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
-               <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-39 w-59 mt-2 opacity-40">
-          </button>
-        @else
-          <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="01:00 - 02:30 PM">
-            <img src="{{ asset('./assets/time (2).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
-               <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
-          </button>
-        @endif
-
-        <!-- Time Slot Box 4 -->
-        @if($time->status == 0)   
-          <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-gray-300 text-gray-500 cursor-not-allowed time-slot" data-time="03:00 - 05:00 PM">
-            <img src="{{ asset('./assets/time (3).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
-             <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-39 w-59 mt-2 opacity-40">
-          </button>
-        @else
-          <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="03:00 - 05:00 PM">
-            <img src="{{ asset('./assets/time (3).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
-             <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
-          </button>
-        @endif
-          
-        <!-- Time Slot Box 5 -->
-        @if($time->status == 0)
-          <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-gray-300 text-gray-500 cursor-not-allowed time-slot" data-time="05:00 - 06:00 PM">
-              <img src="{{ asset('./assets/time (4).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
-               <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-39 w-59 mt-2 opacity-40">
-          </button>
-        @else
-          <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="05:00 - 06:00 PM">
-              <img src="{{ asset('./assets/time (4).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
-               <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
-          </button>
-        @endif
-
-        <!-- Time Slot Box 6 -->
-        @if($time->status == 0)
-          <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-gray-300 text-gray-500 cursor-not-allowed time-slot" data-time="06:00 - 07:00 PM">
-              <img src="{{ asset('./assets/time (5).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
-               <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-39 w-59 mt-2 opacity-40">
-          </button>
-        @else
-          <button class="flex flex-col items-center justify-center w-[190px] h-[190px]  bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="06:00 - 07:00 PM">
-              <img src="{{ asset('./assets/time (5).svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
-               <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
-        </button>
-        @endif
+          @php
+          $count = 0;   
+          @endphp
+          @foreach ($data->times as $index => $time) <!-- Correct way to get index and time -->
+          @if ($time->status == 0)
+              <button class="flex flex-col items-center justify-center w-[190px] h-[190px] bg-gray-300 text-gray-500 cursor-not-allowed time-slot" data-time="{{ $time->start }} - {{ $time->end }}" disabled>
+                  <img src="{{ asset('./assets/time (' . $index . ').svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
+                  <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-39 w-59 mt-2 opacity-40">
+                  <p class="hidden timeId">{{ $time->id }}</p>
+              </button>
+          @else
+              @php
+                $count++;
+              @endphp
+              <button class="flex flex-col items-center justify-center w-[190px] h-[190px] bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="{{ $time->start }} - {{ $time->end }}">
+                  <img src="{{ asset('./assets/time (' . $index . ').svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
+                  <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
+                  <p class="hidden timeId">{{ $time->id }}</p>
+              </button>
+          @endif
+      @endforeach
       </div>
-       <div class="mt-8 flex justify-end">
-           <button onclick="openModal()" class="px-6 py-2 border-2 border-blue-800 text-blue-800 rounded-lg hover:bg-blue-100">
-        BOOK
-           </button>
-        </div>
+       @if ($count != 0)
+        <div class="mt-8 flex justify-end">
+            <button onclick="openModal()" class="px-6 py-2 border-2 border-blue-800 text-blue-800 rounded-lg hover:bg-blue-100">
+              BOOK
+            </button>
+          </div>
+        @endif
+     </div>
     </div>
 
 
@@ -365,7 +299,7 @@
 </div>
 
   <!-- Modal/Popup -->
-  <div id="bookingModal" class="fixed hidden z-50 inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+  {{-- <div id="bookingModal" class="fixed hidden z-50 inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
     <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-[15px] bg-white">
         <div class="mt-3 text-center">
             <h3 class="text-lg leading-6 font-medium text-gray-900">Room {{ $data->name }}</h3>
@@ -408,19 +342,74 @@
             </div>
         </div>
     </div>
+</div> --}}
+
+
+<div id="bookingModal" class="fixed hidden z-50 inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+  <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-[15px] bg-white">
+      <form action="{{ route('book.store') }}" method="POST">
+          @csrf
+          <div class="mt-3 text-center">
+              <h3 class="text-lg leading-6 font-medium text-gray-900">Room {{ $data->name }}</h3>
+              <button type="button" onclick="closeModal()" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
+                  <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+              </button>
+              <div class="mt-2 px-7 py-3">
+                  <input type="hidden" name="room_id" value="{{ $data->id }}">
+
+                  <div class="mb-4">
+                      <h4 class="text-left text-sm font-semibold mb-2">Chosen Time</h4>
+                      <div id="chosenTime" class="text-left text-sm mb-2"></div>
+                  </div>
+
+                  <h4 class="text-left text-sm font-semibold mb-2">Details</h4>
+                  <div class="text-left text-sm mb-2">Name: {{ $user->name }}</div>
+                  <div class="text-left text-sm mb-2">Occupation or Affiliation: {{ $user->userType->name }}</div>
+
+                  <div class="text-left text-sm mb-2">
+                      <label class="block text-left text-sm font-medium mb-1">Number of People</label>
+                      <select name="people" id="people" class="border rounded px-2 py-1 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                          @for ($i = 1; $i <= 10; $i++)
+                              <option value="{{ $i }}">{{ $i }}</option>
+                          @endfor
+                      </select>
+                  </div>
+
+                  <div class="text-left text-sm mb-2">
+                      <label for="purpose" class="block text-left text-sm font-medium mb-1">Purpose</label>
+                      <input type="text" name="purpose" id="purpose" class="border rounded px-2 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. Group study, Meeting" required/>
+                  </div>
+              </div>
+
+              <input type="hidden" name="selected_times_id" id="selected_times_id">
+              <div class="items-center px-4 py-3">
+                  <div class="flex justify-between">
+                      <a type="button" onclick="closeModal()" class="bg-transparent text-gray-600 py-2 px-4 border rounded-[22px] hover:bg-gray-100">Cancel</a>
+                      <button type="submit" class="bg-gray-900 text-white py-2 px-4 rounded-[22px] hover:bg-gray-700">Submit</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
 </div>
+
 
 
 <script>
   const modal = document.getElementById('bookingModal');
   const chosenTimeDiv = document.getElementById('chosenTime');
-    let selectedTimes = [];
+  let selectedTimes = [];
+  let selectedTimeIds = [];
 
   function openModal() {
+    console.log(selectedTimeIds);
       if (selectedTimes.length === 0){
         alert("Please select at least 1 time slot")
       } else {
-            chosenTimeDiv.innerHTML = selectedTimes.map(time => `<p>${time}</p>`).join('');
+          chosenTimeDiv.innerHTML = selectedTimes.map(time => `<p>${time}</p>`).join('');
+          document.getElementById('selected_times_id').value = JSON.stringify(selectedTimeIds); // Convert array to JSON string
           modal.classList.remove('hidden');
       }
   }
@@ -443,9 +432,11 @@ const timeSlots = document.querySelectorAll('.time-slot');
              if (this.classList.contains('bg-blue-300')) {
                  this.classList.remove('bg-blue-300');
                   selectedTimes = selectedTimes.filter(t => t !== time);
+                  selectedTimeIds = selectedTimeIds.filter(id => id !== this.getAttribute('data-id'));
              } else {
                 this.classList.add('bg-blue-300');
                selectedTimes.push(time);
+                selectedTimeIds.push(this.querySelector('.timeId').textContent);
             }
 
     });

@@ -6,6 +6,7 @@ use App\Models\Room;
 use App\Models\Time;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Ramsey\Uuid\Type\Integer;
 
 class RoomController extends Controller
 {
@@ -14,14 +15,24 @@ class RoomController extends Controller
         return view('room/index')->with('data', $data);
     }
 
-    function show(string $name){
+
+    public function show(string $name)
+    {
         $user = Auth::user();
+        
+        // Cek apakah room ada
         $data = Room::where('name', $name)->first();
-        $time = Time::where('room_id', $data->id)->first();
-        return view('room/show')->with([
+        if (!$data) {
+            abort(404, 'Room not found');
+        }
+
+        // Ambil semua time slots dari room yang dipilih
+        $times = Time::where('room_id', $data->id)->get();
+
+        return view('room.show')->with([
             'data' => $data,
             'user' => $user,
-            'time' => $time
+            'times' => $times // Ubah dari time → times
         ]);
-    }
+    }   
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,8 @@ Route::middleware(['auth'])->group(function () {
         });
 
         route::resource('room', RoomController::class);
+        Route::post('/book-room', [BookController::class, 'store'])->name('book.store');
+
 
     });
 
