@@ -15,8 +15,9 @@ class="bg-[#174AA9] text-[#FFF] py-4 px-6 flex items-center justify-between shad
 <div class="hidden lg:flex items-center gap-6 md:gap-10 ml-6 md:ml-14">
     <img src="./assets/icon.png" alt="Bell"
         class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
-    <img src="./assets/base.png" alt="Logout"
-        class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+        <a href="./"><img src="./assets/base.png" alt="Logout"
+            class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200"></a>
+    
 </div>
 <div class="lg:hidden flex items-center">
     <button id="hamburger-icon" class="text-white">
