@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Navbar -->
+    <nav
+        class="bg-[#174AA9] text-[#FFF] py-4 px-6 flex items-center justify-between shadow-md rounded-b-[22px] relative z-10">
+        <div class="flex items-center gap-4 md:gap-8">
+            <img src="./asset/logo.png" alt="Logo" class="h-10 md:h-16 w-auto ml-2 md:ml-4">
+            <img src="./asset/bca learning.png" alt="BCA Learning" class="h-10 md:h-14 w-auto">
+        </div>
+        <div class="hidden lg:flex gap-8 md:gap-14 text-[16px] md:text-[18px] font-semibold tracking-[1.08px] ml-auto">
+            <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">FAVORITE</a>
+            <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">BOOK</a>
+            <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">HISTORY</a>
+        </div>
+        <div class="hidden lg:flex items-center gap-6 md:gap-10 ml-6 md:ml-14">
+            <img src="./asset/icon.png" alt="Bell"
+                class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+            <img src="./asset/bell.png" alt="Logout"
+                class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+        </div>
+        <div class="lg:hidden flex items-center">
+            <button id="hamburger-icon" class="text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+      <!-- Current Session Bar -->
+         <!-- Wrapper untuk pusatkan elemen -->
+        <div class="flex items-center justify-center mt-10 mb-10">
+            <div class="relative w-[60vw] h-8 bg-gray-200 rounded-full overflow-hidden">
+            <!-- Bagian Current Session -->
+                <div class="absolute top-0 left-0 h-full bg-blue-600 rounded-full flex items-center justify-center text-white font-bold" style="width: 60%;">
+                    Current Session
+                </div>
+
+                <div class="relative w-[60vw] h-8 bg-gray-200 rounded-full overflow-hidden group">
+                    <button class="absolute left-0 w-1/2 h-full px-4 text-white rounded-full opacity-0 transition-opacity duration-300 hover:opacity-100 font-bold"
+                    onclick="window.location.href='./history_page.html'">
+                        Current Session
+                    </button>
+                    <div class=" absolute top-0 right-0 h-full bg-blue-600 rounded-full flex items-center justify-center text-white font-bold" style="width: 50%;">
+                        Past Session
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="rounded-2xl shadow-lg 8 flex flex-col md:flex-row gap-6 items-stretch bg-blue-100">
+            <!-- Image Slider -->
+            <div class="relative w-full md:w-1/2 h-full overflow-hidden rounded-l-2xl">
+                <div class="relative aspect-video h-full w-full">
+                    <img id="slider-image" src="./asset/BLI_aerialview 1.png" alt="Room Image" class="object-cover w-full h-full transition-all duration-500">
+                    
+                    <!-- Prev and Next Buttons -->
+                    <div class="absolute top-1/2 transform -translate-y-1/2 w-full flex justify-between px-4">
+                        <button id="prev-btn" class="flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg opacity-70 hover:opacity-100 transition-opacity duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-800">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                            </svg>
+                        </button>
+                        <button id="next-btn" class="flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg opacity-70 hover:opacity-100 transition-opacity duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-800">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <!-- Dot Navigation -->
+                    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                        <span class="dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer"></span>
+                        <span class="dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer"></span>
+                        <span class="dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room Details -->
+            <div class="flex flex-col w-full md:w-1/2 p-6">
+                <div class="flex flex-row">
+                    <h2 class="text-[40px] font-black text-gray-800 mb-2">Room A2001</h2>
+                    <div class="mt-4">
+                        <span class="bg-blue-600 text-white py-2 px-4 rounded-lg font-medium ml-[250%]">Pending</span>
+                    </div>
+                </div>
+                <p class="text-gray-600 mb-4 text-[20px]">Wednesday, January 8th 2025</p>
+                <div class="flex items-center mb-4 text-gray-700 text-[18px]">
+                    <img src="./asset/people.svg" alt="People" class="h-7 md:h-7 mr-2">
+                      5 People
+                </div>
+                <button class="bg-blue-200 text-blue-600 font-medium px-4 py-2 rounded-lg mb-2 text-center w-1/3">10:00 AM - 11:30 AM</button>
+                <button class="bg-blue-200 text-blue-600 font-medium px-4 py-2 rounded-lg mb-2 text-center w-1/3">01:00 PM - 02:30 PM</button>
+                <button class="bg-blue-200 text-blue-600 font-medium px-4 py-2 rounded-lg text-center w-1/3">03:00 PM - 05:00 PM</button>
+            </div>
+        </div>
+
+        <div class="rounded-2xl shadow-lg 8 flex flex-col md:flex-row gap-6 items-stretch bg-blue-100 mt-8">
+            <!-- Image Slider -->
+            <div class="relative w-full md:w-1/2 h-full overflow-hidden rounded-l-2xl">
+                <div class="relative aspect-video h-full w-full">
+                    <img id="slider-image" src="./asset/BLI_aerialview 1.png" alt="Room Image" class="object-cover w-full h-full transition-all duration-500">
+                    
+                    <!-- Prev and Next Buttons -->
+                    <div class="absolute top-1/2 transform -translate-y-1/2 w-full flex justify-between px-4">
+                        <button id="prev-btn" class="flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg opacity-70 hover:opacity-100 transition-opacity duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-800">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                            </svg>
+                        </button>
+                        <button id="next-btn" class="flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg opacity-70 hover:opacity-100 transition-opacity duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-800">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <!-- Dot Navigation -->
+                    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                        <span class="dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer"></span>
+                        <span class="dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer"></span>
+                        <span class="dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room Details -->
+            <div class="flex flex-col w-full md:w-1/2 p-6">
+                <div class="flex flex-row">
+                    <h2 class="text-[40px] font-black text-gray-800 mb-2">Room A2001</h2>
+                    <div class="mt-4">
+                        <span class="bg-blue-600 text-white py-2 px-4 rounded-lg font-medium ml-[250%]">Pending</span>
+                    </div>
+                </div>
+                <p class="text-gray-600 mb-4 text-[20px]">Wednesday, January 8th 2025</p>
+                <div class="flex items-center mb-4 text-gray-700 text-[18px]">
+                    <img src="./asset/people.svg" alt="People" class="h-7 md:h-7 mr-2">
+                      5 People
+                </div>
+                <button class="bg-blue-200 text-blue-600 font-medium px-4 py-2 rounded-lg mb-2 text-center w-1/3">10:00 AM - 11:30 AM</button>
+                <button class="bg-blue-200 text-blue-600 font-medium px-4 py-2 rounded-lg mb-2 text-center w-1/3">01:00 PM - 02:30 PM</button>
+                <button class="bg-blue-200 text-blue-600 font-medium px-4 py-2 rounded-lg text-center w-1/3">03:00 PM - 05:00 PM</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- will be hidden, muncul ketika past session di click -->
+      
+
+    <!-- Footer -->
+    <div class="bg-gradient-to-b from-[#004AAD] to-[#00092D] text-white">
+        <footer class="w-full py-6 md:py-10 px-6 md:px-12 lg:px-24">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Left Section - Logo -->
+                <div class="flex flex-col items-start gap-2">
+                    <img src="./asset/logo.png" alt="BCA Logo" class="h-28 md:h-40">
+                </div>
+
+                <!-- Middle Left - Lokasi -->
+                <div>
+                    <h3 class="text-sm font-normal mb-3">Lokasi</h3>
+                    <p class="text-xs md:text-sm leading-6 md:leading-8 font-normal tracking-wider">
+                        Sentul City<br>
+                        Jl. Pakuan No. 3, Sumur Batu, Babakan Madang, <br>
+                        Bogor 16810
+                    </p>
+                </div>
+
+                <!-- Middle Right - Hubungi Kami -->
+                <div>
+                    <h3 class="text-sm font-normal mb-3">Hubungi Kami</h3>
+                    <ul class="text-xs md:text-sm leading-8 md:leading-10">
+                        <li class="flex items-center gap-2">
+                            <img src="./asset/phone.svg" alt="Phone" class="h-5">
+                            <span>Halo BCA 1500888</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <img src="./asset/mail.svg" alt="Email" class="h-5">
+                            <span>halobca@bca.co.id</span>
+                        </li>
+                        
+                        <li class="flex items-center gap-2">
+                            <img src="./asset/wa.svg" alt="Phone 2" class="h-5">
+                            <span>62-922-0355-800</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right Section - Media Sosial -->
+                <div>
+                    <h3 class="text-sm font-normal mb-2">Media Sosial</h3>
+                    <ul class="flex flex-col space-y-2 md:space-y-3 text-xs md:text-sm">
+                        <li class="flex items-center gap-2">
+                            <img src="./asset/fb.svg" alt="Facebook" class="h-4 md:h-5">
+                            <span>GoodLife BCA</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <img src="./asset/ig.svg" alt="Twitter" class="h-4 md:h-5">
+                            <span>@goodlifebca</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <img src="./asset/yt.svg" alt="Instagram" class="h-4 md:h-5">
+                            <span>Solusi BCA</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <img src="./asset/x.svg" alt="YouTube" class="h-4 md:h-5">
+                            <span>@BankBCA</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
+<script>
+    const images = [
+        "./asset/BLI_aerialview 1.png",
+        "./asset/BLI_fullview.jpg",
+        "./asset/BLI_aerialview 1.png",
+    ];
+
+    let currentIndex = 0;
+    const sliderImage = document.getElementById('slider-image');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const dots = document.querySelectorAll('.dot');
+
+    // Function to update image and active dot
+    function updateSlider(index) {
+        currentIndex = index;
+        sliderImage.src = images[currentIndex];
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('bg-gray-800', i === currentIndex);
+            dot.classList.toggle('bg-gray-300', i !== currentIndex);
+        });
+    }
+
+    // Event listeners for buttons
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateSlider(currentIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateSlider(currentIndex);
+    });
+
+    // Auto-play slider every 5 seconds
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateSlider(currentIndex);
+    }, 5000);
+
+    // Event listeners for dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => updateSlider(index));
+    });
+
+    // Initialize slider
+    updateSlider(currentIndex);
+</script>
