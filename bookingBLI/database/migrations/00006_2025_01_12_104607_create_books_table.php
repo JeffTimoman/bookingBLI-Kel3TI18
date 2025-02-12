@@ -20,8 +20,6 @@ return new class extends Migration
             $table->unsignedBigInteger('time_id');
             $table->foreign('time_id')->references('id')->on('times')->onDelete('cascade');
             $table->date('date');
-            $table->string('start');
-            $table->string('end');
             $table->integer('people');
             $table->string('purpose');
             $table->integer('status');
