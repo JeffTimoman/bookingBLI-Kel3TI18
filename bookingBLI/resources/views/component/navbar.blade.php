@@ -9,7 +9,7 @@ class="bg-[#174AA9] text-[#FFF] py-4 px-6 flex items-center justify-between shad
 </div>
 <div class="hidden lg:flex gap-8 md:gap-14 text-[16px] md:text-[18px] font-semibold tracking-[1.08px] ml-auto">
     <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">FAVORITE</a>
-    <a href="/book" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">BOOK</a>
+    <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">BOOK</a>
     <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">HISTORY</a>
 </div>
 <div class="hidden lg:flex items-center gap-6 md:gap-10 ml-6 md:ml-14">
