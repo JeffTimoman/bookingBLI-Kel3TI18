@@ -182,11 +182,8 @@
                         });
 
                         if (response.ok) {
-                            // Remove the card from the DOM
                             card.remove();
                             
-                            // If you want to update the room page's heart immediately:
-                            // Find all heart icons for this room on the page and update them
                             document.querySelectorAll(`[data-room-id="${roomId}"] .heart-icon path`).forEach(icon => {
                                 icon.setAttribute('fill', 'gray');
                             });
