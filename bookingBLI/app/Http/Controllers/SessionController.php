@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Session;
 class SessionController extends Controller
 {
     function index(){
+        // [un-comment this code once all pages are created]
+        // if (Auth::check()) {
+        //     // Check user's role and redirect accordingly
+        //     if (auth()->user()->isAdmin()) {
+        //         return redirect('admin/home');
+        //     } else if (auth()->user()->isUser()) {
+        //         return redirect('home');
+        //     }
+        // }
         return view('session/index');
     }
 
@@ -28,8 +37,9 @@ class SessionController extends Controller
         ];
 
         if(Auth::attempt($infologin)){
-            // $user = Auth::user();
-            // Check user's role and redirect accordingly
+            // [comment this code once all pages are created]
+            $user = Auth::user();
+
             if(auth()->user()->isAdmin()){
                 return redirect('admin/home')->with('success', 'Login success');
             } else if (auth()->user()->isUser()) {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\RoomController;
@@ -14,26 +15,29 @@ route::resource('user', UserController::class);
 Route::get('/session', [SessionController::class, 'index']);
 Route::post('/session/login', [SessionController::class, 'login']);
 
-
 Route::middleware(['auth'])->group(function () {
-
+    
     Route::middleware(['user'])->group(function () {
         Route::get('/home', function () {
             return view('landing');
         });
-
+        
         route::resource('room', RoomController::class);
+        Route::post('/rooms/{room}/favorite', [FavoriteController::class, 'store'])->name('favorites.store');
+        Route::delete('/rooms/{room}/favorite', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+        
+        Route::get('/favorite', function () {
+            return view('favorite.index');
+        });
         Route::post('/book-room', [BookController::class, 'store'])->name('book.store');
 
         Route::get('/history', [HistoryController::class, 'index']);
 
-
     });
-
     
     Route::middleware(['admin'])->group(function () {
         Route::get('/admin/home', function () {
-            return view('admin.home');
+            return view('user.create');
         })->name('admin.home');
     });
 });
