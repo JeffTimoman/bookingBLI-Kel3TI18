@@ -8,4 +8,5 @@ class Time extends Model
 {
     //
     public $timestamps = false;
+
 }

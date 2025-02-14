@@ -117,7 +117,7 @@
                 @if($item->status == True)
                 <!-- Room A2001 -->
                 <div class="flex flex-col md:flex-row bg-blue-100 rounded-lg overflow-hidden shadow-md"
-                    data-room-type="{{ $item->roomType->name }}" data-time="08:00 AM - 09:30 AM,10:00 AM - 11:30 AM">
+                    data-room-type="{{ $item->roomType->name }}" data-time="{{ $item->times->where('status', 1)->map(fn($time) => \Carbon\Carbon::parse($time->start)->format('h:i A') . ' - ' . \Carbon\Carbon::parse($time->end)->format('h:i A'))->implode(',') }}">
                     <!-- Image -->
                     <div class="w-full md:w-1/3">
                         <div class="relative h-48 md:h-auto">
@@ -169,9 +169,9 @@
                         </div>
                     </div>
                 </div>
-                @elseif($item->status == False)
+                @elseif($item->status == False )
         <!-- Room A3002 (Unavailable) -->
-                <div class="relative flex flex-col md:flex-row bg-blue-100 shadow-lg rounded-xl overflow-hidden"
+                <div class="relative flex flex-col md:flex-row bg-blue-100 shadow-lg rounded-xl overflow-hidden unavailable"
                     data-room-type="{{ $item->roomType->name }}" data-time="08:00 AM - 09:30 AM,06:00 PM - 07:30 PM">
                     <!-- Image -->
                     <div class="w-full md:w-1/3 opacity-50">
@@ -349,7 +349,7 @@
                 const roomTime = card.dataset.time ? card.dataset.time.split(',') : [];
                 const matchesRoomType = selectedFilters.roomTypes.length === 0 || selectedFilters.roomTypes.includes(roomType);
                 const matchesTime = selectedFilters.times.length === 0 || selectedFilters.times.some(time => roomTime.includes(time));
-                const isAvailable = !card.classList.contains('opacity-50');
+                const isAvailable = !card.classList.contains('unavailable');
 
                 const matchesAvailability = !selectedFilters.availability || (selectedFilters.availability && isAvailable);
 
