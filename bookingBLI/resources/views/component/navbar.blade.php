@@ -9,14 +9,15 @@ class="bg-[#174AA9] text-[#FFF] py-4 px-6 flex items-center justify-between shad
 </div>
 <div class="hidden lg:flex gap-8 md:gap-14 text-[16px] md:text-[18px] font-semibold tracking-[1.08px] ml-auto">
     <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">FAVORITE</a>
-    <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">BOOK</a>
-    <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">HISTORY</a>
+    <a href="/room" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">BOOK</a>
+    <a href="/history" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">HISTORY</a>
 </div>
 <div class="hidden lg:flex items-center gap-6 md:gap-10 ml-6 md:ml-14">
     <img src="./assets/icon.png" alt="Bell"
         class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
-    <img src="./assets/base.png" alt="Logout"
-        class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+        <a href="./"><img src="./assets/base.png" alt="Logout"
+            class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200"></a>
+    
 </div>
 <div class="lg:hidden flex items-center">
     <button id="hamburger-icon" class="text-white">

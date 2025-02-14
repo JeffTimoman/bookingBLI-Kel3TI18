@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +29,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/favorite', function () {
             return view('favorite.index');
         });
+        Route::post('/book-room', [BookController::class, 'store'])->name('book.store');
+
+        Route::get('/history', [HistoryController::class, 'index']);
+
     });
     
     Route::middleware(['admin'])->group(function () {

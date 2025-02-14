@@ -16,5 +16,13 @@ class Room extends Model
     public function favoritedBy()
     {
         return $this->belongsToMany(User::class, 'favorites');
+    public function times()
+    {
+        return $this->hasMany(Time::class, 'room_id'); 
+    }
+
+    public function books()
+    {
+        return $this->hasMany(Books::class, 'room_id');
     }
 }
