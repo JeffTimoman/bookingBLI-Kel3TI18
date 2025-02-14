@@ -45,6 +45,12 @@ class User extends Authenticatable
         return $this->role === 'User';
     }
 
+    public function favorites()
+{
+    return $this->belongsToMany(Room::class, 'favorites')
+        ->withTimestamps();
+}
+
     /**
      * Get the attributes that should be cast.
      *

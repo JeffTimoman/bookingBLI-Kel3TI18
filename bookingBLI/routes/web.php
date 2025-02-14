@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -13,20 +14,24 @@ Route::get('/session', [SessionController::class, 'index']);
 Route::post('/session/login', [SessionController::class, 'login']);
 
 Route::middleware(['auth'])->group(function () {
-
+    
     Route::middleware(['user'])->group(function () {
         Route::get('/home', function () {
             return view('landing');
         });
-
+        
         Route::get('/room', [RoomController::class, 'index']);
-
+        Route::post('/rooms/{room}/favorite', [FavoriteController::class, 'store'])->name('favorites.store');
+        Route::delete('/rooms/{room}/favorite', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+        
+        Route::get('/favorite', function () {
+            return view('favorite.index');
+        });
     });
-
     
     Route::middleware(['admin'])->group(function () {
         Route::get('/admin/home', function () {
-            return view('admin.home');
+            return view('user.create');
         })->name('admin.home');
     });
 });
