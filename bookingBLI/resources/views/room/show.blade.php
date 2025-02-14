@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Room A2001 - Discussion Room</title>
+    <title>Room {{ $data->name }} - {{$data->roomType->name}}</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-gray-100">
@@ -116,32 +117,76 @@
           alt="Building Image" 
           class="w-full max-w-[721px] h-auto  object-cover rounded-lg shadow-lg"
         />
-        <button id="loveButton" class="absolute top-4 right-4 p-2 focus:outline-none transition-all duration-300">
+        <button 
+          id="loveButton" 
+          class="absolute top-4 right-4 p-2 focus:outline-none transition-all duration-300"
+          data-room-id="{{ $data->id }}"
+          data-is-favorited="{{ auth()->check() && auth()->user()->favorites->contains($data->id) ? 'true' : 'false' }}"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8 text-gray-500" id="heartIcon">
-            <path fill="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21l-1-1c-5.5-5.5-9-9-9-12a5 5 0 0110-4 5 5 0 0110 4c0 3-3.5 6.5-9 12l-1 1z"></path>
+            <path 
+              fill="{{ auth()->check() && auth()->user()->favorites->contains($data->id) ? 'red' : 'gray' }}" 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              stroke-width="2" 
+              d="M12 21l-1-1c-5.5-5.5-9-9-9-12a5 5 0 0110-4 5 5 0 0110 4c0 3-3.5 6.5-9 12l-1 1z"
+            ></path>
           </svg>
         </button>
-      </div>
-      
-      <script>
-        // Mendapatkan tombol dan ikon heart
+    </div>
+
+    <script>
         const loveButton = document.getElementById('loveButton');
         const heartIcon = document.getElementById('heartIcon');
-        
-        // Menambahkan event listener untuk menangani klik
-        loveButton.addEventListener('click', () => {
-          // Cek apakah tombol sudah dalam keadaan aktif (merah)
-          if (heartIcon.classList.contains('text-gray-500')) {
-            heartIcon.classList.remove('text-gray-500');
-            heartIcon.classList.add('text-red-700'); // Mengubah warna di dalam hati menjadi merah
-            heartIcon.querySelector('path').setAttribute('fill', 'red');  // Mengubah warna fill menjadi merah
-          } else {
-            heartIcon.classList.remove('text-red-700');
-            heartIcon.classList.add('text-gray-500'); // Mengubah warna di dalam hati kembali ke abu-abu
-            heartIcon.querySelector('path').setAttribute('fill', 'gray'); // Mengubah warna fill menjadi abu-abu
-          }
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+        const roomId = loveButton.dataset.roomId;
+
+        loveButton.addEventListener('click', async () => {
+            // Only proceed if user is authenticated
+            @if(auth()->check())
+            {
+                const isFavorited = heartIcon.querySelector('path').getAttribute('fill') === 'red';
+                const url = `/rooms/${roomId}/favorite`;
+                const method = isFavorited ? 'DELETE' : 'POST';
+
+                try {
+                    const response = await fetch(url, {
+                        method: method,
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken,
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                        },
+                    });
+
+                    if (response.ok) {
+                        // Toggle the UI state
+                        if (isFavorited) {
+                            heartIcon.querySelector('path').setAttribute('fill', 'gray');
+                            heartIcon.classList.remove('text-red-700');
+                            heartIcon.classList.add('text-gray-500');
+                        } else {
+                            heartIcon.querySelector('path').setAttribute('fill', 'red');
+                            heartIcon.classList.remove('text-gray-500');
+                            heartIcon.classList.add('text-red-700');
+                        }
+                    } else {
+                        const error = await response.json();
+                        console.error('Error:', error.message);
+                        // Optionally revert UI changes
+                    }
+                } catch (error) {
+                    console.error('Network error:', error);
+                }
+            }
+            @else
+            {
+                // Redirect to login or show login modal
+                window.location.href = '{{ route('login') }}';
+            }
+            @endif
         });
-      </script>
+    </script>
       
       <!-- Right: Features & Description Section -->
       <div class="space-y-6 relative z-20">
