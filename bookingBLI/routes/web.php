@@ -13,7 +13,6 @@ route::resource('user', UserController::class);
 Route::get('/session', [SessionController::class, 'index']);
 Route::post('/session/login', [SessionController::class, 'login']);
 
-
 Route::middleware(['auth'])->group(function () {
     
     Route::middleware(['user'])->group(function () {

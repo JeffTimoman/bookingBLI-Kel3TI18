@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Favorites - BCA Learning Institute</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         body {
             font-family: 'Albert Sans', sans-serif;
@@ -48,69 +49,32 @@
 
             <!-- Favorite Rooms Card Section -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8" id="favorite-rooms-container">
-            <!-- Card for Room A5001 -->
-            <div class="w-[360px] h-[360px]  rounded-xl relative bg-[#f8f8f8] shadow-[0_0_0_1px_#e0e0e0]" data-room-id="A5001">
-                <div class="flex justify-center mt-6">
-                <img src="./assets/pic.png" alt="Room A5001" class="w-[294px] h-[234px] object-cover rounded-md">
+            <!-- Room Card -->
+            @foreach(auth()->user()->favorites as $room)
+                <div class="w-[360px] h-[360px] rounded-xl relative bg-[#f8f8f8] shadow-[0_0_0_1px_#e0e0e0]" data-room-id="{{ $room->id }}">
+                    <div class="flex justify-center mt-6">
+                        <img src="./assets/pic.png" alt="Room A8002" class="w-[294px] h-[234px] object-cover rounded-md">
+                    </div>
+                    <button 
+                        class="absolute top-4 right-4 p-2 focus:outline-none favorite-button"
+                        data-room-id="{{ $room->id }}"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8 heart-icon">
+                            <path 
+                                fill="red" 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                stroke-width="2" 
+                                d="M12 21l-1-1c-5.5-5.5-9-9-9-12a5 5 0 0110-4 5 5 0 0110 4c0 3-3.5 6.5-9 12l-1 1z"
+                            ></path>
+                        </svg>
+                    </button>
+                    <div class="text-center mt-4 px-4">
+                        <h3 class="font-semibold text-lg text-gray-800">{{ $room->name }}</h3>
+                        <p class="text-sm text-gray-600">{{ $room->roomType->name }}, Floor 8, Tower A</p>
+                    </div>
                 </div>
-                <button class="absolute top-4 right-4 p-2 focus:outline-none favorite-button">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
-                    <path fill="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21l-1-1c-5.5-5.5-9-9-9-12a5 5 0 0110-4 5 5 0 0110 4c0 3-3.5 6.5-9 12l-1 1z"></path>
-                </svg>
-                </button>
-                <div class="text-center mt-4 px-4">
-                <h3 class="font-semibold text-lg text-gray-800">Room A5001</h3>
-                <p class="text-sm text-gray-600">Discussion room, Floor 5, Tower A</p>
-                </div>
-            </div>
-
-            <!-- Card for Room A8002 -->
-            <div class="w-[360px] h-[360px] rounded-xl relative bg-[#f8f8f8] shadow-[0_0_0_1px_#e0e0e0]" data-room-id="A8002">
-                <div class="flex justify-center mt-6">
-                <img src="./assets/pic.png" alt="Room A8002" class="w-[294px] h-[234px] object-cover rounded-md">
-                </div>
-                <button class="absolute top-4 right-4 p-2 focus:outline-none favorite-button">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
-                    <path fill="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21l-1-1c-5.5-5.5-9-9-9-12a5 5 0 0110-4 5 5 0 0110 4c0 3-3.5 6.5-9 12l-1 1z"></path>
-                </svg>
-                </button>
-                <div class="text-center mt-4 px-4">
-                <h3 class="font-semibold text-lg text-gray-800">Room A8002</h3>
-                <p class="text-sm text-gray-600">Stadium classroom, Floor 8, Tower A</p>
-                </div>
-            </div>
-
-            <!-- Card for Room A3006 -->
-            <div class="w-[360px] h-[360px] rounded-xl relative bg-[#f8f8f8] shadow-[0_0_0_1px_#e0e0e0]" data-room-id="A3006">
-                <div class="flex justify-center mt-6">
-                <img src="./assets/pic.png" alt="Room A3006" class="w-[294px] h-[234px] object-cover rounded-md">
-                </div>
-                <button class="absolute top-4 right-4 p-2 focus:outline-none favorite-button">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
-                    <path fill="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21l-1-1c-5.5-5.5-9-9-9-12a5 5 0 0110-4 5 5 0 0110 4c0 3-3.5 6.5-9 12l-1 1z"></path>
-                </svg>
-                </button>
-                <div class="text-center mt-4 px-4">
-                <h3 class="font-semibold text-lg text-gray-800">Room A3006</h3>
-                <p class="text-sm text-gray-600">Multipurpose classroom, Floor 3, Tower A</p>
-                </div>
-            </div>
-
-            <!-- Card for Room A5001 (Favorite) -->
-            <div class="w-[360px] h-[360px] rounded-xl relative bg-[#f8f8f8] shadow-[0_0_0_1px_#e0e0e0]" data-room-id="A5001-fav">
-                <div class="flex justify-center mt-6">
-                <img src="./assets/pic.png" alt="Room A5001" class="w-[294px] h-[234px] object-cover rounded-md">
-                </div>
-                <button class="absolute top-4 right-4 p-2 focus:outline-none favorite-button">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
-                    <path fill="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21l-1-1c-5.5-5.5-9-9-9-12a5 5 0 0110-4 5 5 0 0110 4c0 3-3.5 6.5-9 12l-1 1z"></path>
-                </svg>
-                </button>
-                <div class="text-center mt-4 px-4">
-                <h3 class="font-semibold text-lg text-gray-800">Room A5001</h3>
-                <p class="text-sm text-gray-600">Discussion room, Floor 5, Tower A</p>
-                </div>
-            </div>
+            @endforeach
             </div>
             <div id="empty-message" class="text-center mt-8 hidden">
                 <p class="text-gray-600 text-lg">You don't have any favorite room yet</p>
@@ -189,16 +153,50 @@
             }
 
             checkEmpty(); // Panggil saat pertama kali halaman dimuat
-            container.addEventListener('click', function(event) {
-            if (event.target.closest('.favorite-button')) {
-                const button = event.target.closest('.favorite-button');
-                const card = button.closest('[data-room-id]');
+            // container.addEventListener('click', function(event) {
+            // if (event.target.closest('.favorite-button')) {
+            //     const button = event.target.closest('.favorite-button');
+            //     const card = button.closest('[data-room-id]');
 
-                if (card) {
-                card.remove();
-                checkEmpty(); // Periksa setelah card dihapus
-                }
-            }
+            //     if (card) {
+            //     card.remove();
+            //     checkEmpty(); // Periksa setelah card dihapus
+            //     }
+            // }
+            // });
+            document.querySelectorAll('.favorite-button').forEach(button => {
+                button.addEventListener('click', async function() {
+                    const roomId = this.dataset.roomId;
+                    const card = this.closest('[data-room-id]');
+                    const heartIcon = this.querySelector('.heart-icon path');
+                    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+                    try {
+                        const response = await fetch(`/rooms/${roomId}/favorite`, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': csrfToken,
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                            },
+                        });
+
+                        if (response.ok) {
+                            // Remove the card from the DOM
+                            card.remove();
+                            
+                            // If you want to update the room page's heart immediately:
+                            // Find all heart icons for this room on the page and update them
+                            document.querySelectorAll(`[data-room-id="${roomId}"] .heart-icon path`).forEach(icon => {
+                                icon.setAttribute('fill', 'gray');
+                            });
+                        } else {
+                            console.error('Error removing favorite');
+                        }
+                    } catch (error) {
+                        console.error('Network error:', error);
+                    }
+                });
             });
         });
     </script>
