@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('description');
             $table->integer('people');
             $table->boolean('status');
+            $table->string('floor');
             $table->timestamps();
         });
     }

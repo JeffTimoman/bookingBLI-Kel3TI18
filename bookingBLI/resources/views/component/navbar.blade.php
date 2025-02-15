@@ -1,21 +1,21 @@
 <!-- Navbar -->
 <nav
-class="bg-[#174AA9] text-[#FFF] py-4 px-6 flex items-center justify-between shadow-md rounded-b-[22px] relative z-10">
+class="bg-[#174AA9] text-[#FFF] w-screen py-4 px-6 flex items-center top-0 fixed justify-between w-100 shadow-md rounded-b-[22px] z-40">
 <div class="flex items-center gap-4 md:gap-8">
     <a href="/home">
-        <img src="./assets/LOGO BLI.png" alt="Logo" class="h-10 md:h-16 w-auto ml-2 md:ml-4">
+        <img src="{{ asset('./assets/LOGO BLI.png') }}" alt="Logo" class="h-10 md:h-16 w-auto ml-2 md:ml-4">
     </a>
-    <img src="./assets/bca learning.png" alt="BCA Learning" class="h-10 md:h-14 w-auto">
+    <img src="{{ asset('./assets/bca learning.png') }}" alt="BCA Learning" class="h-10 md:h-14 w-auto">
 </div>
 <div class="hidden lg:flex gap-8 md:gap-14 text-[16px] md:text-[18px] font-semibold tracking-[1.08px] ml-auto">
-    <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">FAVORITE</a>
-    <a href="/room" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">BOOK</a>
+    <a href="{{ route('favorite.index') }}" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">FAVORITE</a>
+    <a href="{{ route('room.index') }}" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">BOOK</a>
     <a href="/history" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">HISTORY</a>
 </div>
 <div class="hidden lg:flex items-center gap-6 md:gap-10 ml-6 md:ml-14">
-    <img src="./assets/icon.png" alt="Bell"
+    <img src="{{ asset('./assets/icon.png') }}" alt="Bell"
         class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
-        <a href="./"><img src="./assets/base.png" alt="Logout"
+        <a href="{{ route('logout') }}"><img src="{{ asset('./assets/base.png') }}" alt="Logout"
             class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200"></a>
     
 </div>

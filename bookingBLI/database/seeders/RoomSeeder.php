@@ -13,7 +13,7 @@ class RoomSeeder extends Seeder
      */
     public function run(): void
     {
-            Room::factory()->create(['name' => 'A10001', 'room_type_id' => 1, 'status' => false]);
+            Room::factory()->create(['name' => 'A10001', 'room_type_id' => 1, 'status' => false, 'floor' => 'A10']);
             // Room::factory()->create(['name' => 'A10002', 'room_type_id' => 1, 'status' => true]);
             // Room::factory()->create(['name' => 'A900', 'room_type_id' => 1, 'status' => true]);
             // Room::factory()->create(['name' => 'A700', 'room_type_id' => 1, 'status' => true]);
@@ -23,7 +23,7 @@ class RoomSeeder extends Seeder
             // Room::factory()->create(['name' => 'A300', 'room_type_id' => 1, 'status' => true]);
             // Room::factory()->create(['name' => 'A200', 'room_type_id' => 1, 'status' => true]);
 
-            Room::factory()->create(['name' => 'A201', 'room_type_id' => 2, 'status' => true]);
+            Room::factory()->create(['name' => 'A201', 'room_type_id' => 2, 'status' => true, 'floor' => 'A2']);
             // Room::factory()->create(['name' => 'A202', 'room_type_id' => 2, 'status' => true]);
             // Room::factory()->create(['name' => 'A203', 'room_type_id' => 2, 'status' => true]);
             // Room::factory()->create(['name' => 'A204', 'room_type_id' => 2, 'status' => true]);
@@ -51,7 +51,7 @@ class RoomSeeder extends Seeder
             // Room::factory()->create(['name' => 'A707', 'room_type_id' => 2, 'status' => true]);
             // Room::factory()->create(['name' => 'A708', 'room_type_id' => 2, 'status' => true]);
 
-            Room::factory()->create(['name' => 'A801', 'room_type_id' => 3, 'status' => true]);
+            Room::factory()->create(['name' => 'A801', 'room_type_id' => 3, 'status' => true, 'floor' => 'A8']);
             // Room::factory()->create(['name' => 'A802', 'room_type_id' => 3, 'status' => true]);
             // Room::factory()->create(['name' => 'A803', 'room_type_id' => 3, 'status' => true]);
             // Room::factory()->create(['name' => 'A901', 'room_type_id' => 3, 'status' => true]);
@@ -65,11 +65,11 @@ class RoomSeeder extends Seeder
             // Room::factory()->create(['name' => 'A1003', 'room_type_id' => 3, 'status' => true]);
             // Room::factory()->create(['name' => 'A1004', 'room_type_id' => 3, 'status' => true]);
 
-            Room::factory()->create(['name' => 'A800', 'room_type_id' => 4, 'status' => true]);
+            Room::factory()->create(['name' => 'A800', 'room_type_id' => 4, 'status' => true, 'floor' => 'A8']);
 
-            Room::factory()->create(['name' => 'A400', 'room_type_id' => 5, 'status' => true]);
+            Room::factory()->create(['name' => 'A400', 'room_type_id' => 5, 'status' => true, 'floor' => 'A4']);
             
-            Room::factory()->create(['name' => 'A401', 'room_type_id' => 6, 'status' => true]);
+            Room::factory()->create(['name' => 'A401', 'room_type_id' => 6, 'status' => true, 'floor' => 'A4']);
 
 
 
