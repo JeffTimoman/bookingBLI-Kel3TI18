@@ -24,6 +24,72 @@
             <div class="p-4 h-[132px] text-center flex flex-col justify-center">
                 <h2 class="text-2xl font-semibold">Full Name</h2>
                 <p class="text-lg text-gray-300">Admin</p>
+      <nav class="pt-6 flex-grow border-t border-white" style="background-image: url('./assets/bgsidebar.png'); background-size: cover; background-position: center; height: calc(100% - 132px);">
+        <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3">
+          <div class="flex items-center ">
+            <img src="./assets/dashboard icon.png" alt="Dashboard" class="h-5 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+          </div>
+          Dashboard
+        </a>
+        <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3">
+          <div class="flex items-center ">
+            <img src="./assets/pending.png" alt="Pending" class="h-5 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+          </div>
+          Pending Request
+        </a>
+        <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3">
+          <div class="flex items-center ">
+            <img src="./assets/active.png" alt="Active Booking" class="h-5 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+          </div>
+          Active Booking
+        </a>
+        <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3">
+          <div class="flex items-center ">
+            <img src="./assets/rooms.png" alt="Rooms" class="h-5 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+          </div>
+          Rooms
+        </a>
+        <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3">
+          <div class="flex items-center ">
+            <img src="./assets/hystory.png" alt="History" class="h-5 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+          </div>
+          History
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 bg-gray-50 overflow-y-auto">
+
+      <!-- T opbar -->
+      <header class="bg-[#1954B2] shadow-md p-4 h-[114px] flex items-center justify-between sticky top-0 z-10">
+        <div class="flex items-center gap-8">
+          <img src="./assets/LOGO BLI.png" alt="Logo" class="h-16 w-auto ml-4">
+          <img src="./assets/bca learning.png" alt="BCA Learning" class="h-14 w-auto">
+        </div>
+
+        <div class="flex items-center gap-8">
+          <img src="./assets/base.png" alt="Logout" class="h-8 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+        </div>
+
+      </header>
+
+      <div class="bg-gray-50">
+        <div class="p-6">
+          <!-- Rooms Section -->
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-700">Rooms</h2>
+
+            <!-- Search Bar -->
+            <div class="mb-4">
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <input type="text" id="search" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Search here">
+              </div>
             </div>
 
             <nav class="mt-6 flex-grow border-t border-white"
