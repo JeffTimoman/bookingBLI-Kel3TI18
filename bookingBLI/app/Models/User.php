@@ -19,8 +19,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'role',
+        'username',
         'password',
+        'user_type_id'
     ];
 
     /**
@@ -33,6 +35,22 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function isAdmin()
+    {
+        return $this->role === 'Admin';
+    }
+
+    public function isUser()
+    {
+        return $this->role === 'User';
+    }
+
+    public function favorites()
+{
+    return $this->belongsToMany(Room::class, 'favorites')
+        ->withTimestamps();
+}
+
     /**
      * Get the attributes that should be cast.
      *
@@ -44,5 +62,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function userType()
+    {
+        return $this->belongsTo(UserType::class, 'user_type_id');
     }
 }
