@@ -251,16 +251,22 @@
               <h2 class="text-[1.5rem] font-semibold text-gray-600 text-center">Rooms</h2>
               <hr class="border-t-2 border-gray-300 my-2 w-full">
               <div class="flex items-center justify-center h-full">
-                <div class="relative w-32 h-32 rounded-lg mr-2">
-                  <img src="./assets/roomA10001.png" alt="Room 1" class="w-full h-full object-cover rounded-lg">
-                  <div id="overlay-1" class="absolute inset-0 text-center bg-gray-500 bg-opacity-50 flex items-center justify-center text-white font-semibold">
-                    NOT AVAILABLE
+                <div class="relative rounded-lg mr-2 flex flex-row">
+                <!-- Card 1: Available Image -->
+                  <div class="w-auto h-auto bg-blue-50 rounded-lg shadow-lg flex flex-col items-center relative mr-2">
+                    <img src="./assets/room1.jpg" alt="Room 1" class="w-[80%] h-[70%] object-cover rounded mt-4">
+                    <div id="overlay-1" class="absolute inset-0 text-center bg-gray-500 bg-opacity-50 flex items-center justify-center text-white font-semibold rounded">
+                      NOT AVAILABLE
+                    </div>
+                    <p class="mt-2 mb-2 text-gray-400 text-lg font-semibold">A10001</p>
                   </div>
-                </div>
-                <div class="relative w-32 h-32 rounded-lg">
-                  <img src="./assets/roomA10001.png" alt="Room 2" class="w-full h-full object-cover rounded-lg">
-                  <div id="overlay-2" class="absolute inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center text-white font-semibold" style="display: none;">
-                    NOT AVAILABLE
+                <!-- Card 2: Non-available Image -->
+                  <div class="w-auto h-auto bg-blue-50 rounded-lg shadow-lg flex flex-col items-center relative">
+                    <img src="./assets/room1.jpg" alt="Room 1" class="w-[80%] h-[70%] object-cover rounded mt-4">
+                    <div id="overlay-1" class="hidden absolute inset-0 text-center bg-gray-500 bg-opacity-50 flex items-center justify-center text-white font-semibold rounded">
+                      NOT AVAILABLE
+                    </div>
+                    <p class="mt-2 mb-2 text-gray-400 text-lg font-semibold">A10001</p>
                   </div>
                 </div>
               </div>
