@@ -22,6 +22,9 @@ class BookController extends Controller
 
         
         $selectedTimes = json_decode($request->input('selected_times_id'), true);
+
+        $selectedTimes = array_unique($selectedTimes);
+
         $room_name = Room::find($request->room_id)->name;
 
         // Create a new booking

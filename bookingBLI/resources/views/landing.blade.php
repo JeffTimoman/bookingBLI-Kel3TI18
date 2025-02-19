@@ -1,7 +1,7 @@
 @extends('layout/room')
 @section('content')
 
-        <div class="bg-indigo-200 flex justify-around items-center text-center">
+        <div class="bg-indigo-200 flex justify-around items-center text-center py-20">
             <div class="flex flex-col items-center">
                 <h3 class="text-4xl mb-10 mt-12 font-medium">FAVORITES</h3>
                 <a href="favorites.html" class="w-96 h-96 rounded-full overflow-hidden relative">

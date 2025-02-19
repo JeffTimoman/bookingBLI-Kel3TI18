@@ -13,6 +13,10 @@
     body {
       font-family: 'Poppins', sans-serif;
     }
+
+    ::-webkit-scrollbar {
+            display: none;
+        }
   </style>
 </head>
 
@@ -27,7 +31,7 @@
       </div>
 
       <nav class="pt-6 flex-grow border-t border-white" style="background-image: url({{ asset('./assets/bgsidebar.png') }}); background-size: cover; background-position: center; height: calc(100% - 132px);">
-        <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3">
+        <a href="/admin/home" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3">
           <div class="flex items-center ">
             <img src="{{ asset('./assets/dashboard icon.png') }}" alt="Dashboard" class="h-5 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
           </div>
@@ -45,7 +49,7 @@
           </div>
           Active Booking 
         </a>
-        <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3">
+        <a href="{{ route('admin.room.index') }}" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3">
           <div class="flex items-center ">
             <img src="{{ asset('./assets/rooms.png') }}" alt="Rooms" class="h-5 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
           </div>

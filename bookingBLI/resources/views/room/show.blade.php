@@ -154,7 +154,7 @@
     <!-- Time Slot Section -->
     <div class="mt-8">
       <h2 class="text-xl font-bold text-gray-800">SELECT TIME</h2>
-        <div class="flex flex-wrap justify-start mt-4">
+        <div class="flex flex-wrap justify-start mt-4 mb-8">
           @php
           $count = 0;   
           @endphp
@@ -286,7 +286,7 @@ const timeSlots = document.querySelectorAll('.time-slot');
                selectedTimes.push(time);
                 selectedTimeIds.push(this.querySelector('.timeId').textContent);
             }
-
+            
     });
   });
 
