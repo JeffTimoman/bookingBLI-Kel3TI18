@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AdminRoomController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\BookController;
@@ -38,9 +39,7 @@ Route::middleware(['auth'])->group(function () {
     });
     
     Route::middleware(['admin'])->group(function () {
-        Route::get('/admin/home', function () {
-            return view('admin.home');  
-        })->name('admin.home');
+        Route::get('/admin/home', [AdminHomeController::class, 'index'])->name('admin.home');
 
         Route::get('/admin/room' ,[AdminRoomController::class, 'index']);
         })->name('admin.room');
