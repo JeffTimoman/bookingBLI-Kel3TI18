@@ -198,3 +198,51 @@
 </main>
 </body>
 </html>
+<script>
+  const images = [
+      "./assets/BLI_aerialview 1.png",
+      "./assets/BLI_fullview.jpg",
+      "./assets/BLI_aerialview 1.png",
+  ];
+
+  let currentIndex = 0;
+  const sliderImage = document.getElementById('slider-image');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const dots = document.querySelectorAll('.dot');
+
+  // Function to update image and active dot
+  function updateSlider(index) {
+      currentIndex = index;
+      sliderImage.src = images[currentIndex];
+      dots.forEach((dot, i) => {
+          dot.classList.toggle('bg-gray-800', i === currentIndex);
+          dot.classList.toggle('bg-gray-300', i !== currentIndex);
+      });
+  }
+
+  // Event listeners for buttons
+  prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateSlider(currentIndex);
+  });
+
+  nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateSlider(currentIndex);
+  });
+
+  // Auto-play slider every 5 seconds
+  setInterval(() => {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateSlider(currentIndex);
+  }, 5000);
+
+  // Event listeners for dots
+  dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => updateSlider(index));
+  });
+
+  // Initialize slider
+  updateSlider(currentIndex);
+</script>
