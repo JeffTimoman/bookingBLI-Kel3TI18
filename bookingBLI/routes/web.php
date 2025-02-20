@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminActiveController;
 use App\Http\Controllers\AdminHomeController;
+use App\Http\Controllers\AdminPendingController;
 use App\Http\Controllers\AdminRoomController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\BookController;
@@ -39,7 +41,13 @@ Route::middleware(['auth'])->group(function () {
     });
     
     Route::middleware(['admin'])->group(function () {
-        Route::get('/admin/home', [AdminHomeController::class, 'index'])->name('admin.home');
+        Route::get('/admin/home', [AdminHomeController::class, 'index'])->name('admin.home.index');
+        Route::post('/admin/home/change', [AdminHomeController::class, 'change'])->name('admin.home.change');
+
+        Route::get('/admin/pending', [AdminPendingController::class, 'index'])->name('admin.pending.index');
+        Route::post('/admin/pending/change', [AdminPendingController::class, 'change'])->name('admin.pending.change');
+
+        Route::get('/admin/active', [AdminActiveController::class, 'index'])->name('admin.active.index');
 
         Route::get('/admin/room' ,[AdminRoomController::class, 'index']);
         })->name('admin.room');

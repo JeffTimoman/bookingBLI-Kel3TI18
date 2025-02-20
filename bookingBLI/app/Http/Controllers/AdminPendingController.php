@@ -8,11 +8,10 @@ use App\Models\Time;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdminHomeController extends Controller
+class AdminPendingController extends Controller
 {
-    public function index() {
+    public function index(){
         $data = Books::orderBy('created_at','desc')->get();
-        $rooms = Room::orderBy('name', 'asc')->get();
         $dataMerge = [];
 
         foreach ($data as $d) {
@@ -24,7 +23,8 @@ class AdminHomeController extends Controller
                     $dm['room_id'] == $d->room_id && 
                     $dm['date'] == $d->date && 
                     $dm['people'] == $d->people && 
-                    $dm['purpose'] == $d->purpose && $dm['status'] == $d->status
+                    $dm['purpose'] == $d->purpose && 
+                    $dm['status'] == $d->status
                 ) {
                     $isExist = true;
                     $dataMerge[$key]['time_id'][] = Time::find($d->time_id)->start. ' - '.Time::find($d->time_id)->end;
@@ -51,20 +51,9 @@ class AdminHomeController extends Controller
             }
         }
         // dd($dataMerge);
-        foreach ($dataMerge as $key => $item) {
-            if ($item['date'] < now()->toDateString() && $item['status'] != 1) {
-                $dataMerge[$key]['status'] = -1; // Update in array
-                Books::whereIn('id', $item['book_id'])->update(['status' => -1]); // Update in database
-            }
-        }
         
-
-        // dd($dataMerge);
-        $dataMerge = array_slice($dataMerge, 0, 4);
-        // $rooms = array_slice($rooms, 0, 1);
-        return view('admin/home')->with([
-            'data' => $dataMerge,
-            'rooms' => $rooms
+        return view('admin/pending')->with([
+            'data' => $dataMerge
         ]);
     }
 
@@ -83,7 +72,7 @@ class AdminHomeController extends Controller
     
         // Update all selected bookings
         Books::whereIn('id', $bookIds)->update(['status' => $status]);
-        
+
         if ($status == -1) {
             $times = Books::whereIn('id', $bookIds)->pluck('time_id')->toArray();
             Time::whereIn('id', $times)->update(['status' => 1]); // Assuming Time model has 'status' column
@@ -91,5 +80,4 @@ class AdminHomeController extends Controller
     
         return back()->with('success', 'Booking status updated successfully.');
     }
-    
 }

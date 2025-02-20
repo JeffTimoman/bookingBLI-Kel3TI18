@@ -42,16 +42,30 @@
         </div>
       
         <div class="flex justify-end mt-4">
-          <button class="bg-red-500 hover:bg-red-700 text-white rounded-full p-1 mr-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-          </button>
-          <button class="bg-green-500 hover:bg-green-700 text-white rounded-full p-1">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-            </svg>
-          </button>
+          <form action="{{ route('admin.home.change') }}" method="POST">
+            @csrf
+            @foreach ($item['book_id'] as $bookId)
+              <input type="hidden" name="book_id[]" value="{{ $bookId }}">
+            @endforeach
+            <input type="hidden" name="status" value="-1">
+            <button class="bg-red-500 hover:bg-red-700 text-white rounded-full p-1 mr-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </form>
+          <form action="{{ route('admin.home.change') }}" method="POST">
+            @csrf
+            @foreach ($item['book_id'] as $bookId)
+              <input type="hidden" name="book_id[]" value="{{ $bookId }}">
+            @endforeach
+            <input type="hidden" name="status" value="1">
+            <button class="bg-green-500 hover:bg-green-700 text-white rounded-full p-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </button>
+          </form>
         </div>
       </div>
       @endif
@@ -63,7 +77,7 @@
      
     </div>
     <div class="flex justify-end r-0 ml-3 mt-3 mr-2">
-      <a href="#" class="text-[18px] text-blue-500 hover:text-blue-700 font-semibold transition-opacity duration-300 opacity-100">
+      <a href="{{ route('admin.pending.index') }}" class="text-[18px] text-blue-500 hover:text-blue-700 font-semibold transition-opacity duration-300 opacity-100">
         See more →
       </a>
     </div>
@@ -85,7 +99,7 @@
     <hr class="border-t-2 border-gray-300 my-2">
     <p class="text-[8rem] font-bold text-blue-700 my-3">{{ $activeBookingsCount }}</p>
     <div class="mt-auto"> 
-      <a href="#" class="text-blue-600 hover:underline text-[1.2rem]">See details →</a>
+      <a href="{{ route('admin.active.index') }}" class="text-blue-600 hover:underline text-[1.2rem]">See details →</a>
     </div>
   </div>
 
@@ -94,25 +108,23 @@
     <hr class="border-t-2 border-gray-300 my-2 w-full">
     <div class="flex items-center justify-center h-full">
     @foreach($rooms->take(2) as $room)
-      @if($room->status == 0)
-        <div class="relative w-32 h-32 rounded-lg mr-2">  
-          <img src="./assets/roomA10001.png" alt="Room 1" class="w-full h-full object-cover rounded-lg">
-          <div id="overlay-1" class="absolute inset-0 text-center bg-gray-500 bg-opacity-50 flex items-center justify-center text-white font-semibold">
-            NOT AVAILABLE
-          </div>
-        </div>
-      @else
-      <div class="relative w-32 h-32 rounded-lg">
-        <img src="./assets/roomA10001.png" alt="Room 2" class="w-full h-full object-cover rounded-lg">
-        <div id="overlay-2" class="absolute inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center text-white font-semibold" style="display: none;">
+    <div class="w-auto h-auto bg-blue-50 rounded-lg shadow-lg flex flex-col items-center relative">
+      <img src="{{ asset('./assets/room1.jpg') }}" alt="Room 1" class="w-[80%] h-[70%] object-cover rounded mt-4">
+      @if($room->status == 1)
+        <div id="overlay-1" class="hidden absolute inset-0 text-center bg-gray-500 bg-opacity-50 flex items-center justify-center text-white font-semibold rounded">
           NOT AVAILABLE
         </div>
-      </div>
+      @else
+        <div id="overlay-1" class="absolute inset-0 text-center bg-gray-500 bg-opacity-50 flex items-center justify-center text-white font-semibold rounded">
+          NOT AVAILABLE
+        </div>
       @endif
-    @endforeach
+      <p class="mt-2 mb-2 text-gray-400 text-lg font-semibold">{{ $room->name }}</p>
     </div>
+    @endforeach
+  </div>
     <div class="mt-auto"> 
-      <a href="#" class="text-blue-600 hover:underline block text-center text-[1.2rem]">See all rooms →</a>
+      <a href="{{ route('admin.room.index') }}" class="text-blue-600 hover:underline block text-center text-[1.2rem]">See all rooms →</a>
     </div>
   </div>
 
