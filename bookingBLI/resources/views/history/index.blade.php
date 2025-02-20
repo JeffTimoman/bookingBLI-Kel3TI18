@@ -25,54 +25,47 @@
     
 
     <div class="w-100 flex flex-col items-center justify-center">
-    @php
-    $flag = 0
-    @endphp
     @foreach ($data as $item)
-        @if($flag == 0)
-
-            @if(($item['status'] == 0 || $item['status'] == 1 || $item['status'] == -1)) 
-                <div id="cardHistories" style="width: 90%;" class="relative rounded-2xl shadow-lg flex md:flex-row gap-6 mb-10 items-stretch bg-blue-100" date="{{ $item['date'] }}">
-                    @if($item['status'] == -1)
-                        <div class="absolute z-20 top-0 left-0 w-full h-full bg-black opacity-70 rounded-2xl"></div>
-                    @endif
-                    <!-- Image Slider -->   
-                    <div class="relative w-full md:w-1/2 h-full overflow-hidden rounded-l-2xl">
-                        <div class="relative aspect-video h-full w-full">
-                            <img id="slider-image" src="{{ asset('./landing/BLI_aerialview 1.png') }}" alt="Room Image" class="object-cover w-full h-full transition-all duration-500">
-                        </div>
-                    </div>
-
-                    <!-- Room Details -->
-                    <div class="flex flex-col w-full md:w-1/2 p-6">
-                        <div class="flex w-100 justify-between flex-row">
-                            <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item['room_name'] }}</h2>
-                            <div class="flex items-center gap-2">
-                                @if($item['status'] == 0)
-                                <span class="bg-blue-600 text-white py-2 px-4 rounded-lg font-medium ">Pending</span>
-                                @elseif($item['status'] == 1)
-                                <span class="bg-green-600 text-white py-2 px-4 rounded-lg font-medium ">Approved</span>
-                                @elseif($item['status'] == -1)
-                                <span class="bg-red-600 text-white py-2 px-4 rounded-lg z-30 font-medium ">Rejected</span>
-                                @endif
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4 text-[20px]">{{ \Carbon\Carbon::parse($item['date'])->format('l, jS F Y') }}</p>
-                        <div class="flex items-center gap-2 mb-4 text-gray-700 text-[18px]">
-                            <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-4 mt-2 opacity-40">
-                            {{ $item['people'] }} People
-                        </div>
-                        <div class="grid grid-cols-2 gap-2 w-max">
-                            @foreach($item['time_id'] as $index => $time)
-                                <button class="bg-blue-200 text-blue-600 font-medium px-4 py-2 rounded-lg text-center">
-                                    {{ $time }}
-                                </button>
-                            @endforeach
-                        </div>
+        @if(($item['status'] == 0 || $item['status'] == 1 || $item['status'] == -1)) 
+            <div id="cardHistories" style="width: 90%;" class="relative rounded-2xl shadow-lg flex md:flex-row gap-6 mb-10 items-stretch bg-blue-100" date="{{ $item['date'] }}">
+                @if($item['status'] == -1)
+                    <div class="absolute z-20 top-0 left-0 w-full h-full bg-black opacity-70 rounded-2xl"></div>
+                @endif
+                <!-- Image Slider -->   
+                <div class="relative w-full md:w-1/2 h-full overflow-hidden rounded-l-2xl">
+                    <div class="relative aspect-video h-full w-full">
+                        <img id="slider-image" src="{{ asset('./landing/BLI_aerialview 1.png') }}" alt="Room Image" class="object-cover w-full h-full transition-all duration-500">
                     </div>
                 </div>
-            
-            @endif
+
+                <!-- Room Details -->
+                <div class="flex flex-col w-full md:w-1/2 p-6">
+                    <div class="flex w-100 justify-between flex-row">
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item['room_name'] }}</h2>
+                        <div class="flex items-center gap-2">
+                            @if($item['status'] == 0)
+                            <span class="bg-blue-600 text-white py-2 px-4 rounded-lg font-medium ">Pending</span>
+                            @elseif($item['status'] == 1)
+                            <span class="bg-green-600 text-white py-2 px-4 rounded-lg font-medium ">Approved</span>
+                            @elseif($item['status'] == -1)
+                            <span class="bg-red-600 text-white py-2 px-4 rounded-lg z-30 font-medium ">Rejected</span>
+                            @endif
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 text-[20px]">{{ \Carbon\Carbon::parse($item['date'])->format('l, jS F Y') }}</p>
+                    <div class="flex items-center gap-2 mb-4 text-gray-700 text-[18px]">
+                        <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-4 mt-2 opacity-40">
+                        {{ $item['people'] }} People
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 w-max">
+                        @foreach($item['time_id'] as $index => $time)
+                            <button class="bg-blue-200 text-blue-600 font-medium px-4 py-2 rounded-lg text-center">
+                                {{ $time }}
+                            </button>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         @endif
     @endforeach
 
