@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav
+        class="bg-[#174AA9] text-[#FFF] py-4 px-6 flex items-center justify-between shadow-md rounded-b-[22px] relative z-10">
+        <div class="flex items-center gap-4 md:gap-8">
+            <img src="./asset/logo.png" alt="Logo" class="h-10 md:h-16 w-auto ml-2 md:ml-4">
+            <img src="./asset/bca learning.png" alt="BCA Learning" class="h-10 md:h-14 w-auto">
+        </div>
+        <div class="hidden lg:flex gap-8 md:gap-14 text-[16px] md:text-[18px] font-semibold tracking-[1.08px] ml-auto">
+            <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">FAVORITE</a>
+            <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">BOOK</a>
+            <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">HISTORY</a>
+        </div>
+        <div class="hidden lg:flex items-center gap-6 md:gap-10 ml-6 md:ml-14 relative">
+            <img id="bell-icon" src="./asset/icon.png" alt="Bell" 
+                class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+            
+            <!-- Notification Dropdown -->
+            <div id="notification-dropdown" 
+                class="hidden absolute top-10 right-0 bg-white text-black w-96 shadow-lg rounded-lg h-full">
+                <div class="p-4 border-b font-bold flex justify-center text-center">Notifications</div>
+                <div id="notifications-list" class="max-h-60 overflow-auto">
+                    <div id="notification-content">
+                           <div id="notification-content1" class="p-2 mb-1 flex items-center bg-[#14AE5C] relative">
+                                <img src="./asset/Group 30.png" alt="Approved Icon" class="h-12 w-12 mr-2">
+                                <div>
+                                   <p class="text-white">Booking Approved</p>
+                                   <p class="text-sm text-white">Your booking for Room A2001 on Wednesday, January 8,
+                                       2025 has been approved</p>
+                               </div>
+                            <img id="delete-icon1" src="./asset/cancel_mini.svg" alt="Delete Icon1" class="h-4 w-4 absolute top-2 right-2 cursor-pointer">
+                           </div>
+   
+                           <div id="notification-content2" class="p-2 mb-1 flex items-center bg-[#AE1417] relative">
+                                <img src="./asset/Cancel.png" alt="Rejected Icon" class="h-12 w-12 mr-2">
+                            
+                               <div>
+                                   <p class="text-white">Booking Rejected</p>
+                                   <p class="text-sm text-white">Your booking for Room A5001 on Wednesday, January 8,
+                                       2025 has been rejected</p>
+                               </div>
+                               <img id="delete-icon2" src="./asset/cancel_mini.svg" alt="Delete Icon2" class="h-4 w-4 absolute top-2 right-2 cursor-pointer">
+                           </div>
+   
+                           <div id="notification-content3" class="p-2 mb-1 flex items-center bg-[#AE1417] relative">
+                                <img src="./asset/Cancel.png" alt="Rejected Icon" class="h-12 w-12 mr-2">
+                            
+                               <div>
+                                   <p class="text-white">Booking Rejected</p>
+                                   <p class="text-sm text-white">Your booking for Room A5002 on Wednesday, January 8,
+                                       2025 has been rejected</p>
+                               </div>
+                               <img id="delete-icon3" src="./asset/cancel_mini.svg" alt="Delete Icon3" class="h-4 w-4 absolute top-2 right-2 cursor-pointer">
+                           </div>
+
+                           <div id="notification-content4" class="p-2 mb-1 flex items-center bg-[#14AE5C] relative">
+                                <img src="./asset/Group 30.png" alt="Approved Icon" class="h-12 w-12 mr-2">
+                                <div>
+                                   <p class="text-white">Booking Approved</p>
+                                   <p class="text-sm text-white">Your booking for Room A2001 on Wednesday, January 8,
+                                       2025 has been approved</p>
+                                </div>
+                                <img id="delete-icon4" src="./asset/cancel_mini.svg" alt="Delete Icon4" class="h-4 w-4 absolute top-2 right-2 cursor-pointer">
+                            </div>
+
+                        </div>
+                   </div>
+                <div class="text-center p-2 text-blue-500 cursor-pointer border-t" id="clear-notifications">Clear all</div>
+            </div>
+
+            <img src="./asset/bell.png" alt="Logout"
+                class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+        </div>
+        <div class="lg:hidden flex items-center">
+            <button id="hamburger-icon" class="text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+</body>
+</html>
+
+<script>
+    document.getElementById('bell-icon').addEventListener('click', function () {
+        let dropdown = document.getElementById('notification-dropdown');
+        dropdown.classList.toggle('hidden');
+    });
+
+    document.getElementById('clear-notifications').addEventListener('click', function () {
+        document.getElementById('notifications-list').innerHTML = '<div class="p-4 text-gray-500">There are currently no new notifications</div>';
+    });
+
+    // Fungsi untuk menghapus notifikasi saat ikon delete ditekan
+    document.getElementById('delete-icon1').addEventListener('click', function () {
+        document.getElementById('notification-content1').classList.add('hidden');
+    });
+
+    document.getElementById('delete-icon2').addEventListener('click', function () {
+        document.getElementById('notification-content2').classList.add('hidden');
+    });
+
+    document.getElementById('delete-icon3').addEventListener('click', function () {
+        document.getElementById('notification-content3').classList.add('hidden');
+    });
+
+    document.getElementById('delete-icon4').addEventListener('click', function () {
+        document.getElementById('notification-content4').classList.add('hidden');
+    });
+</script>
