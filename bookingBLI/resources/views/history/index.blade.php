@@ -1,9 +1,9 @@
 
-@extends('layout/history')
+@extends('layout/room')
 
 @section('content')
-<main class="container mx-auto px-4 py-8">
-        <div class="flex items-center justify-center mt-10 mb-10">
+<main class="container min-h-screen  mx-auto px-4 py-8">
+        <div class="flex items-center justify-center mt-[100px] mb-10">
             <div class="relative w-[60vw] h-10 bg-gray-300 rounded-full flex overflow-hidden">
                 <!-- Left (Current Session) -->
                 <div id="leftTab" class="w-1/2 bg-blue-600 flex items-center justify-center text-white font-bold rounded-full">
@@ -25,137 +25,53 @@
     
 
     <div class="w-100 flex flex-col items-center justify-center">
-      @foreach ($data as $item)
-      @if(($item['status'] == 0 || $item['status'] == 1)) 
-        <div id="cardHistories" style="width: 90%;" class="rounded-2xl shadow-lg flex md:flex-row gap-6 mb-10 items-stretch bg-blue-100" date="{{ $item['date'] }}">
-            <!-- Image Slider -->
-            <div class="relative w-full md:w-1/2 h-full overflow-hidden rounded-l-2xl">
-                <div class="relative aspect-video h-full w-full">
-                    <img id="slider-image" src="./landing/BLI_aerialview 1.png" alt="Room Image" class="object-cover w-full h-full transition-all duration-500">
-                    
-                    <!-- Prev and Next Buttons -->
-                    <div class="absolute top-1/2 transform -translate-y-1/2 w-full flex justify-between px-4">
-                        <button id="prev-btn" class="flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg opacity-70 hover:opacity-100 transition-opacity duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-800">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                            </svg>
-                        </button>
-                        <button id="next-btn" class="flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg opacity-70 hover:opacity-100 transition-opacity duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-800">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <!-- Dot Navigation -->
-                    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                        <span class="dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer"></span>
-                        <span class="dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer"></span>
-                        <span class="dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer"></span>
+    @foreach ($data as $item)
+        @if(($item['status'] == 0 || $item['status'] == 1 || $item['status'] == -1)) 
+            <div id="cardHistories" style="width: 90%;" class="relative rounded-2xl shadow-lg flex md:flex-row gap-6 mb-10 items-stretch bg-blue-100" date="{{ $item['date'] }}">
+                @if($item['status'] == -1)
+                    <div class="absolute z-20 top-0 left-0 w-full h-full bg-black opacity-70 rounded-2xl"></div>
+                @endif
+                <!-- Image Slider -->   
+                <div class="relative w-full md:w-1/2 h-full overflow-hidden rounded-l-2xl">
+                    <div class="relative aspect-video h-full w-full">
+                        <img id="slider-image" src="{{ asset('./landing/BLI_aerialview 1.png') }}" alt="Room Image" class="object-cover w-full h-full transition-all duration-500">
                     </div>
                 </div>
-            </div>
 
-            <!-- Room Details -->
-            <div class="flex flex-col w-full md:w-1/2 p-6">
-                <div class="flex w-100 justify-between flex-row">
-                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item['room_name'] }}</h2>
-                    <div class="flex items-center gap-2">
-                        @if($item['status'] == 0)
-                        <span class="bg-blue-600 text-white py-2 px-4 rounded-lg font-medium ">Pending</span>
-                        @elseif($item['status'] == 1)
-                        <span class="bg-green-600 text-white py-2 px-4 rounded-lg font-medium ">Approved</span>
-                        @elseif($item['status'] == -1)
-                        <span class="bg-red-600 text-white py-2 px-4 rounded-lg font-medium ">Rejected</span>
-                        @endif
+                <!-- Room Details -->
+                <div class="flex flex-col w-full md:w-1/2 p-6">
+                    <div class="flex w-100 justify-between flex-row">
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item['room_name'] }}</h2>
+                        <div class="flex items-center gap-2">
+                            @if($item['status'] == 0)
+                            <span class="bg-blue-600 text-white py-2 px-4 rounded-lg font-medium ">Pending</span>
+                            @elseif($item['status'] == 1)
+                            <span class="bg-green-600 text-white py-2 px-4 rounded-lg font-medium ">Approved</span>
+                            @elseif($item['status'] == -1)
+                            <span class="bg-red-600 text-white py-2 px-4 rounded-lg z-30 font-medium ">Rejected</span>
+                            @endif
+                        </div>
                     </div>
-                </div>
-                <p class="text-gray-600 mb-4 text-[20px]">{{ \Carbon\Carbon::parse($item['date'])->format('l, jS F Y') }}</p>
-                <div class="flex items-center gap-2 mb-4 text-gray-700 text-[18px]">
-                    <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-4 mt-2 opacity-40">
-                    {{ $item['people'] }} People
-                </div>
-                <div class="grid grid-cols-2 gap-2 w-max">
-                    @foreach($item['time_id'] as $index => $time)
-                        <button class="bg-blue-200 text-blue-600 font-medium px-4 py-2 rounded-lg text-center">
-                            {{ $time }}
-                        </button>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    @elseif($item['status'] == -1 && $item['date'] == date('Y-m-d'))
-        <div id="cardHistories" style="width: 90%;" class="rounded-2xl shadow-lg flex md:flex-row gap-6 mb-10 items-stretch bg-blue-100">
-            <!-- Image Slider -->
-            <div class="relative w-full md:w-1/2 h-full overflow-hidden rounded-l-2xl">
-                <div class="relative aspect-video h-full w-full">
-                    <img id="slider-image" src="./landing/BLI_aerialview 1.png" alt="Room Image" class="object-cover w-full h-full transition-all duration-500">
-                    
-                    <!-- Prev and Next Buttons -->
-                    <div class="absolute top-1/2 transform -translate-y-1/2 w-full flex justify-between px-4">
-                        <button id="prev-btn" class="flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg opacity-70 hover:opacity-100 transition-opacity duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-800">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                            </svg>
-                        </button>
-                        <button id="next-btn" class="flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg opacity-70 hover:opacity-100 transition-opacity duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-800">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                            </svg>
-                        </button>
+                    <p class="text-gray-600 mb-4 text-[20px]">{{ \Carbon\Carbon::parse($item['date'])->format('l, jS F Y') }}</p>
+                    <div class="flex items-center gap-2 mb-4 text-gray-700 text-[18px]">
+                        <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-4 mt-2 opacity-40">
+                        {{ $item['people'] }} People
                     </div>
-                    
-                    <!-- Dot Navigation -->
-                    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                        <span class="dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer"></span>
-                        <span class="dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer"></span>
-                        <span class="dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer"></span>
+                    <div class="grid grid-cols-2 gap-2 w-max">
+                        @foreach($item['time_id'] as $index => $time)
+                            <button class="bg-blue-200 text-blue-600 font-medium px-4 py-2 rounded-lg text-center">
+                                {{ $time }}
+                            </button>
+                        @endforeach
                     </div>
                 </div>
             </div>
-
-            <!-- Room Details -->
-            <div class="flex flex-col w-full md:w-1/2 p-6">
-                <div class="flex w-100 justify-between flex-row">
-                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item['room_name'] }}</h2>
-                    <div class="flex items-center gap-2">
-                        @if($item['status'] == 0)
-                        <span class="bg-blue-600 text-white py-2 px-4 rounded-lg font-medium ">Pending</span>
-                        @elseif($item['status'] == 1)
-                        <span class="bg-green-600 text-white py-2 px-4 rounded-lg font-medium ">Approved</span>
-                        @elseif($item['status'] == -1)
-                        <span class="bg-red-600 text-white py-2 px-4 rounded-lg font-medium ">Rejected</span>
-                        @endif
-                    </div>
-                </div>
-                <p class="text-gray-600 mb-4 text-[20px]">{{ \Carbon\Carbon::parse($item['date'])->format('l, jS F Y') }}</p>
-                <div class="flex items-center gap-2 mb-4 text-gray-700 text-[18px]">
-                    <img src="{{ asset('./assets/icon1.png') }}" alt="Group Icon" class="h-4 mt-2 opacity-40">
-                    {{ $item['people'] }} People
-                </div>
-                @foreach($item['time_id'] as $time)
-                    <button class="bg-blue-200 text-blue-600 font-medium px-4 py-2 rounded-lg mb-2 text-center w-1/3">{{ $time }}</button>
-                @endforeach
-            </div>
-        </div>
-    @endif
+        @endif
     @endforeach
 
     </div>
 
     <script>
-    function formatDate(date) {
-    const options = { weekday: 'long', month: 'long', year: 'numeric' };
-    let formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
-    
-    // Get day and add ordinal suffix
-    let day = date.getDate();
-    let suffix = (day % 10 === 1 && day !== 11) ? "st" :
-                 (day % 10 === 2 && day !== 12) ? "nd" :
-                 (day % 10 === 3 && day !== 13) ? "rd" : "th";
-
-    return `${date.toLocaleDateString('en-US', { weekday: 'long' })}, ${day}${suffix} ${formattedDate.split(' ')[0]} ${date.getFullYear()}`;
-    }
 
 // Store formatted date in a variable
 function showCurrentSession() {

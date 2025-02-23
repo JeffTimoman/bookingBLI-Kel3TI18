@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', 'Albert Sans Black';
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 font-sans antialiased">
+
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="bg-gradient-to-b from-blue-900 to-blue-700 text-white w-[324px] h-100% flex-shrink-0 sticky top-0">
+      <div class="p-4 h-[132px] text-center flex flex-col justify-center">
+        <h2 class="text-2xl font-semibold">Full Name</h2>
+        <p class="text-lg text-gray-300">Admin</p>
+      </div>
+
+      <nav class="mt-6 flex-grow border-t border-white" style="background-image: url('./assets/bgsidebar.png'); background-size: cover; background-position: center; height: calc(100% - 132px);">
+        <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3 mb-4 mt-4">
+          <div class="flex items-center ">
+            <img src="./assets/dashboard icon.png" alt="Dashboard" class="h-5 cursor-pointer hover:opacity-100 hover:scale-110 transition-transform duration-200">
+          </div>
+          Dashboard
+        </a>
+        <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3 mb-4">
+          <div class="flex items-center ">
+            <img src="./assets/pending.png" alt="Pending" class="h-5 cursor-pointer hover:opacity-100 hover:scale-110 transition-transform duration-200">
+          </div>
+          Pending Request
+        </a>
+        <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3 mb-4">
+          <div class="flex items-center ">
+            <img src="./assets/active.png" alt="Active Booking" class="h-5 cursor-pointer hover:opacity-100 hover:scale-110 transition-transform duration-200">
+          </div>
+          Active Booking
+        </a>
+        <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3 mb-4">
+          <div class="flex items-center ">
+            <img src="./assets/room.svg" alt="Rooms" class="h-5 cursor-pointer hover:opacity-100 hover:scale-110 transition-transform duration-200">
+          </div>
+          Rooms
+        </a>
+        <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3 mb-4">
+          <div class="flex items-center ">
+            <img src="./assets/hystory.png" alt="History" class="h-5 cursor-pointer hover:opacity-100 hover:scale-110 transition-transform duration-200">
+          </div>
+          History
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 bg-gray-50 overflow-y-auto">
+
+      <!-- Topbar -->
+      <header class="bg-[#1954B2] shadow-md p-4 h-[114px] flex items-center justify-between sticky top-0 z-10">
+        <div class="flex items-center gap-8">
+          <img src="./assets/LOGO BLI.png" alt="Logo" class="h-16 w-auto ml-4">
+          <img src="./assets/bca learning.png" alt="BCA Learning" class="h-14 w-auto">
+        </div>
+        
+        <div class="flex items-center gap-8">
+          <img src="./assets/base.png" alt="Logout" class="h-8 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+        </div>
+        
+      </header>
+
+      <div class="bg-gray-50">
+        <div class="p-6">
+           <!-- Dashboard Section with Box -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6 mt-0">
+              <h1 class="text-2xl font-semibold text-gray-700">Dashboard</h1>
+            </div>
+
+          <!-- Pending Requests Section -->
+          <section class="mb-8">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+              <h2 class="text-xl font-semibold mb-4 text-gray-700">Pending Requests</h2>
+              <div class="flex flex-wrap gap-12">
+              <!-- Requests Card 1 -->
+                <div class="relative bg-gray-50 rounded-lg shadow-md p-4 w-64 transition-all duration-300 hover:w-96 hover:shadow-lg group group-hover:opacity-100">
+                  <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-semibold text-lg text-gray-700">A5001</h3>
+                    <p class="text-xs text-gray-500">07:32 AM</p>
+                  </div>
+              
+                  <div class="flex items-start justify-between w-auto">
+                    <!-- Kiri -->
+                    <div class="text-[15px]">
+                      <p class="text-gray-600 mb-1 w-40">08:00 AM - 09:30 AM</p>
+                      <p class="text-gray-600 mb-1 w-40">10:00 AM - 11:30 AM</p>
+                      <p class="text-gray-600 mb-1 w-40">01:00 PM - 02:30 PM</p>
+                      <p class="text-gray-600 mb-1">03:00 PM - 05:00 PM</p>
+                      <p class="text-gray-600 mb-1">05:00 PM - 06:00 PM</p>
+                      <p class="text-gray-600 mb-1">06:00 PM - 07:00 PM</p>
+                      <h3 class="text-gray-600 mt-2 mb-1">Cecilia Supardi</h3>
+                      <p class="text-gray-600">PPTI</p>
+                    </div>
+                
+                    <!-- Kanan (Muncul saat card di-hover) -->
+                    <div class="w-1/2 pl-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <h3 class="text-sm text-gray-600 font-semibold">Purpose:</h3>
+                      <p class="text-sm text-gray-600">Mengerjakan tugas dan kerja kelompok untuk mata pelajaran Machine Learning</p>
+                    </div>
+                  </div>
+                
+                  <div class="flex items-center mt-2">
+                    <img src="./assets/icon1.png" alt="people" class="h-5">
+                    <span class="text-xs text-gray-500 ml-3">5 People</span>
+                  </div>
+                
+                  <div class="flex justify-end mt-4">
+                    <button class="bg-red-500 hover:bg-red-700 text-white rounded-full p-1 mr-2">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                      </svg>
+                    </button>
+                    <button class="bg-green-500 hover:bg-green-700 text-white rounded-full p-1">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                
+
+                <!-- Request Card 2 -->
+                <div class="relative bg-gray-50 rounded-lg shadow-md p-4 w-64 transition-all duration-300 hover:w-96 hover:shadow-lg group group-hover:opacity-100">
+                  <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-semibold text-lg text-gray-700">A5001</h3>
+                    <p class="text-xs text-gray-500">07:32 AM</p>
+                  </div>
+              
+                  <div class="flex items-start justify-between w-auto">
+                    <!-- Kiri -->
+                    <div class="text-[15px]">
+                      <p class="text-gray-600 mb-1 w-40">08:00 AM - 09:30 AM</p>
+                      <p class="text-gray-600 mb-1 w-40">10:00 AM - 11:30 AM</p>
+                      <p class="text-gray-600 mb-1 w-40">01:00 PM - 02:30 PM</p>
+                      <p class="text-gray-600 mb-1">03:00 PM - 05:00 PM</p>
+                      <p class="text-gray-600 mb-1">05:00 PM - 06:00 PM</p>
+                      <p class="text-gray-600 mb-1">06:00 PM - 07:00 PM</p>
+                      <h3 class="text-gray-600 mt-2 mb-1">Cecilia Supardi</h3>
+                      <p class="text-gray-600">PPTI</p>
+                    </div>
+                
+                    <!-- Kanan (Muncul saat card di-hover) -->
+                    <div class="w-1/2 pl-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <h3 class="text-sm text-gray-600 font-semibold">Purpose:</h3>
+                      <p class="text-sm text-gray-600">Mengerjakan tugas dan kerja kelompok untuk mata pelajaran Machine Learning</p>
+                    </div>
+                  </div>
+                
+                  <div class="flex items-center mt-2">
+                    <img src="./assets/icon1.png" alt="people" class="h-5">
+                    <span class="text-xs text-gray-500 ml-3">5 People</span>
+                  </div>
+                
+                  <div class="flex justify-end mt-4">
+                    <button class="bg-red-500 hover:bg-red-700 text-white rounded-full p-1 mr-2">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                      </svg>
+                    </button>
+                    <button class="bg-green-500 hover:bg-green-700 text-white rounded-full p-1">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Request Card 3 -->
+                <div class="relative bg-gray-50 rounded-lg shadow-md p-4 w-64 transition-all duration-300 hover:w-96 hover:shadow-lg group group-hover:opacity-100">
+                  <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-semibold text-lg text-gray-700">A5001</h3>
+                    <p class="text-xs text-gray-500">07:32 AM</p>
+                  </div>
+              
+                  <div class="flex items-start justify-between w-auto">
+                    <!-- Kiri -->
+                    <div class="text-[15px]">
+                      <p class="text-gray-600 mb-1 w-40">08:00 AM - 09:30 AM</p>
+                      <p class="text-gray-600 mb-1 w-40">10:00 AM - 11:30 AM</p>
+                      <p class="text-gray-600 mb-1 w-40">01:00 PM - 02:30 PM</p>
+                      <p class="text-gray-600 mb-1">03:00 PM - 05:00 PM</p>
+                      <p class="text-gray-600 mb-1">05:00 PM - 06:00 PM</p>
+                      <p class="text-gray-600 mb-1">06:00 PM - 07:00 PM</p>
+                      <h3 class="text-gray-600 mt-2 mb-1">Cecilia Supardi</h3>
+                      <p class="text-gray-600">PPTI</p>
+                    </div>
+                
+                    <!-- Kanan (Muncul saat card di-hover) -->
+                    <div class="w-1/2 pl-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <h3 class="text-sm text-gray-600 font-semibold">Purpose:</h3>
+                      <p class="text-sm text-gray-600">Mengerjakan tugas dan kerja kelompok untuk mata pelajaran Machine Learning</p>
+                    </div>
+                  </div>
+                
+                  <div class="flex items-center mt-2">
+                    <img src="./assets/icon1.png" alt="people" class="h-5">
+                    <span class="text-xs text-gray-500 ml-3">5 People</span>
+                  </div>
+                
+                  <div class="flex justify-end mt-4">
+                    <button class="bg-red-500 hover:bg-red-700 text-white rounded-full p-1 mr-2">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                      </svg>
+                    </button>
+                    <button class="bg-green-500 hover:bg-green-700 text-white rounded-full p-1">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-end r-0 ml-3 mt-3 mr-2">
+                <a href="#" class="text-[18px] text-blue-500 hover:text-blue-700 font-semibold transition-opacity duration-300 opacity-100">
+                  See more →
+                </a>
+              </div>
+              
+              
+            </div>
+          </section>
+
+          <div class="grid grid-cols-3 gap-6 p-6 h-84">
+            <div class="bg-white p-6 rounded-2xl shadow-lg text-center flex flex-col">
+              <h2 class="text-[1.5rem] font-semibold text-gray-600">Active bookings</h2>
+              <hr class="border-t-2 border-gray-300 my-2">
+              <p class="text-[8rem] font-bold text-blue-700 my-3">12</p>
+              <div class="mt-auto"> 
+                <a href="#" class="text-blue-600 hover:underline text-[1.2rem]">See details →</a>
+              </div>
+            </div>
+          
+            <div class="bg-white p-6 rounded-2xl shadow-lg flex flex-col"> 
+              <h2 class="text-[1.5rem] font-semibold text-gray-600 text-center">Rooms</h2>
+              <hr class="border-t-2 border-gray-300 my-2 w-full">
+              <div class="flex items-center justify-center h-full">
+                <div class="relative rounded-lg mr-2 flex flex-row">
+                <!-- Card 1: Available Image -->
+                  <div class="w-auto h-auto bg-blue-50 rounded-lg shadow-lg flex flex-col items-center relative mr-2">
+                    <img src="./assets/room1.jpg" alt="Room 1" class="w-[80%] h-[70%] object-cover rounded mt-4">
+                    <div id="overlay-1" class="absolute inset-0 text-center bg-gray-500 bg-opacity-50 flex items-center justify-center text-white font-semibold rounded">
+                      NOT AVAILABLE
+                    </div>
+                    <p class="mt-2 mb-2 text-gray-400 text-lg font-semibold">A10001</p>
+                  </div>
+                <!-- Card 2: Non-available Image -->
+                  <div class="w-auto h-auto bg-blue-50 rounded-lg shadow-lg flex flex-col items-center relative">
+                    <img src="./assets/room1.jpg" alt="Room 1" class="w-[80%] h-[70%] object-cover rounded mt-4">
+                    <div id="overlay-1" class="hidden absolute inset-0 text-center bg-gray-500 bg-opacity-50 flex items-center justify-center text-white font-semibold rounded">
+                      NOT AVAILABLE
+                    </div>
+                    <p class="mt-2 mb-2 text-gray-400 text-lg font-semibold">A10001</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-auto"> 
+                <a href="#" class="text-blue-600 hover:underline block text-center text-[1.2rem]">See all rooms →</a>
+              </div>
+            </div>
+          
+            <div class="bg-white p-6 rounded-2xl shadow-lg flex flex-col"> 
+              <h2 class="text-[1.5rem] font-semibold text-gray-600 text-center">History</h2>
+              <hr class="border-t-2 border-gray-300 my-2">
+              <div>
+                <div class="flex items-start mb-2 bg-gray-100 p-2">
+                  <div>
+                    <p class="text-base font-medium text-gray-800">A5001 • 3 People</p>
+                    <p class="text-sm text-gray-500">Tuesday, January 7th 2025</p>
+                  </div>
+                </div>
+                <div class="flex items-start mb-2 bg-gray-100 p-4">
+                  <div>
+                    <p class="text-base font-medium text-gray-800">A10002 • 6 People</p>
+                    <p class="text-sm text-gray-500">Wednesday, December 11st 2024</p>
+                  </div>
+                </div>
+                <div class="flex items-start mb-2 bg-gray-100 p-4">
+                  <div>
+                    <p class="text-base font-medium text-gray-800">A8003 • 4 People</p>
+                    <p class="text-sm text-gray-500">Monday, December 9th 2024</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-auto"> 
+                <a href="#" class="text-blue-600 hover:underline block text-center text-[1.2rem]">See all →</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+    </main>
+  </div>
+
+</body>
+</html>

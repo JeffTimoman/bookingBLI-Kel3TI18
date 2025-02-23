@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminActiveController;
+use App\Http\Controllers\AdminHomeController;
+use App\Http\Controllers\AdminPendingController;
+use App\Http\Controllers\AdminRoomController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HistoryController;
@@ -7,13 +11,15 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
+use Illuminate\Container\Attributes\Auth;
 
-Route::get('/', [SessionController::class, 'index']);   
 
-route::resource('user', UserController::class);
 
-Route::get('/session', [SessionController::class, 'index']);
-Route::post('/session/login', [SessionController::class, 'login']);
+Route::middleware(['notauth'])->group(function () {
+    Route::redirect('/', '/loginpage');
+    Route::get('/loginpage', [SessionController::class, 'index'])->name('loginpage');
+    Route::post('/session/login', [SessionController::class, 'login']);
+});
 
 Route::middleware(['auth'])->group(function () {
     
@@ -26,18 +32,28 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/rooms/{room}/favorite', [FavoriteController::class, 'store'])->name('favorites.store');
         Route::delete('/rooms/{room}/favorite', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
         
-        Route::get('/favorite', function () {
-            return view('favorite.index');
-        });
+        Route::get('/favorite', [FavoriteController::class, 'index'])->name('favorite.index');
         Route::post('/book-room', [BookController::class, 'store'])->name('book.store');
 
         Route::get('/history', [HistoryController::class, 'index']);
 
+        Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
     });
     
     Route::middleware(['admin'])->group(function () {
-        Route::get('/admin/home', function () {
-            return view('user.create');
-        })->name('admin.home');
+        Route::get('/admin/home', [AdminHomeController::class, 'index'])->name('admin.home.index');
+        Route::post('/admin/home/change', [AdminHomeController::class, 'change'])->name('admin.home.change');
+
+        Route::get('/admin/pending', [AdminPendingController::class, 'index'])->name('admin.pending.index');
+        Route::post('/admin/pending/change', [AdminPendingController::class, 'change'])->name('admin.pending.change');
+
+        Route::get('/admin/active', [AdminActiveController::class, 'index'])->name('admin.active.index');
+
+        Route::get('/admin/room' ,[AdminRoomController::class, 'index']);
+        })->name('admin.room');
+
+        Route::get('admin/room/index', [AdminRoomController::class, 'index'])->name('admin.room.index');
+
+        Route::post('/admin/room/change', [AdminRoomController::class, 'change'])->name('admin.room.change');
+        Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
     });
-});

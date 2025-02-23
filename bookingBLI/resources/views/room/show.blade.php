@@ -1,106 +1,17 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Room {{ $data->name }} - {{$data->roomType->name}}</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gray-100">
+@extends('layout.room')
   
+@section('content')
 <!-- Wrapper untuk Navbar dan Header -->
-<div class="relative h-[362px] ">
+<div class="relative h-[368px]" style="background-image: url('{{ asset('./assets/bgheader.png') }}')">
   <!-- Header Background -->
-  <div class="absolute inset-0 -z-10">
-    <img
-      src="{{ asset('./assets/bgheader.png') }}"
-      alt="Header Image"
-      class="w-full h-[362px] object-cover"
-    />
-  </div>
-
-  <!-- Navbar -->
-  <nav class="bg-[#174AA9] text-[#FFF] py-4 px-6 flex items-center justify-between shadow-md rounded-b-[22px] relative z-10">
-      <!-- Left Section -->
-      <div class="flex items-center gap-8">
-          <img src="{{ asset('./assets/LOGO BLI.png') }}" alt="Logo" class="h-16 w-auto ml-4">
-          <img src="{{ asset('./assets/bca learning.png') }}" alt="BCA Learning" class="h-14 w-auto">
-      </div>
-
-      <!-- Center Section -->
-      <div class="flex gap-14 text-[18px] font-semibold tracking-[1.08px] ml-auto hidden lg:flex">
-          <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">FAVORITE</a>
-          <a href="/room" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">BOOK</a>
-          <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">HISTORY</a>
-      </div>
-
-      <!-- Right Section -->
-      <div class="flex items-center gap-10 ml-14 hidden lg:flex">
-          <img src="{{ asset('./assets/icon.png') }}" alt="Bell" class="h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
-          <img src="{{ asset('./assets/base.png') }}" alt="Logout" class="h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
-      </div>
-
-      <!-- Hamburger Icon (for small screens) -->
-      <div class="lg:hidden flex items-center">
-          <button id="hamburger-icon" class="text-white">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
-          </button>
-      </div>
-  </nav>
-
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="lg:hidden fixed top-0 right-0 w-56 h-auto bg-[#2D5C97] text-[#FFF] z-50 transform translate-x-full transition-transform duration-300">
-      <!-- Close Button -->
-      <div class="flex justify-end p-4">
-          <button id="close-menu" class="text-white">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-              </svg>
-          </button>
-      </div>
-      <!-- Menu Items -->
-      <div class="flex flex-col items-start p-4">
-          <a href="#" class="py-3 text-[18px] font-semibold hover:text-gray-300 hover:scale-110 transition-transform duration-200">FAVORITE</a>
-          <a href="#" class="py-3 text-[18px] font-semibold hover:text-gray-300 hover:scale-110 transition-transform duration-200">BOOK</a>
-          <a href="#" class="py-3 text-[18px] font-semibold hover:text-gray-300 hover:scale-110 transition-transform duration-200">HISTORY</a>
-          <div class="flex items-center gap-10 mt-8">
-              <img src="{{ asset('./assets/icon.png') }}" alt="Bell" class="h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
-              <img src="{{ asset('./assets/base.png') }}" alt="Logout" class="h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
-          </div>
-      </div>
-  </div>
-
-  <script>
-      // JavaScript to toggle the mobile menu visibility
-      const hamburgerIcon = document.getElementById('hamburger-icon');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const closeMenuButton = document.getElementById('close-menu');
-
-      // Open mobile menu
-      hamburgerIcon.addEventListener('click', () => {
-          mobileMenu.classList.toggle('translate-x-full'); // Show the menu
-      });
-
-      // Close mobile menu
-      closeMenuButton.addEventListener('click', () => {
-          mobileMenu.classList.add('translate-x-full'); // Hide the menu
-      });
-  </script>
-
-  <!-- Header Section -->
-<div class="relative h-[200px]">
-  <!-- Overlay with Text -->
-  <div class="absolute inset-0 flex flex-col items-center justify-end text-white text-center pb-200">
-    <h1 class="text-4xl font-bold">ROOM {{ $data->name }}</h1>
-    <div class="w-12 h-1 bg-white my-4"></div>
-    <p class="text-lg">{{ $data->roomType->name }} / 2nd Floor / Tower {{ substr($data->name, 0, 1) }}</p>
-  </div>
-</div>
+    <div class=" flex w-full h-full flex-col justify-center items-center text-white text-center">
+      <h1 class="text-4xl mt-20 font-bold">ROOM {{ $data->name }}</h1>
+      <div class="w-12 h-1 bg-white my-4"></div>
+      <p class="text-lg">{{ $data->roomType->name }} / 2nd Floor / Tower {{ substr($data->name, 0, 1) }}</p>
+    </div>
 </div>
 
+  
 
 
 <!-- Blue Line -->
@@ -243,7 +154,7 @@
     <!-- Time Slot Section -->
     <div class="mt-8">
       <h2 class="text-xl font-bold text-gray-800">SELECT TIME</h2>
-        <div class="flex flex-wrap justify-start mt-4">
+        <div class="flex flex-wrap justify-start mt-4 mb-8">
           @php
           $count = 0;   
           @endphp
@@ -267,7 +178,7 @@
       @endforeach
       </div>
        @if ($count != 0)
-        <div class="mt-8 flex justify-end">
+        <div class="mt-8 mb-8 flex justify-end">  
             <button onclick="openModal()" class="px-6 py-2 border-2 border-blue-800 text-blue-800 rounded-lg hover:bg-blue-100">
               BOOK
             </button>
@@ -279,115 +190,7 @@
 
   </div>
 
-<!-- Footer -->
-<div class="bg-gradient-to-b from-[#004AAD] to-[#00092D] text-white mt-10">
-    <footer class="w-full py-10 px-6 md:px-12 lg:px-24">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <!-- Left Section - Logo -->
-            <div class="flex flex-col items-start gap-2">
-                <img src="footer/logos.svg" alt="BCA Logo" class="h-40">
-            </div>
 
-            <!-- Middle Left - Lokasi -->
-            <div>
-                <h3 class="text-sm font-normal mb-3">Lokasi</h3>
-                <p class="text-sm leading-8 font-normal tracking-wider">
-                    Sentul City<br>
-                    Jl. Pakuan No. 3, Sumur Batu, Babakan Madang, <br>
-                    Bogor 16810
-                </p>
-            </div>
-
-            <!-- Middle Right - Hubungi Kami -->
-            <div>
-                <h3 class="text-sm font-normal mb-3">Hubungi Kami</h3>
-                <ul class="text-sm leading-10">
-                    <li class="flex items-center gap-2">
-                        <img src="footer/6.png" alt="Phone" class="h-5">
-                        <span>Halo BCA 1500888</span>
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <img src="footer/7.png" alt="Email" class="h-5">
-                        <span>halobca@bca.co.id</span>
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <img src="footer/5.png" alt="Phone 2" class="h-5">
-                        <span>62-922-0355-800</span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Right Section - Media Sosial -->
-            <div>
-                <h3 class="text-sm font-normal mb-2">Media Sosial</h3>
-                <ul class="flex flex-col space-y-3 text-sm">
-                    <li class="flex items-center gap-2 hover:text-gray-300 transition-colors duration-200">
-                        <img src="footer/2.png" alt="Facebook" class="h-5">
-                        <span>GoodLife BCA</span>
-                    </li>
-                    <li class="flex items-center gap-2 hover:text-gray-300 transition-colors duration-200">
-                        <img src="footer/3.png" alt="Twitter" class="h-5">
-                        <span>@goodlifebca</span>
-                    </li>
-                    <li class="flex items-center gap-2 hover:text-gray-300 transition-colors duration-200">
-                        <img src="footer/1.png" alt="Instagram" class="h-5">
-                        <span>Solusi BCA</span>
-                    </li>
-                    <li class="flex items-center gap-2 hover:text-gray-300 transition-colors duration-200">
-                        <img src="footer/4.png" alt="YouTube" class="h-5">
-                        <span>@BankBCA</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-</div>
-
-  <!-- Modal/Popup -->
-  {{-- <div id="bookingModal" class="fixed hidden z-50 inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-[15px] bg-white">
-        <div class="mt-3 text-center">
-            <h3 class="text-lg leading-6 font-medium text-gray-900">Room {{ $data->name }}</h3>
-            <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-            <div class="mt-2 px-7 py-3">
-              <div class="mb-4">
-                 <h4 class="text-left text-sm font-semibold mb-2">Chosen Time</h4>
-                <div id="chosenTime" class="text-left text-sm mb-2"></div>
-                </div>
-                <h4 class="text-left text-sm font-semibold mb-2">Details</h4>
-                 <div class="text-left text-sm mb-2">Name: {{ $user->name }}</div>
-                 <div class="text-left text-sm mb-2">Occupation or Affiliation: {{ $user->userType->name }}</div>
-                <div class="text-left text-sm mb-2">
-                    <label class="block text-left text-sm font-medium mb-1">Number of People</label>
-                    <select id="numberOfPeople" class="border rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                     <option value="0">0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                    </select>
-                </div>
-                <div class="text-left text-sm mb-2">
-                    <label for="purpose" class="block text-left text-sm font-medium mb-1">Purpose</label>
-                    <input type="text" id="purpose" class="border rounded px-2 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.b. Group study; Project discussion; Meeting"/>
-                </div>
-            </div>
-            <div class="items-center px-4 py-3">
-              <div class="flex justify-between">
-                <button onclick="closeModal()" class="bg-transparent text-gray-600 py-2 px-4 border rounded-[22px]  hover:bg-gray-100">Cancel</button>
-                <button onclick="submitBooking()" class="bg-gray-900 text-white py-2 px-4 rounded-[22px] hover:bg-gray-700">Submit</button>
-              </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 
 
 <div id="bookingModal" class="fixed hidden z-50 inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
@@ -483,10 +286,9 @@ const timeSlots = document.querySelectorAll('.time-slot');
                selectedTimes.push(time);
                 selectedTimeIds.push(this.querySelector('.timeId').textContent);
             }
-
+            
     });
   });
 
 </script>
-</body>
-</html>
+@endsection

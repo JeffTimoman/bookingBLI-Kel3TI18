@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Session;
 class SessionController extends Controller
 {
     function index(){
-        // [un-comment this code once all pages are created]
         // if (Auth::check()) {
         //     // Check user's role and redirect accordingly
         //     if (auth()->user()->isAdmin()) {
@@ -18,7 +17,7 @@ class SessionController extends Controller
         //         return redirect('home');
         //     }
         // }
-        return view('session/index');
+        return view('session.index');
     }
 
     function login(Request $request){
@@ -46,7 +45,12 @@ class SessionController extends Controller
                 return redirect('home')->with('success', 'Login success');
             }
         } else {
-            return redirect('session')->with('error', 'Username or Password is wrong');
+            return redirect()->back()->with('error', 'Username or Password is wrong');
         }
+    }
+
+    function logout(){
+        Auth::logout();
+        return redirect()->route('loginpage');
     }
 }

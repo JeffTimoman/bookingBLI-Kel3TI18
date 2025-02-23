@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pending Requests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Albert Sans', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans antialiased">
+
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="bg-gradient-to-b from-blue-900 to-blue-700 text-white w-[324px] flex-shrink-0 sticky top-0 h-screen">
+            <div class="p-4 h-[132px] text-center flex flex-col justify-center">
+                <h2 class="text-2xl font-semibold">Full Name</h2>
+                <p class="text-lg text-gray-300">Admin</p>
+            </div>
+
+            <nav class="mt-6 flex-grow border-t border-white"
+                style="background-image: url('./assets/bgsidebar.png'); background-size: cover; background-position: center; height: calc(100% - 132px);">
+                <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3">
+                    <img src="./assets/dashboard icon.png" alt="Dashboard" class="h-5 cursor-pointer">
+                    Dashboard
+                </a>
+                <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 bg-indigo-800 gap-3">
+                    <img src="./assets/pending.png" alt="Pending" class="h-5 cursor-pointer">
+                    Pending Request
+                </a>
+                <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 gap-3">
+                    <img src="./assets/active.png" alt="Active Booking" class="h-5 cursor-pointer">
+                    Active Booking
+                </a>
+                <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 gap-3">
+                    <img src="./assets/rooms.png" alt="Rooms" class="h-5 cursor-pointer">
+                    Rooms
+                </a>
+                <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 gap-3">
+                    <img src="./assets/hystory.png" alt="History" class="h-5 cursor-pointer">
+                    History
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 bg-gray-50 overflow-y-auto">
+            <!-- Topbar -->
+            <header class="bg-[#1954B2] shadow-md p-4 h-[114px] flex items-center justify-between sticky top-0 z-10">
+                <div class="flex items-center gap-8">
+                    <img src="./assets/LOGO BLI.png" alt="Logo" class="h-16 w-auto ml-4">
+                    <img src="./assets/bca learning.png" alt="BCA Learning" class="h-14 w-auto">
+                </div>
+
+                <div class="flex items-center gap-8">
+                    <img src="./assets/base.png" alt="Logout" class="h-8 cursor-pointer">
+                </div>
+            </header>
+
+            <!-- Pending Request Content -->
+            <div class="bg-gray-50">
+                <section class="mt-2 ml-4 ">
+                    <div class="bg-white rounded-lg shadow-lg p-4">
+                        <h2 class="text-2xl font-semibold  text-gray-700">Pending Requests</h2>
+                    </div>
+                </section>
+                <div class="p-14">
+                    <section class="mb-8">
+                        <div class="flex justify-between items-center">
+                            <p class="text-gray-500">Tuesday, February 11th 2025</p>
+                            <p class="text-gray-500">05:07 PM</p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
+
+                            <!-- Request Card A5001 -->
+                            <div class="bg-[#CCE3FF] rounded-lg shadow-md p-4 w-full">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h3 class="font-semibold text-lg text-gray-700">A5001</h3>
+                                    <p class="text-xs text-gray-500 text-base tracking-wider">07:32 AM</p>
+                                </div>
+
+                                <div class="flex">
+                                    <div class="w-1/2 pr-2">
+                                        <p class="text-sm text-gray-600 text-base tracking-wider leading-tight">08:00 AM - 09:30 AM</p>
+                                        <p class="text-sm text-gray-600 text-base tracking-wider leading-tight">10:00 AM - 11:30 AM</p>
+                                        <p class="text-sm text-gray-600 text-base tracking-wider leading-tight">01:00 PM - 02:30 PM</p>
+                                        <p class="text-sm text-gray-600 text-base tracking-wider leading-tight">03:00 PM - 05:00 PM</p>
+                                        <p class="text-sm text-gray-600 text-base tracking-wider leading-tight">05:00 PM - 06:00 PM</p>
+                                        <p class="text-sm text-gray-600 text-base tracking-wider leading-tight">06:00 PM - 07:00 PM</p>
+                                    </div>
+                                    <div class="w-1/2 pl-2">
+                                        <p class="text-xs text-gray-500 text-base tracking-wider">Purpose:</p>
+                                        <p class="text-sm text-gray-600 text-base tracking-wider">Lorem ipsum odor amet, consectetur adipiscing elit.
+                                            Litora suspendisse aptent curabitur eleifend vitae nibh efficitur laoreet.</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2">
+                                    <p class="text-sm text-gray-600 text-base tracking-wider">Cecilia Supardi</p>
+                                    <p class="text-sm text-gray-600 text-base tracking-wider">PPTI</p>
+                                    <div class="flex items-center">
+                                        <img src="./assets/icon.svg" alt="People Icon" class="w-6 h-6 mr-1">
+                                        <span class="text-xs text-gray-500 text-base tracking-wider">5 People</span>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-center mt-4">
+                                    <button class="bg-red-500 hover:bg-red-700 text-white rounded-full p-2 mr-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="bg-green-500 hover:bg-green-700 text-white rounded-full p-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Request Card A6001 -->
+                            <div class="bg-[#CCE3FF] rounded-lg shadow-md p-4 w-full">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h3 class="font-semibold text-lg text-gray-700">A6001</h3>
+                                    <p class="text-xs text-gray-500 text-base tracking-wider">10:13 AM</p>
+                                </div>
+
+                                <div class="flex">
+                                    <div class="w-1/2 pr-2">
+                                        <p class="text-sm text-gray-600 text-base tracking-wider leading-tight">03:00 PM - 05:00 PM</p>
+                                        <p class="text-sm text-gray-600 text-base tracking-wider leading-tight">05:00 PM - 06:00 PM</p>
+                                    </div>
+                                    <div class="w-1/2 pl-2">
+                                        <p class="text-xs text-gray-500 text-base tracking-wider">Purpose:</p>
+                                        <p class="text-sm text-gray-600 text-base tracking-wider">Lorem ipsum odor amet, consectetur adipiscing elit.
+                                            Litora suspendisse aptent curabitur eleifend vitae nibh efficitur laoreet.</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2">
+                                    <p class="text-sm text-gray-600 text-base tracking-wider">Victoria Simanjaya</p>
+                                    <p class="text-sm text-gray-600 text-base tracking-wider">Karyawan</p>
+                                    <div class="flex items-center">
+                                        <img src="./assets/icon.svg" alt="People Icon" class="w-6 h-6 mr-1">
+                                        <span class="text-xs text-gray-500 text-base tracking-wider">3 People</span>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-center mt-4">
+                                    <button class="bg-red-500 hover:bg-red-700 text-white rounded-full p-2 mr-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="bg-green-500 hover:bg-green-700 text-white rounded-full p-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Request Card A8003 -->
+                            <div class="bg-[#CCE3FF] rounded-lg shadow-md p-4 w-full">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h3 class="font-semibold text-lg text-gray-700">A8003</h3>
+                                    <p class="text-xs text-gray-500 text-base tracking-wider">11:54 AM</p>
+                                </div>
+
+                                <div class="flex">
+                                    <div class="w-1/2 pr-2">
+                                        <p class="text-sm text-gray-600 text-base tracking-wider leading-tight">03:00 PM - 05:00 PM</p>
+                                        <p class="text-sm text-gray-600 text-base tracking-wider leading-tight">05:00 PM - 06:00 PM</p>
+                                        <p class="text-sm text-gray-600 text-base tracking-wider leading-tight">06:00 PM - 07:00 PM</p>
+                                    </div>
+                                    <div class="w-1/2 pl-2">
+                                        <p class="text-xs text-gray-500 text-base tracking-wider">Purpose:</p>
+                                        <p class="text-sm text-gray-600 text-base tracking-wider">Lorem ipsum odor amet, consectetur adipiscing elit.
+                                            Litora suspendisse aptent curabitur eleifend vitae nibh efficitur laoreet.</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2">
+                                    <p class="text-sm text-gray-600 text-base tracking-wider">John Doe</p>
+                                    <p class="text-sm text-gray-600 text-base tracking-wider">PPBP</p>
+                                    <div class="flex items-center">
+                                        <img src="./assets/icon.svg" alt="People Icon" class="w-6 h-6 mr-1">
+                                        <span class="text-xs text-gray-500 text-base tracking-wider">7 People</span>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-center mt-4">
+                                    <button class="bg-red-500 hover:bg-red-700 text-white rounded-full p-2 mr-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="bg-green-500 hover:bg-green-700 text-white rounded-full p-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Request Card A8003 (Duplikat) -->
+                            <div class="bg-[#CCE3FF] rounded-lg shadow-md p-4 w-full">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h3 class="font-semibold text-lg text-gray-700">A8003</h3>
+                                    <p class="text-xs text-gray-500 text-base tracking-wider">12:01 AM</p>
+                                </div>
+
+                                <div class="flex">
+                                    <div class="w-1/2 pr-2">
+                                        <p class="text-sm text-gray-600 text-base tracking-wider leading-tight">05:00 PM - 06:00 PM</p>
+                                        <p class="text-sm text-gray-600 text-base tracking-wider leading-tight">06:00 PM - 07:00 PM</p>
+                                    </div>
+                                    <div class="w-1/2 pl-2">
+                                        <p class="text-xs text-gray-500 text-base tracking-wider">Purpose:</p>
+                                        <p class="text-sm text-gray-600 text-base tracking-wider">Lorem ipsum odor amet, consectetur adipiscing elit.
+                                            Litora suspendisse aptent curabitur eleifend vitae nibh efficitur laoreet.</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2">
+                                    <p class="text-sm text-gray-600 text-base tracking-wider">John Doe</p>
+                                    <p class="text-sm text-gray-600 text-base tracking-wider">PPBP</p>
+                                    <div class="flex items-center">
+                                        <img src="./assets/icon.svg" alt="People Icon" class="w-6 h-6 mr-1">
+                                        <span class="text-xs text-gray-500 text-base tracking-wider">7 People</span>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-center mt-4">
+                                    <button class="bg-red-500 hover:bg-red-700 text-white rounded-full p-2 mr-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="bg-green-500 hover:bg-green-700 text-white rounded-full p-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+
+</html>
