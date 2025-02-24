@@ -51,13 +51,19 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8" id="favorite-rooms-container">
             <!-- Room Card -->
             @foreach(auth()->user()->favorites as $room)
-                <div class="w-[360px] h-[360px] rounded-xl relative bg-[#f8f8f8] shadow-[0_0_0_1px_#e0e0e0]" data-room-id="{{ $room->id }}">
+            <a class="contents" href="{{ url('/room/'.$room->name) }}">
+                <div class="w-[360px] h-[360px] rounded-xl relative bg-[#f8f8f8] shadow-[0_0_0_1px_#e0e0e0]" conType="card" data-room-id="{{ $room->id }}">
                     <div class="flex justify-center mt-6">
                         <img src="./assets/pic.png" alt="Room A8002" class="w-[294px] h-[234px] object-cover rounded-md">
+                    </div>
+                    <div class="text-center mt-4 px-4">
+                        <h3 class="font-semibold text-lg text-gray-800">{{ $room->name }}</h3>
+                        <p class="text-sm text-gray-600">{{ $room->roomType->name }}, Floor 8, Tower A</p>
                     </div>
                     <button 
                         class="absolute top-4 right-4 p-2 focus:outline-none favorite-button"
                         data-room-id="{{ $room->id }}"
+                        onclick="event.preventDefault(); event.stopPropagation();"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8 heart-icon">
                             <path 
@@ -69,11 +75,8 @@
                             ></path>
                         </svg>
                     </button>
-                    <div class="text-center mt-4 px-4">
-                        <h3 class="font-semibold text-lg text-gray-800">{{ $room->name }}</h3>
-                        <p class="text-sm text-gray-600">{{ $room->roomType->name }}, Floor 8, Tower A</p>
-                    </div>
                 </div>
+            </a>
             @endforeach
             </div>
             <div id="empty-message" class="text-center mt-8 hidden">
@@ -145,29 +148,19 @@
             const emptyMessage = document.getElementById('empty-message');
 
             function checkEmpty() {
-            if (container.children.length === 0) {
-                emptyMessage.classList.remove('hidden');
-            } else {
-                emptyMessage.classList.add('hidden');
-            }
+                if (container.children.length === 0) {
+                    emptyMessage.classList.remove('hidden');
+                } else {
+                    emptyMessage.classList.add('hidden');
+                }
             }
 
-            checkEmpty(); // Panggil saat pertama kali halaman dimuat
-            // container.addEventListener('click', function(event) {
-            // if (event.target.closest('.favorite-button')) {
-            //     const button = event.target.closest('.favorite-button');
-            //     const card = button.closest('[data-room-id]');
-
-            //     if (card) {
-            //     card.remove();
-            //     checkEmpty(); // Periksa setelah card dihapus
-            //     }
-            // }
-            // });
+            checkEmpty();
+            
             document.querySelectorAll('.favorite-button').forEach(button => {
                 button.addEventListener('click', async function() {
                     const roomId = this.dataset.roomId;
-                    const card = this.closest('[data-room-id]');
+                    const card = this.closest('[conType]');
                     const heartIcon = this.querySelector('.heart-icon path');
                     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
@@ -182,16 +175,17 @@
                         });
 
                         if (response.ok) {
-                            card.remove();
-                            
                             document.querySelectorAll(`[data-room-id="${roomId}"] .heart-icon path`).forEach(icon => {
                                 icon.setAttribute('fill', 'gray');
                             });
+                            card.remove();
+                            checkEmpty();
                         } else {
                             console.error('Error removing favorite');
                         }
                     } catch (error) {
                         console.error('Network error:', error);
+                        checkEmpty();
                     }
                 });
             });
