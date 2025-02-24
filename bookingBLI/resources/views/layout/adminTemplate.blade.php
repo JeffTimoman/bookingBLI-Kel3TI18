@@ -27,7 +27,7 @@
     }
 
     body {
-      font-family: 'Albert Sans Black';
+      font-family: 'Albert Sans Regular';
     }
 
     ::-webkit-scrollbar {
@@ -70,7 +70,7 @@
           </div>
           Rooms
         </a>
-        <a href="#" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3 mb-4">
+        <a href="{{ route('admin.history.index') }}" class="flex items-center py-2 px-4 hover:bg-indigo-800 active gap-3 mb-4">
           <div class="flex items-center ">
             <img src="{{ asset('./assets/hystory.png') }}" alt="History" class="h-5 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
           </div>
