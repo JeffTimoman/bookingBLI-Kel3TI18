@@ -51,12 +51,14 @@ class AdminHomeController extends Controller
             }
         }
         // dd($dataMerge);
-        foreach ($dataMerge as $key => $item) {
-            if ($item['date'] < now()->toDateString() && $item['status'] != 1) {
-                $dataMerge[$key]['status'] = -1; // Update in array
-                Books::whereIn('id', $item['book_id'])->update(['status' => -1]); // Update in database
-            }
-        }
+
+        // Sudah dibuat Otomatis    
+        // foreach ($dataMerge as $key => $item) {
+        //     if ($item['date'] < now()->toDateString() && $item['status'] != 1) {
+        //         $dataMerge[$key]['status'] = -1; // Update in array
+        //         Books::whereIn('id', $item['book_id'])->update(['status' => -1]); // Update in database
+        //     }
+        // }
         
 
         // dd($dataMerge);

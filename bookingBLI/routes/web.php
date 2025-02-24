@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminActiveController;
+use App\Http\Controllers\AdminHistoryController;
 use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AdminPendingController;
 use App\Http\Controllers\AdminRoomController;
@@ -55,5 +56,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('admin/room/index', [AdminRoomController::class, 'index'])->name('admin.room.index');
 
         Route::post('/admin/room/change', [AdminRoomController::class, 'change'])->name('admin.room.change');
+
+        Route::get('admin/history', [AdminHistoryController::class, 'index'])->name('admin.history.index');
         Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
     });
