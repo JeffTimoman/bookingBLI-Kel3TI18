@@ -18,6 +18,8 @@ class RefreshTimeStatus extends Command
     public function handle()
     {
         // Update all time statuses to 1
+        // Time::query()->update(['status' => 1]);
+        // update all time status to 1
         Time::query()->update(['status' => 1]);
 
         $this->info('Time statuses have been refreshed.');
