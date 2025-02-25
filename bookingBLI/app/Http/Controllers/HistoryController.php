@@ -22,11 +22,13 @@ class HistoryController extends Controller
                 if($dm['room_id'] == $d->room_id && $dm['date'] == $d->date && $dm['people'] == $d->people && $dm['purpose'] == $d->purpose && $dm['status'] == $d->status){
                     $isExist = true;
                     $dataMerge[$key]['time_id'][] = Time::find($d->time_id)->start. ' - '.Time::find($d->time_id)->end;
+                    $dataMerge[$key]['book_id'][] = $d->id; 
                     break;
                 }
             }
             if(!$isExist){
                 $dataMerge[] = [
+                    'book_id' => [$d->id],
                     'room_id' => $d->room_id,
                     'room_name' => Room::find($d->room_id)->name,
                     'date' => $d->date,
@@ -41,5 +43,16 @@ class HistoryController extends Controller
 
         // dd($dataMerge);
         return view('history/index')->with('data', $dataMerge);
+    }
+
+    public function destroy(Request $request) {
+        $bookIds = $request->input('book_id'); // Get the array of book IDs
+        $timeIds = Books::whereIn('id', $bookIds)->pluck('time_id')->toArray(); // Get the array of time IDs
+        Books::whereIn('id', $bookIds)->delete(); // Delete the books
+        // update status in times table where the book_id is in $bookIds
+        Time::whereIn('id', $timeIds)->update(['status' => 1]);
+       
+
+        return redirect()->route('history.index')->with('success', 'Booking history deleted');
     }
 }
