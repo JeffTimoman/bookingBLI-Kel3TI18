@@ -12,6 +12,7 @@ class RoomController extends Controller
 {
     function index(){
         $data = Room::orderBy('name', 'asc')->paginate(100);
+        // Time::query()->update(['status' => 1]);
         return view('room/index')->with('data', $data);
     
     }

@@ -22,95 +22,100 @@
 
     <!-- Filter Modal -->
     <div id="filter-modal"
-        class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 hidden items-center justify-center">
-        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 md:mx-0">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-semibold">Filters</h2>
-                <button id="close-filter-modal" class="text-gray-500 hover:text-gray-800">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-            <div class="mb-4">
-                <h3 class="text-lg font-medium mb-2">Availability</h3>
-                <div class="flex items-center justify-between">
-                    <span>Show available rooms only</span>
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" id="availability-toggle" value="" class="sr-only peer">
+    class="fixed inset-0 w-full h-full bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4 overflow-auto">
+    <div class="bg-white rounded-lg px-6 max-w-sm w-full mx-auto max-h-[80vh] overflow-y-auto shadow-lg">
+        <div class="flex justify-between items-center sticky top-0 py-6 bg-white z-10">
+            <h2 class="text-2xl font-semibold">Filters</h2>
+            <button id="close-filter-modal" class="text-gray-500 hover:text-gray-800">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="mb-4">
+            <h3 class="text-lg font-medium mb-2">Availability</h3>
+            <div class="flex items-center justify-between">
+                <span>Show available rooms only</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" id="availability-toggle" class="sr-only peer">
+                    <div
+                        class="w-11 h-6 bg-gray-200 peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-600">
                         <div
-                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                            class="absolute top-0.5 left-0.5 w-5 h-5 bg-white border border-gray-300 rounded-full transition-transform peer-checked:translate-x-5">
                         </div>
-                    </label>
-                </div>
-            </div>
-            <div class="mb-4">
-                <h3 class="text-lg font-medium mb-2">Room Type</h3>
-                <div class="flex flex-col gap-2">
-                    <div class="flex items-center">
-                        <input type="checkbox" id="discussion-room" value="Discussion Room" class="mr-2 room-type-checkbox">
-                        <label for="discussion-room">Discussion Room</label>
                     </div>
-                    <div class="flex items-center">
-                        <input type="checkbox" id="stadium-classroom" value="Stadium Classroom" class="mr-2 room-type-checkbox">
-                        <label for="stadium-classroom">Stadium Classroom</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input type="checkbox" id="regular-classroom" value="Regular Classroom" class="mr-2 room-type-checkbox">
-                        <label for="regular-classroom">Regular Classroom</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input type="checkbox" id="computer-room" value="Computer Room" class="mr-2 room-type-checkbox">
-                        <label for="computer-room">Computer Room</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input type="checkbox" id="think-tank" value="Think Tank" class="mr-2 room-type-checkbox">
-                        <label for="think-tank">Think Tank</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input type="checkbox" id="innovation-room" value="Innovation Room" class="mr-2 room-type-checkbox">
-                        <label for="innovation-room">Innovation Room</label>
-                    </div>
-                </div>
-            </div>
-            <div class="mb-4">
-                <h3 class="text-lg font-medium mb-2">Time</h3>
-                <div class="flex flex-col gap-2">
-                    <div class="flex items-center">
-                        <input type="checkbox" id="time-1" value="08:00 AM - 09:30 AM" class="mr-2 time-checkbox">
-                        <label for="time-1">08:00 AM - 09:30 AM</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input type="checkbox" id="time-2" value="10:00 AM - 11:30 AM" class="mr-2 time-checkbox">
-                        <label for="time-2">10:00 AM - 11:30 AM</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input type="checkbox" id="time-3" value="01:00 PM - 02:30 PM" class="mr-2 time-checkbox">
-                        <label for="time-3">01:00 PM - 02:30 PM</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input type="checkbox" id="time-4" value="03:00 PM - 05:00 PM" class="mr-2 time-checkbox">
-                        <label for="time-4">03:00 PM - 05:00 PM</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input type="checkbox" id="time-5" value="05:00 PM - 06:00 PM" class="mr-2 time-checkbox">
-                        <label for="time-5">05:00 PM - 06:00 PM</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input type="checkbox" id="time-6" value="06:00 PM - 07:30 PM" class="mr-2 time-checkbox">
-                        <label for="time-6">06:00 PM - 07:30 PM</label>
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-between items-center mt-6">
-                <button id="clear-filter" class="text-gray-500 hover:text-gray-700">Clear</button>
-                <button id="apply-filter"
-                    class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">Apply</button>
+                </label>
             </div>
         </div>
+        <div class="mb-4">
+            <h3 class="text-lg font-medium mb-2">Room Type</h3>
+            <div class="flex flex-col gap-2">
+                <div class="flex items-center">
+                    <input type="checkbox" id="discussion-room" value="Discussion Room" class="mr-2 room-type-checkbox">
+                    <label for="discussion-room">Discussion Room</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="stadium-classroom" value="Stadium Classroom" class="mr-2 room-type-checkbox">
+                    <label for="stadium-classroom">Stadium Classroom</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="regular-classroom" value="Regular Classroom" class="mr-2 room-type-checkbox">
+                    <label for="regular-classroom">Regular Classroom</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="computer-room" value="Computer Room" class="mr-2 room-type-checkbox">
+                    <label for="computer-room">Computer Room</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="think-tank" value="Think Tank" class="mr-2 room-type-checkbox">
+                    <label for="think-tank">Think Tank</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="innovation-room" value="Innovation Room" class="mr-2 room-type-checkbox">
+                    <label for="innovation-room">Innovation Room</label>
+                </div>
+            </div>
+        </div>
+        <div class="mb-4">
+            <h3 class="text-lg font-medium mb-2">Time</h3>
+            <div class="flex flex-col gap-2">
+                <div class="flex items-center">
+                    <input type="checkbox" id="time-1" value="08:00 AM - 09:30 AM" class="mr-2 time-checkbox">
+                    <label for="time-1">08:00 AM - 09:30 AM</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="time-2" value="10:00 AM - 11:30 AM" class="mr-2 time-checkbox">
+                    <label for="time-2">10:00 AM - 11:30 AM</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="time-3" value="01:00 PM - 02:30 PM" class="mr-2 time-checkbox">
+                    <label for="time-3">01:00 PM - 02:30 PM</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="time-4" value="03:00 PM - 05:00 PM" class="mr-2 time-checkbox">
+                    <label for="time-4">03:00 PM - 05:00 PM</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="time-5" value="05:00 PM - 06:00 PM" class="mr-2 time-checkbox">
+                    <label for="time-5">05:00 PM - 06:00 PM</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="time-6" value="06:00 PM - 07:30 PM" class="mr-2 time-checkbox">
+                    <label for="time-6">06:00 PM - 07:30 PM</label>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-between items-center mt-6 sticky bottom-0 bg-white pb-6 pt-4">
+            <button id="clear-filter" class="text-gray-500 hover:text-gray-700">Clear</button>
+            <button id="apply-filter"
+                class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">Apply</button>
+        </div>
     </div>
+</div>
+
 
     <!-- Room Cards Container -->
     <div class="flex flex-wrap items-center justify-start rounded-lg mx-auto mt-6 md:mt-12 mb-4 md:mb-7 px-6 md:px-24">

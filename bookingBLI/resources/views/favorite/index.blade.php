@@ -1,5 +1,6 @@
 @extends('layout/room')
 
+
 @section('title', 'Favorite')
 
 @section('content')
@@ -20,7 +21,7 @@
       <div class="flex flex-col">
 
             <!-- Favorite Rooms Card Section -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8" id="favorite-rooms-container">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8 mt-48" id="favorite-rooms-container">
             <!-- Room Card -->
             @foreach(auth()->user()->favorites as $room)
             <a class="contents" href="{{ url('/room/'.$room->name) }}">
@@ -30,7 +31,7 @@
                     </div>
                     <div class="text-center mt-4 px-4">
                         <h3 class="font-semibold text-lg text-gray-800">{{ $room->name }}</h3>
-                        <p class="text-sm text-gray-600">{{ $room->roomType->name }}, Floor 8, Tower A</p>
+                        <p class="text-sm text-gray-600">{{ $room->roomType->name }}, Floor {{ substr($room->name, 0, 2) }}, Tower A</p>
                     </div>
                     <button 
                         class="absolute top-4 right-4 p-2 focus:outline-none favorite-button"

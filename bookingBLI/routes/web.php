@@ -35,7 +35,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/favorite', [FavoriteController::class, 'index'])->name('favorite.index');
         Route::post('/book-room', [BookController::class, 'store'])->name('book.store');
 
-        Route::get('/history', [HistoryController::class, 'index']);
+        Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
+        Route::delete('/history/delete', [HistoryController::class, 'destroy'])->name('history.destroy');
 
         Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
     });

@@ -4,7 +4,7 @@
     <div class="p-6 justify-center">
         <!-- Dashboard Section with Box -->
         <div class="bg-white rounded-lg shadow-lg p-6 mb-6 mt-0">
-            <h1 class="text-2xl font-semibold text-gray-700" style="font-family: 'Albert Sans Black';">History</h1>
+            <h1 class="text-2xl font-semibold text-gray-700">History</h1>
         </div>
     
       <!-- History Card Section (Centered) -->
@@ -26,7 +26,7 @@
                 </div>
                 <div class="mt-3 mb-3 grid grid-cols-3 gap-2 whitespace-nowrap">
                 @foreach($item['time_id'] as $index => $time)
-                <div class="bg-blue-200 text-blue-600 font-medium rounded-lg p-1 text-center w-full flex justify-center items-center">
+                <div class="bg-blue-200 text-blue-600 font-medium rounded-lg p-1 text-center w-full flex justify-center items-center text-[13px]">
                     {{ $time }}
                 </div>
                 @endforeach
