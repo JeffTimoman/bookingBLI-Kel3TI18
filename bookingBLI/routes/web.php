@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminRoomController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -25,9 +26,7 @@ Route::middleware(['notauth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     
     Route::middleware(['user'])->group(function () {
-        Route::get('/home', function () {
-            return view('landing');
-        });
+        Route::get('/home', [LandingController::class, 'index'])->name('home.index');
         
         route::resource('room', RoomController::class);
         Route::post('/rooms/{room}/favorite', [FavoriteController::class, 'store'])->name('favorites.store');
