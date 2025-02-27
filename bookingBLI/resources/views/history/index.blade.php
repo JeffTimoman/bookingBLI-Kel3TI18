@@ -1,5 +1,6 @@
-
 @extends('layout/room')
+
+@section('title', 'History')
 
 @section('content')
 <main class="container min-h-screen  mx-auto px-4 py-8">
@@ -34,7 +35,7 @@
                 <!-- Image Slider -->   
                 <div class="relative w-full md:w-1/2 h-full overflow-hidden rounded-l-2xl">
                     <div class="relative aspect-video h-full w-full">
-                        <img id="slider-image" src="{{ asset('./landing/BLI_aerialview 1.png') }}" alt="Room Image" class="object-cover w-full h-full transition-all duration-500">
+                        <img id="slider-image" src="{{ asset('rooms/' . $item['room_img']) }}" alt="Room Image" class="object-cover w-full h-full transition-all duration-500">
                     </div>
                 </div>
 

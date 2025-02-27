@@ -13,8 +13,8 @@ class RoomController extends Controller
     function index(){
         $data = Room::orderBy('name', 'asc')->paginate(100);
         return view('room/index')->with('data', $data);
+    
     }
-
 
     public function show(string $name)
     {
@@ -34,5 +34,5 @@ class RoomController extends Controller
             'user' => $user,
             'times' => $times // Ubah dari time → times
         ]);
-    }   
+    }
 }

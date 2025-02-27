@@ -29,6 +29,7 @@ class HistoryController extends Controller
                 $dataMerge[] = [
                     'room_id' => $d->room_id,
                     'room_name' => Room::find($d->room_id)->name,
+                    'room_img' => Room::find($d->room_id)->img,
                     'date' => $d->date,
                     'people' => $d->people,
                     'purpose' => $d->purpose,

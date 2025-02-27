@@ -1,38 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favorites - BCA Learning Institute</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <style>
-        body {
-            font-family: 'Albert Sans', sans-serif;
-        }
-    </style>
-</head>
-<body class="bg-gray-100 flex flex-col min-h-screen">
+@extends('layout/room')
 
-  <!-- Navbar -->
-    <nav class="bg-[#174AA9] text-[#FFF] py-4 px-6 flex items-center justify-between shadow-md rounded-b-[22px] relative z-10">
-        <div class="flex items-center gap-8">
-        <img src="./assets/LOGO BLI.png" alt="Logo" class="h-16 w-auto ml-4">
-        <img src="./assets/bca learning.png" alt="BCA Learning" class="h-14 w-auto">
-        </div>
-        <div class="flex gap-14 text-[18px] font-semibold tracking-[1.08px] ml-auto hidden lg:flex">
-        <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">FAVORITES</a>
-        <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">BOOK</a>
-        <a href="#" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">HISTORY</a>
-        </div>
-        <div class="flex items-center gap-10 ml-14 hidden lg:flex">
-        <img src="./assets/icon.png" alt="Bell" class="h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
-        <img src="./assets/base.png" alt="Logout" class="h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
-        </div>
-    </nav>
+@section('title', 'Favorite')
 
-    <!-- Favorite Rooms Header Section -->
-    <div class="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 mt-8">
+@section('content')
+<!-- Favorite Rooms Header Section -->
+    <div class="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 mt-40 ">
         <div class="flex items-center mb-6 justify-start">
             <a href="#" class="mr-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-800">
@@ -44,7 +16,7 @@
     </div>
 
   <!-- Main Content: Favorite Rooms -->
-    <div class="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 main-content flex-1">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 pb-6 md:pb-8 lg:pb-12 main-content flex-1">
       <div class="flex flex-col">
 
             <!-- Favorite Rooms Card Section -->
@@ -54,7 +26,7 @@
             <a class="contents" href="{{ url('/room/'.$room->name) }}">
                 <div class="w-[360px] h-[360px] rounded-xl relative bg-[#f8f8f8] shadow-[0_0_0_1px_#e0e0e0]" conType="card" data-room-id="{{ $room->id }}">
                     <div class="flex justify-center mt-6">
-                        <img src="./assets/pic.png" alt="Room A8002" class="w-[294px] h-[234px] object-cover rounded-md">
+                        <img src="{{ asset('rooms/' . $room->img) }}" alt="Room A8002" class="w-[294px] h-[234px] object-cover rounded-md">
                     </div>
                     <div class="text-center mt-4 px-4">
                         <h3 class="font-semibold text-lg text-gray-800">{{ $room->name }}</h3>
@@ -83,63 +55,6 @@
                 <p class="text-gray-600 text-lg">You don't have any favorite room yet</p>
             </div>
         </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="bg-gradient-to-b from-[#004AAD] to-[#00092D] text-white mt-10">
-        <footer class="w-full py-10 px-6 md:px-12 lg:px-24">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="flex flex-col items-start gap-2">
-                <img src="footer/logos.svg" alt="BCA Logo" class="h-40">
-                </div>
-                <div>
-                    <h3 class="text-sm font-normal mb-3">Lokasi</h3>
-                    <p class="text-sm leading-8 font-normal tracking-wider">
-                    Sentul City<br>
-                    Jl. Pakuan No. 3, Sumur Batu, Babakan Madang, <br>
-                    Bogor 16810
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-sm font-normal mb-3">Hubungi Kami</h3>
-                    <ul class="text-sm leading-10">
-                        <li class="flex items-center gap-2">
-                        <img src="footer/6.png" alt="Phone" class="h-5">
-                        <span>Halo BCA 1500888</span>
-                        </li>
-                        <li class="flex items-center gap-2">
-                        <img src="footer/7.png" alt="Email" class="h-5">
-                        <span>halobca@bca.co.id</span>
-                        </li>
-                        <li class="flex items-center gap-2">
-                        <img src="footer/5.png" alt="Phone 2" class="h-5">
-                        <span>62-922-0355-800</span>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-sm font-normal mb-2">Media Sosial</h3>
-                    <ul class="flex flex-col space-y-3 text-sm">
-                        <li class="flex items-center gap-2 hover:text-gray-300 transition-colors duration-200">
-                            <img src="footer/2.png" alt="Facebook" class="h-5">
-                            <span>GoodLife BCA</span>
-                        </li>
-                        <li class="flex items-center gap-2 hover:text-gray-300 transition-colors duration-200">
-                            <img src="footer/3.png" alt="Twitter" class="h-5">
-                            <span>@goodlifebca</span>
-                        </li>
-                        <li class="flex items-center gap-2 hover:text-gray-300 transition-colors duration-200">
-                            <img src="footer/1.png" alt="Instagram" class="h-5">
-                            <span>Solusi BCA</span>
-                        </li>
-                        <li class="flex items-center gap-2 hover:text-gray-300 transition-colors duration-200">
-                            <img src="footer/4.png" alt="YouTube" class="h-5">
-                            <span>@BankBCA</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </footer>
     </div>
 
     <script>
@@ -191,5 +106,4 @@
             });
         });
     </script>
-</body>
-</html>
+@endsection
