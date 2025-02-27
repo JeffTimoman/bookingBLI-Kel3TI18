@@ -24,9 +24,9 @@
       <!-- Left: Image Section -->
       <div class="flex justify-center items-center relative z-30">
         <img 
-          src="{{ asset('./assets/pic.png') }}" 
-          alt="Building Image" 
-          class="w-full max-w-[721px] h-auto  object-cover rounded-lg shadow-lg"
+          src="{{ asset('rooms/' . $data->img) }}" 
+          alt="Room Image" 
+          class="w-full max-w-[721px] h-auto object-cover rounded-lg shadow-lg"
         />
         <button 
           id="loveButton" 
@@ -111,7 +111,7 @@
               <li>ROUND TABLE</li>
               <li>FAN/SAK</li>
             </ul>
-            <ul class="space-y-2 text-right">
+            <ul class="space-y-2">
               <li>ACCOMMODATE 20 PEOPLE</li>
               <li>NIV/A XML</li>
               <li>SAF.I/A</li>

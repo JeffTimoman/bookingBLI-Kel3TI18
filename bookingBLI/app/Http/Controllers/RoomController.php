@@ -14,8 +14,8 @@ class RoomController extends Controller
         $data = Room::orderBy('name', 'asc')->paginate(100);
         // Time::query()->update(['status' => 1]);
         return view('room/index')->with('data', $data);
+    
     }
-
 
     public function show(string $name)
     {
@@ -35,5 +35,5 @@ class RoomController extends Controller
             'user' => $user,
             'times' => $times // Ubah dari time → times
         ]);
-    }   
+    }
 }

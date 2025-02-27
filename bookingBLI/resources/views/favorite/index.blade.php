@@ -1,17 +1,23 @@
 @extends('layout/room')
-@section('content')
 
-<div class="flex flex-col min-h-screen">
-    <!-- Favorite Rooms Header Section -->
-    <div class="absolute left-4 top-20 flex items-center gap-4 p-8 mt-6">
-        <a href="{{ url()->previous() }}" class="flex items-center justify-center">
-            <img src="./assets/Line 48.png" alt="Arrow Icon" class="w-6 h-6"> <!-- Replace with your arrow icon path -->
-        </a>
-        <h2 class="text-3xl font-semibold text-gray-800">FAVORITE ROOMS</h2>
+
+@section('title', 'Favorite')
+
+@section('content')
+<!-- Favorite Rooms Header Section -->
+    <div class="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 mt-40 ">
+        <div class="flex items-center mb-6 justify-start">
+            <a href="#" class="mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-800">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                </svg>
+            </a>
+           <h2 class="text-3xl font-semibold text-gray-800">FAVORITE ROOMS</h2>
+        </div>
     </div>
 
   <!-- Main Content: Favorite Rooms -->
-    <div class="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 main-content flex-1">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 pb-6 md:pb-8 lg:pb-12 main-content flex-1">
       <div class="flex flex-col">
 
             <!-- Favorite Rooms Card Section -->
@@ -21,7 +27,7 @@
             <a class="contents" href="{{ url('/room/'.$room->name) }}">
                 <div class="w-[360px] h-[360px] rounded-xl relative bg-[#f8f8f8] shadow-[0_0_0_1px_#e0e0e0]" conType="card" data-room-id="{{ $room->id }}">
                     <div class="flex justify-center mt-6">
-                        <img src="./assets/pic.png" alt="Room A8002" class="w-[294px] h-[234px] object-cover rounded-md">
+                        <img src="{{ asset('rooms/' . $room->img) }}" alt="Room A8002" class="w-[294px] h-[234px] object-cover rounded-md">
                     </div>
                     <div class="text-center mt-4 px-4">
                         <h3 class="font-semibold text-lg text-gray-800">{{ $room->name }}</h3>
@@ -51,7 +57,6 @@
             </div>
         </div>
     </div>
-</div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

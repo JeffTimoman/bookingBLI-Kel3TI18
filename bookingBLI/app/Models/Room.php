@@ -27,4 +27,9 @@ class Room extends Model
     {
         return $this->hasMany(Books::class, 'room_id');
     }
+
+    public function bookCount()
+    {
+        return $this->books()->count();
+    }
 }

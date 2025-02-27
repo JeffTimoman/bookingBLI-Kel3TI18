@@ -1,6 +1,8 @@
 
 @extends('layout/room')
 
+@section('title', 'Rooms')
+
 @section('content')
      <!-- Header -->
     <div class="flex flex-wrap items-center justify-start rounded-lg mx-auto mt-6 md:mt-12 mb-4 md:mb-7 px-6 md:px-24 pt-20">
@@ -120,40 +122,17 @@
         <div class="flex flex-col gap-4 md:gap-6 w-full" id="room-cards-container">
             @foreach ($data as $item)
                 @if($item->status == True)
-                <!-- Room A2001 -->
+                <!-- (Available) -->
                 <div class="flex flex-col md:flex-row bg-blue-100 rounded-lg overflow-hidden shadow-md"
                     data-room-type="{{ $item->roomType->name }}" data-time="{{ $item->times->where('status', 1)->map(fn($time) => \Carbon\Carbon::parse($time->start)->format('h:i A') . ' - ' . \Carbon\Carbon::parse($time->end)->format('h:i A'))->implode(',') }}">
                     <!-- Image -->
                     <div class="w-full md:w-1/3">
-                        <div class="relative h-48 md:h-auto">
-                            <div class="carousel relative overflow-hidden">
-                                <div class="carousel-container h-full flex transition-transform duration-300">
-                                    <img src="./assets/pic1.png" alt="Room Image"
-                                        class="w-full h-full object-cover flex-shrink-0">
-                                    <img src="./assets/pic1.png" alt="Room Image"
-                                        class="w-full h-full object-cover flex-shrink-0">
-                                    <img src="./assets/pic1.png" alt="Room Image"
+                        <div class="relative h-60 md:h-auto">
+                            <div class="carousel h-60 relative overflow-hidden">
+                                <div class="carousel-container h-full flex transition-transform duration-300 overflow-hidden">
+                                    <img src="{{ asset('rooms/' . $item->img) }}" alt="Room Image"
                                         class="w-full h-full object-cover flex-shrink-0">
                                 </div>
-                                <button
-                                    class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
-                                    onclick="prevSlide(this)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15.75 19.5L8.25 12l7.5-7.5" />
-                                    </svg>
-
-                                </button>
-                                <button
-                                    class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
-                                    onclick="nextSlide(this)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                                    </svg>
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -163,7 +142,7 @@
                         <div class="flex flex-col">
                             <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item->name }}</h2>
                             <p class="text-gray-600 mt-1 text-sm">Floor {{ substr($item->name, 0, 2) }}, {{ $item->roomType->name }}</p>
-                            <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out</p>
+                            <p class="text-gray-500 mt-1 text-sm">{{ $item->description }}</p>
                         </div>
                         <div class="mt-2 w-100 justify-end flex">
                             <a href="{{ url('/room/'.$item->name) }}">
@@ -175,40 +154,17 @@
                     </div>
                 </div>
                 @elseif($item->status == False )
-        <!-- Room A3002 (Unavailable) -->
+                <!-- (Unavailable) -->
                 <div class="relative flex flex-col md:flex-row bg-blue-100 shadow-lg rounded-xl overflow-hidden unavailable"
-                    data-room-type="{{ $item->roomType->name }}" data-time="08:00 AM - 09:30 AM,06:00 PM - 07:30 PM">
+                    data-room-type="{{ $item->roomType->name }}" data-time="{{ $item->times->where('status', 1)->map(fn($time) => \Carbon\Carbon::parse($time->start)->format('h:i A') . ' - ' . \Carbon\Carbon::parse($time->end)->format('h:i A'))->implode(',') }}">
                     <!-- Image -->
                     <div class="w-full md:w-1/3 opacity-50">
-                        <div class="relative h-48 md:h-auto">
-                            <div class="carousel relative overflow-hidden">
-                                <div class="carousel-container h-full flex transition-transform duration-300">
-                                    <img src="./assets/pic1.png" alt="Room Image"
-                                        class="w-full h-full object-cover flex-shrink-0">
-                                    <img src="./assets/pic1.png" alt="Room Image"
-                                        class="w-full h-full object-cover flex-shrink-0">
-                                    <img src="./assets/pic1.png" alt="Room Image"
+                        <div class="relative h-60 md:h-auto">
+                            <div class="carousel h-60 relative overflow-hidden">
+                                <div class="carousel-container h-full flex transition-transform duration-300 overflow-hidden">
+                                    <img src="{{ asset('rooms/' . $item->img) }}" alt="Room Image"
                                         class="w-full h-full object-cover flex-shrink-0">
                                 </div>
-                                <button
-                                    class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
-                                    onclick="prevSlide(this)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15.75 19.5L8.25 12l7.5-7.5" />
-                                    </svg>
-
-                                </button>
-                                <button
-                                    class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800/50 text-white rounded-full p-2 cursor-pointer hover:bg-gray-800"
-                                    onclick="nextSlide(this)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                                    </svg>
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -217,7 +173,7 @@
                         <div class="flex flex-col">
                             <h2 class="text-xl md:text-2xl font-bold text-gray-800">Room {{ $item->name }}</h2>
                             <p class="text-gray-600 mt-1 text-sm">Floor {{ substr($item->name, 0, 2) }}, {{ $item->roomType->name }}</p>
-                            <p class="text-gray-500 mt-1 text-sm">A description of the room that we still need to figure out</p>
+                            <p class="text-gray-500 mt-1 text-sm">{{ $item->description }}</p>
                         </div>
                         
                     </div>
