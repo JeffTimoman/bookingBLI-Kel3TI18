@@ -23,7 +23,8 @@
     </div>
 
     <div class="w-100 flex flex-col items-center justify-center">
-        @foreach ($data as $item)
+        @foreach ($data as $index => $item)
+        @php $uniqueId = uniqid(); @endphp <!-- Generate a unique ID for each item -->
         @if(($item['status'] == 0 || $item['status'] == 1 || $item['status'] == -1)) 
             <div id="cardHistories" style="width: 90%;" 
                 class="relative rounded-2xl shadow-lg flex md:flex-row gap-6 mb-10 items-stretch bg-blue-100 p-6" 
@@ -73,31 +74,32 @@
                     </div>
 
                     <!-- Cancel Button -->
-                    @if(($item['status'] == 1 || $item['status'] == 0) && $item['date'] == now()->toDateString())
+                @if(($item['status'] == 1 || $item['status'] == 0) && $item['date'] == now()->toDateString())
                     <div class="flex justify-end mt-4">
-                        <button id="cancelButton1" 
+                        <button id="cancelButton{{ $uniqueId }}" 
                             class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-all">
                             Cancel
                         </button>
                     </div>
-                    @endif
-                    <div id="cancelModal1" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50 hidden">
+    
+                    <div id="cancelModal{{ $uniqueId }}" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50 hidden">
                         <div class="bg-white p-8 rounded-lg shadow-md w-[40%] h-auto">
                             <h2 class="text-2xl font-bold mb-4">Cancel Booking</h2>
                             <p class="mb-6">Are you sure you want to cancel this booking?</p>
                             <div class="flex justify-end">
-                                <button id="noButton1" class="px-4 py-2 mr-2 bg-gray-300 hover:bg-gray-400 rounded-lg">No, don't cancel</button>
+                                <button id="noButton{{ $uniqueId }}" class="px-4 py-2 mr-2 bg-gray-300 hover:bg-gray-400 rounded-lg">No, don't cancel</button>
                                 <form action="{{ route('history.destroy', $item['book_id']) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     @foreach($item['book_id'] as $bookId)
                                         <input type="hidden" name="book_id[]" value="{{ $bookId }}">
                                     @endforeach
-                                    <button id="yesButton1" type="submit" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg">Yes, cancel</button>
+                                    <button id="yesButton{{ $uniqueId }}" type="submit" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg">Yes, cancel</button>
                                 </form>
                             </div>
                         </div>
                     </div>
+                @endif
                 </div>
             </div>
         @endif
@@ -163,22 +165,29 @@
         });
 
         // Modal logic
-        const cancelButton1 = document.getElementById('cancelButton1');
-        const cancelModal1 = document.getElementById('cancelModal1');
-        const noButton1 = document.getElementById('noButton1');
-        const yesButton1 = document.getElementById('yesButton1');
-
-        cancelButton1.addEventListener('click', () => {
-            cancelModal1.classList.remove('hidden');
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('[id^="cancelButton"]').forEach(button => {
+            button.addEventListener('click', function () {
+                const uniqueId = this.id.replace('cancelButton', '');
+                document.getElementById(`cancelModal${uniqueId}`).classList.remove('hidden');
+            });
         });
 
-        noButton1.addEventListener('click', () => {
-            cancelModal1.classList.add('hidden');
+        document.querySelectorAll('[id^="noButton"]').forEach(button => {
+            button.addEventListener('click', function () {
+                const uniqueId = this.id.replace('noButton', '');
+                document.getElementById(`cancelModal${uniqueId}`).classList.add('hidden');
+            });
         });
 
-        yesButton1.addEventListener('click', () => {
-            cancelModal1.classList.add('hidden');
+        document.querySelectorAll('[id^="yesButton"]').forEach(button => {
+            button.addEventListener('click', function () {
+                const uniqueId = this.id.replace('yesButton', '');
+                document.getElementById(`cancelModal${uniqueId}`).classList.add('hidden');
+            });
         });
+    });
+
     </script>
 </main>
 @endsection

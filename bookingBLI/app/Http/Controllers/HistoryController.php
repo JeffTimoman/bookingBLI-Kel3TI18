@@ -42,6 +42,13 @@ class HistoryController extends Controller
             }
         }
 
+        foreach ($dataMerge as $key => $item) {
+            if ($item['date'] < now()->toDateString() && $item['status'] != 1) {
+                $dataMerge[$key]['status'] = -1; // Update in array
+                Books::whereIn('id', $item['book_id'])->update(['status' => -1]); // Update in database
+            }
+        }
+
         // dd($dataMerge);
         return view('history/index')->with('data', $dataMerge);
     }
