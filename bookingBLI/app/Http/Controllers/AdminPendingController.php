@@ -73,6 +73,7 @@ class AdminPendingController extends Controller
         // Update all selected bookings
         Books::whereIn('id', $bookIds)->update(['status' => $status]);
 
+        # Ubah Time jadi available lagi
         if ($status == -1) {
             $times = Books::whereIn('id', $bookIds)->pluck('time_id')->toArray();
             Time::whereIn('id', $times)->update(['status' => 1]); // Assuming Time model has 'status' column
