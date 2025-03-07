@@ -30,7 +30,11 @@
                                     <span class="text-gray-500 text-base tracking-wider">{{ $item['people'] }} People</span>
                                 </div>
                             </div>
-                            <p class="text-xs text-gray-500 tracking-wider">until 06:00 PM</p>
+                            <div>
+                                @foreach($item['time_id'] as $index => $time)
+                                <p class="text-xs text-gray-500 tracking-wider">{{ $time }}</p>
+                                @endforeach
+                            </div>  
                         </div>
                         <div class="mt-4">
                             <p class="text-gray-600 text-base tracking-wider">Purpose:</p>
