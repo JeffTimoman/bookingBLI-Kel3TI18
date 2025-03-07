@@ -16,8 +16,6 @@
 
         <section>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
-
-                <!-- Request Card A5001 -->
                 @foreach($data as $item)
                     @if($item['status'] == 0 && $item['date'] == now()->toDateString())
                         <div class="bg-[#CCE3FF] rounded-lg shadow-md p-4 w-full">
@@ -53,6 +51,9 @@
                                     @foreach ($item['book_id'] as $bookId)
                                         <input type="hidden" name="book_id[]" value="{{ $bookId }}">
                                     @endforeach
+                                    <input type="hidden" name="user_id" value="{{ $item['user_id'] }}">
+                                    <input type="hidden" name="date" value="{{ $item['date'] }}">
+                                    <input type="hidden" name="name" value="{{ $item['room_name'] }}">
                                     <input type="hidden" name="status" value="-1">
                                     <button class="bg-red-500 hover:bg-red-700 text-white rounded-full p-2 mr-2">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -63,11 +64,14 @@
                                     </button>
                                 </form>
                                 <form action="{{ route('admin.pending.change') }}" method="POST">
-                                  @csrf
+                                    @csrf
                                     @foreach ($item['book_id'] as $bookId)
                                         <input type="hidden" name="book_id[]" value="{{ $bookId }}">
                                     @endforeach
-                                  <input type="hidden" name="status" value="1">
+                                    <input type="hidden" name="user_id" value="{{ $item['user_id'] }}">
+                                    <input type="hidden" name="date" value="{{ $item['date'] }}">
+                                    <input type="hidden" name="name" value="{{ $item['room_name'] }}">
+                                    <input type="hidden" name="status" value="1">
                                     <button class="bg-green-500 hover:bg-green-700 text-white rounded-full p-2">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -80,16 +84,6 @@
                         </div>
                     @endif
                 @endforeach
-
-                <!-- Request Card A6001 -->
-                
-
-                <!-- Request Card A8003 -->
-                
-
-                <!-- Request Card A8003 (Duplikat) -->
-                
-
             </div>
         </section>
 

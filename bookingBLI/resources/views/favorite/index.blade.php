@@ -23,7 +23,7 @@
       <div class="flex flex-col">
 
             <!-- Favorite Rooms Card Section -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8 mt-48" id="favorite-rooms-container">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8 mt-8" id="favorite-rooms-container">
             <!-- Room Card -->
             @foreach(auth()->user()->favorites as $room)
             <a class="contents" href="{{ url('/room/'.$room->name) }}">

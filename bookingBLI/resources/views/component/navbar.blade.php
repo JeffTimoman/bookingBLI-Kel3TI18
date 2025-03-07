@@ -13,12 +13,49 @@ class="bg-[#174AA9] text-[#FFF] w-screen py-4 px-6 flex items-center top-0 justi
     <a href="/history" class="hover:text-gray-300 hover:scale-110 transition-transform duration-200">HISTORY</a>
 </div>
 <div class="hidden lg:flex items-center gap-6 md:gap-10 ml-6 md:ml-14">
-    <img src="{{ asset('./assets/icon.png') }}" alt="Bell"
-        class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
-        <a href="{{ route('logout') }}"><img src="{{ asset('./assets/base.png') }}" alt="Logout"
-            class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200"></a>
     
+    <!----------------------------------------------------------------------------------------------------------------------------------->
+    
+    <div class="min-w-fit-content relative">
+        <img id="bell-icon" src="{{ asset('./assets/icon.png') }}" alt="Bell"
+        class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+        
+        <div id="notification-dropdown" class="hidden absolute top-full -right-5 text-black mt-5 w-96 shadow-lg h-full">
+            <div class="p-4 font-light text-2xl flex justify-start bg-[#185BAA] text-left text-white">Notifications</div>
+            <div id="notifications-list" class="max-h-60 flex flex-col gap-0.5 overflow-auto bg-[#F1F6FF] border-y-2">
+                @foreach(auth()->user()->notifications->sortByDesc('created_at') as $notification)
+                <div class="p-2 flex items-center {{ $notification->type === App\Models\Notification::TYPE_APPROVED ? 'bg-[#14AE5C]' : 'bg-[#AE1417]' }} relative">
+                    <img src="{{ asset($notification->type === App\Models\Notification::TYPE_APPROVED ? './assets/Group 30.png' : './assets/Cancel.png') }}" 
+                        alt="{{ $notification->type === App\Models\Notification::TYPE_APPROVED ? 'Approved' : 'Rejected' }} Icon" 
+                        class="h-12 w-12 mr-2">
+                    <div>
+                        <p class="text-white">
+                            {{ $notification->type === App\Models\Notification::TYPE_APPROVED ? 'Booking Approved' : 'Booking Rejected' }}
+                        </p>
+                        <p class="text-sm text-white">{{ $notification->message }}</p>
+                    </div>
+                    <form method="POST" action="{{ route('notifications.destroy', $notification->id) }}" class="absolute top-2 right-2">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">
+                            <img src="{{ asset('./assets/cancel_mini.svg') }}" alt="Delete Icon" class="h-4 w-4 cursor-pointer">
+                        </button>
+                    </form>
+                </div>
+                @endforeach
+            </div>
+            <div class="text-right font-light text-black underline bg-[#F1F6FF] p-3 cursor-pointer border-t" id="clear-notifications">Clear all</div>
+        </div>
+    </div>
+    
+    <!----------------------------------------------------------------------------------------------------------------------------------->
+    
+    <a href="{{ route('logout') }}">
+        <img src="{{ asset('./assets/base.png') }}" alt="Logout"
+        class="h-5 md:h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
+    </a>
 </div>
+
 <div class="lg:hidden flex items-center">
     <button id="hamburger-icon" class="text-white">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -30,30 +67,18 @@ class="bg-[#174AA9] text-[#FFF] w-screen py-4 px-6 flex items-center top-0 justi
 </div>
 </nav>
 
-<!-- Mobile Menu -->
-<div id="mobile-menu"
-class="lg:hidden fixed top-0 right-0 w-72 max-w-full h-full bg-[#2D5C97] text-[#FFF] z-50 transform translate-x-full transition-transform duration-300">
-<div class="flex justify-end p-4">
-    <button id="close-menu" class="text-white">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-    </button>
-</div>
-<div class="flex flex-col items-start p-4">
-    <a href="#"
-        class="py-3 text-[18px] font-semibold hover:text-gray-300 hover:scale-110 transition-transform duration-200">FAVORITE</a>
-    <a href="#"
-        class="py-3 text-[18px] font-semibold hover:text-gray-300 hover:scale-110 transition-transform duration-200">BOOK</a>
-    <a href="#"
-        class="py-3 text-[18px] font-semibold hover:text-gray-300 hover:scale-110 transition-transform duration-200">HISTORY</a>
-    <div class="flex items-center gap-10 mt-8">
-        <img src="./assets/icon.png" alt="Bell"
-            class="h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
-        <img src="./assets/base.png" alt="Logout"
-            class="h-6 cursor-pointer hover:opacity-70 hover:scale-110 transition-transform duration-200">
-    </div>
-</div>
-</div>
+<script>
+    document.getElementById('bell-icon').addEventListener('click', function () {
+        let dropdown = document.getElementById('notification-dropdown');
+        dropdown.classList.toggle('hidden');
+    });
+
+    document.getElementById('clear-notifications').addEventListener('click', function() {
+        fetch('/notifications', {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            }
+        }).then(() => window.location.reload());
+    });
+</script>

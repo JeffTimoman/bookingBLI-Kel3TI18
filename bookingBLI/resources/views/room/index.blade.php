@@ -22,7 +22,7 @@
 
     <!-- Filter Modal -->
     <div id="filter-modal"
-    class="fixed inset-0 w-full h-full bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4 overflow-auto">
+    class="fixed inset-0 w-full h-full bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4 overflow-auto">
     <div class="bg-white rounded-lg px-6 max-w-sm w-full mx-auto max-h-[80vh] overflow-y-auto shadow-lg">
         <div class="flex justify-between items-center sticky top-0 py-6 bg-white z-10">
             <h2 class="text-2xl font-semibold">Filters</h2>

@@ -9,6 +9,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,12 @@ Route::middleware(['notauth'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::middleware('auth')->group(function () {
+        Route::delete('/notifications/{notification}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
+        Route::delete('/notifications', [NotificationController::class, 'clearAll'])->name('notifications.clear');
+        Route::post('/notifications/mark-read', [NotificationController::class, 'markAsRead'])->name('notifications.mark-read');
+    });
     
     Route::middleware(['user'])->group(function () {
         Route::get('/home', [LandingController::class, 'index'])->name('home.index');
