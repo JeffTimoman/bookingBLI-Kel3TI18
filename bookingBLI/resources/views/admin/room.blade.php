@@ -27,12 +27,12 @@
       <div class="bg-blue-100 rounded-lg shadow-md overflow-hidden">
         <div class="flex">
           <div class="w-1/3">
-            <img src="{{ asset('./assets/pic.png') }}" alt="Room A2001" class="object-cover h-48 w-full">
+            <img src="{{ asset('rooms/' . $room->img) }}" alt="Room A2001" class="object-cover h-48 w-full">
           </div>
           <div class="w-2/3 p-4">
             <h3 class="text-xl font-semibold text-gray-800">Room {{ $room->name }}</h3>
             <p class="text-gray-600 text-sm mt-1">Floor {{ $room->floor }}, {{ $room->roomType->name }}</p>
-            <p class="text-gray-500 text-sm mt-1">A description of the room that we still need to figure out</p>
+            <p class="text-gray-500 text-sm mt-1">{{ $room->description }}</p>
             @if($room->status == 0)
             <div class="mt-4 flex justify-between items-center">
                 <form action="{{ route('admin.room.change') }}" method="POST">

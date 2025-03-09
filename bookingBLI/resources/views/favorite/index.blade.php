@@ -19,7 +19,7 @@
     </div>
 
   <!-- Main Content: Favorite Rooms -->
-    <div class="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 pb-6 md:pb-8 lg:pb-12 main-content flex-1">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 pb-6 md:pb-8 lg:pb-12 main-content flex-1 min-h-screen">
       <div class="flex flex-col">
 
             <!-- Favorite Rooms Card Section -->

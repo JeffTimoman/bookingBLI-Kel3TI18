@@ -7,6 +7,7 @@ use App\Models\Room;
 use App\Models\Time;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Notification;
 
 class AdminHomeController extends Controller
 {
@@ -73,6 +74,9 @@ class AdminHomeController extends Controller
     public function change(Request $request) {
         $bookIds = $request->input('book_id'); // Get the array of book IDs
         $status = $request->input('status');  // Get the requested status (1 or -1)
+        $userId = $request->input('user_id');
+        $date = \Carbon\Carbon::parse($request->input('date'));
+        $name = $request->input('name');
     
         // Validate request
         if (!in_array($status, [1, -1])) {
@@ -86,9 +90,23 @@ class AdminHomeController extends Controller
         // Update all selected bookings
         Books::whereIn('id', $bookIds)->update(['status' => $status]);
         
-        if ($status == -1) {
+        if ($status == 1) {
+            Notification::create(attributes: [
+                'user_id' => $userId,
+                'message' => "Booking for {$name} on {$date->format('l, F j, Y')}",
+                'type' => Notification::TYPE_APPROVED,
+                'read' => false
+            ]);
+        } else if ($status == -1) {
             $times = Books::whereIn('id', $bookIds)->pluck('time_id')->toArray();
             Time::whereIn('id', $times)->update(['status' => 1]); // Assuming Time model has 'status' column
+            
+            Notification::create([
+                'user_id' => $userId,
+                'message' => "Booking for {$name} on {$date->format('l, F j, Y')}",
+                'type' => Notification::TYPE_REJECTED,
+                'read' => false
+            ]);
         }
     
         return back()->with('success', 'Booking status updated successfully.');
