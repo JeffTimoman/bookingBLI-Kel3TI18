@@ -6,8 +6,7 @@
 @section('content')
      <!-- Header -->
     <div class="flex flex-wrap items-center justify-start rounded-lg mx-auto mt-6 md:mt-12 mb-4 md:mb-7 px-6 md:px-24 pt-20">
-        <button id="filter-button"
-            class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 mb-2 md:mb-0">
+        <button id="filter-button" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 mb-2 md:mb-0">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -21,8 +20,7 @@
     </div>
 
     <!-- Filter Modal -->
-    <div id="filter-modal"
-    class="fixed inset-0 w-full h-full bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4 overflow-auto">
+    <div id="filter-modal" class="fixed inset-0 w-full h-full bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4 overflow-auto">
     <div class="bg-white rounded-lg px-6 max-w-sm w-full mx-auto max-h-[80vh] overflow-y-auto shadow-lg">
         <div class="flex justify-between items-center sticky top-0 py-6 bg-white z-10">
             <h2 class="text-2xl font-semibold">Filters</h2>
@@ -215,150 +213,142 @@
     </nav>
 @endif
     <script>
-        function nextSlide(button) {
-            const carousel = button.parentElement;
-            const container = carousel.querySelector('.carousel-container');
-            const slideWidth = carousel.offsetWidth;
+        document.addEventListener('DOMContentLoaded', function () {
+            function nextSlide(button) {
+                const carousel = button.parentElement;
+                const container = carousel.querySelector('.carousel-container');
+                const slideWidth = carousel.offsetWidth;
 
-            container.style.transition = 'transform 0.3s ease-in-out';
-            container.style.transform = `translateX(-${slideWidth}px)`;
-
-            setTimeout(() => {
-                container.appendChild(container.firstElementChild);
-                container.style.transition = 'none';
-                container.style.transform = 'translateX(0)';
-                setTimeout(() => {
-                    container.style.transition = 'transform 0.3s ease-in-out';
-                }, 0);
-            }, 300);
-        }
-
-        function prevSlide(button) {
-            const carousel = button.parentElement;
-            const container = carousel.querySelector('.carousel-container');
-            const slideWidth = carousel.offsetWidth;
-
-            container.style.transition = 'none';
-            container.insertBefore(container.lastElementChild, container.firstElementChild);
-            container.style.transform = `translateX(-${slideWidth}px)`;
-            setTimeout(() => {
                 container.style.transition = 'transform 0.3s ease-in-out';
-                container.style.transform = 'translateX(0)';
-            }, 0);
-        }
+                container.style.transform = `translateX(-${slideWidth}px)`;
 
-        // Mobile menu toggle
-        const hamburgerIcon = document.getElementById('hamburger-icon');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMenu = document.getElementById('close-menu');
-
-        hamburgerIcon.addEventListener('click', () => {
-            mobileMenu.classList.remove('translate-x-full');
-        });
-
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.add('translate-x-full');
-        });
-
-        // JavaScript for filter modal
-        const filterButton = document.getElementById('filter-button');
-        const filterModal = document.getElementById('filter-modal');
-        const closeFilterModal = document.getElementById('close-filter-modal');
-        const clearFilterButton = document.getElementById('clear-filter');
-        const applyFilterButton = document.getElementById('apply-filter');
-        const selectedFiltersContainer = document.getElementById('selected-filters');
-        const roomCardsContainer = document.getElementById('room-cards-container');
-
-        let selectedFilters = {
-            availability: false,
-            roomTypes: [],
-            times: []
-        };
-
-        function updateSelectedFilters() {
-            selectedFiltersContainer.innerHTML = ''; // Clear previous filters
-            let filterBadges = [];
-
-            if (selectedFilters.availability) {
-                filterBadges.push(
-                    '<span class="bg-green-200 text-green-800 py-1 px-2 rounded-full text-xs">Available Only</span>'
-                );
+                setTimeout(() => {
+                    container.appendChild(container.firstElementChild);
+                    container.style.transition = 'none';
+                    container.style.transform = 'translateX(0)';
+                    setTimeout(() => {
+                        container.style.transition = 'transform 0.3s ease-in-out';
+                    }, 0);
+                }, 300);
             }
 
-            selectedFilters.roomTypes.forEach(type => {
-                filterBadges.push(
-                    `<span class="bg-blue-200 text-blue-800 py-1 px-2 rounded-full text-xs">${type}</span>`
-                );
-            });
+            function prevSlide(button) {
+                const carousel = button.parentElement;
+                const container = carousel.querySelector('.carousel-container');
+                const slideWidth = carousel.offsetWidth;
 
-            selectedFilters.times.forEach(time => {
-                filterBadges.push(
-                    `<span class="bg-purple-200 text-purple-800 py-1 px-2 rounded-full text-xs">${time}</span>`
-                );
-            });
+                container.style.transition = 'none';
+                container.insertBefore(container.lastElementChild, container.firstElementChild);
+                container.style.transform = `translateX(-${slideWidth}px)`;
+                setTimeout(() => {
+                    container.style.transition = 'transform 0.3s ease-in-out';
+                    container.style.transform = 'translateX(0)';
+                }, 0);
+            }
 
-            selectedFiltersContainer.innerHTML = filterBadges.join('');
-        }
+            // JavaScript for filter modal
+            const filterButton = document.getElementById('filter-button');
+            const filterModal = document.getElementById('filter-modal');
+            const closeFilterModal = document.getElementById('close-filter-modal');
+            const clearFilterButton = document.getElementById('clear-filter');
+            const applyFilterButton = document.getElementById('apply-filter');
+            const selectedFiltersContainer = document.getElementById('selected-filters');
+            const roomCardsContainer = document.getElementById('room-cards-container');
 
-        function filterRooms() {
-            const roomCards = roomCardsContainer.querySelectorAll('[data-room-type]');
-            roomCards.forEach(card => {
-                const roomType = card.dataset.roomType;
-                const roomTime = card.dataset.time ? card.dataset.time.split(',') : [];
-                const matchesRoomType = selectedFilters.roomTypes.length === 0 || selectedFilters.roomTypes.includes(roomType);
-                const matchesTime = selectedFilters.times.length === 0 || selectedFilters.times.some(time => roomTime.includes(time));
-                const isAvailable = !card.classList.contains('unavailable');
-
-                const matchesAvailability = !selectedFilters.availability || (selectedFilters.availability && isAvailable);
-
-                if (matchesRoomType && matchesTime && matchesAvailability) {
-                    card.style.display = '';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        filterButton.addEventListener('click', () => {
-            filterModal.classList.remove('hidden');
-            filterModal.classList.add('flex');
-        });
-
-        closeFilterModal.addEventListener('click', () => {
-            filterModal.classList.add('hidden');
-            filterModal.classList.remove('flex');
-        });
-
-        clearFilterButton.addEventListener('click', () => {
-            // Uncheck all checkboxes
-            const checkboxes = filterModal.querySelectorAll('input[type="checkbox"]');
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = false;
-            });
-            selectedFilters = {
+            let selectedFilters = {
                 availability: false,
                 roomTypes: [],
                 times: []
             };
-            updateSelectedFilters();
-            filterRooms();
+
+            function updateSelectedFilters() {
+                selectedFiltersContainer.innerHTML = ''; // Clear previous filters
+                let filterBadges = [];
+
+                if (selectedFilters.availability) {
+                    filterBadges.push(
+                        '<span class="bg-green-200 text-green-800 py-1 px-2 rounded-full text-xs">Available Only</span>'
+                    );
+                }
+
+                selectedFilters.roomTypes.forEach(type => {
+                    filterBadges.push(
+                        `<span class="bg-blue-200 text-blue-800 py-1 px-2 rounded-full text-xs">${type}</span>`
+                    );
+                });
+
+                selectedFilters.times.forEach(time => {
+                    filterBadges.push(
+                        `<span class="bg-purple-200 text-purple-800 py-1 px-2 rounded-full text-xs">${time}</span>`
+                    );
+                });
+
+                selectedFiltersContainer.innerHTML = filterBadges.join('');
+            }
+
+            function filterRooms() {
+                const roomCards = roomCardsContainer.querySelectorAll('[data-room-type]');
+                roomCards.forEach(card => {
+                    const roomType = card.dataset.roomType;
+                    const roomTime = card.dataset.time ? card.dataset.time.split(',') : [];
+                    const matchesRoomType = selectedFilters.roomTypes.length === 0 || selectedFilters.roomTypes.includes(roomType);
+                    const matchesTime = selectedFilters.times.length === 0 || selectedFilters.times.some(time => roomTime.includes(time));
+                    const isAvailable = !card.classList.contains('unavailable');
+
+                    const matchesAvailability = !selectedFilters.availability || (selectedFilters.availability && isAvailable);
+
+                    if (matchesRoomType && matchesTime && matchesAvailability) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            filterButton.addEventListener('click', () => {
+                filterModal.classList.remove('hidden');
+                filterModal.classList.add('flex');
+            });
+
+            closeFilterModal.addEventListener('click', () => {
+                filterModal.classList.add('hidden');
+                filterModal.classList.remove('flex');
+            });
+
+            clearFilterButton.addEventListener('click', () => {
+                // Uncheck all checkboxes
+                const checkboxes = filterModal.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                selectedFilters = {
+                    availability: false,
+                    roomTypes: [],
+                    times: []
+                };
+                updateSelectedFilters();
+                filterRooms();
+            });
+
+            applyFilterButton.addEventListener('click', () => {
+                filterModal.classList.add('hidden');
+                filterModal.classList.remove('flex');
+
+                const availabilityToggle = document.getElementById('availability-toggle');
+                selectedFilters.availability = availabilityToggle.checked;
+
+                const roomTypeCheckboxes = filterModal.querySelectorAll('.room-type-checkbox:checked');
+                selectedFilters.roomTypes = Array.from(roomTypeCheckboxes).map(checkbox => checkbox.value);
+
+                const timeCheckboxes = filterModal.querySelectorAll('.time-checkbox:checked');
+                selectedFilters.times = Array.from(timeCheckboxes).map(checkbox => checkbox.value);
+
+                updateSelectedFilters();
+                filterRooms();
+            });
         });
 
-        applyFilterButton.addEventListener('click', () => {
-            filterModal.classList.add('hidden');
-            filterModal.classList.remove('flex');
+        
 
-            const availabilityToggle = document.getElementById('availability-toggle');
-            selectedFilters.availability = availabilityToggle.checked;
-
-            const roomTypeCheckboxes = filterModal.querySelectorAll('.room-type-checkbox:checked');
-            selectedFilters.roomTypes = Array.from(roomTypeCheckboxes).map(checkbox => checkbox.value);
-
-            const timeCheckboxes = filterModal.querySelectorAll('.time-checkbox:checked');
-            selectedFilters.times = Array.from(timeCheckboxes).map(checkbox => checkbox.value);
-
-            updateSelectedFilters();
-            filterRooms();
-        });
     </script>
 @endsection

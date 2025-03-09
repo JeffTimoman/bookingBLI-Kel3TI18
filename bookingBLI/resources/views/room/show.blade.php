@@ -169,7 +169,7 @@
               @php
                 $count++;
               @endphp
-              <button class="flex flex-col items-center justify-center w-[190px] h-[190px] bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot" data-time="{{ $time->start }} - {{ $time->end }}">
+              <button class="flex flex-col items-center justify-center w-[190px] h-[190px] bg-blue-200 text-blue-800 hover:bg-blue-300 time-slot active:scale-95 active:bg-blue-400" data-time="{{ $time->start }} - {{ $time->end }}">
                   <img src="{{ asset('./assets/time (' . $index . ').svg') }}" alt="Clock Icon" class="h-63 w-136 mb-2">
                   <img src="{{ asset('./assets/icon.svg') }}" alt="Group Icon" class="h-39 w-59 mt-2">
                   <p class="hidden timeId">{{ $time->id }}</p>
@@ -275,18 +275,22 @@
 const timeSlots = document.querySelectorAll('.time-slot');
 
   timeSlots.forEach(slot => {
-        slot.addEventListener('click', function() {
-            const time = this.getAttribute('data-time');
-             if (this.classList.contains('bg-blue-300')) {
-                 this.classList.remove('bg-blue-300');
-                  selectedTimes = selectedTimes.filter(t => t !== time);
-                  selectedTimeIds = selectedTimeIds.filter(id => id !== this.getAttribute('data-id'));
-             } else {
-                this.classList.add('bg-blue-300');
-               selectedTimes.push(time);
-                selectedTimeIds.push(this.querySelector('.timeId').textContent);
-            }
-            
+    slot.addEventListener('click', function() {
+    console.log(selectedTimeIds);
+        const time = this.getAttribute('data-time');
+          if (this.classList.contains('bg-blue-400')) {
+              this.classList.remove('bg-blue-400');
+              this.classList.add('hover:bg-blue-300');
+              this.classList.remove('hover:bg-blue-500');
+              selectedTimes = selectedTimes.filter(t => t !== time);
+              selectedTimeIds = selectedTimeIds.filter(id => id !== this.querySelector('.timeId').textContent);
+          } else {
+            this.classList.add('bg-blue-400');
+            this.classList.remove('hover:bg-blue-300');
+            this.classList.add('hover:bg-blue-500');
+            selectedTimes.push(time);
+            selectedTimeIds.push(this.querySelector('.timeId').textContent);
+        }
     });
   });
 

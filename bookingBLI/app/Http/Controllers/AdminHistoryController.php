@@ -16,6 +16,9 @@ class AdminHistoryController extends Controller
         $dataMerge = [];
 
         foreach ($data as $d) {
+            if($d->date == now()->toDateString()){
+                continue;
+            }
             $isExist = false;
 
             foreach ($dataMerge as $key => $dm) {
@@ -42,6 +45,7 @@ class AdminHistoryController extends Controller
                     'user_type' => User::find($d->user_id)->userType->name,
                     'room_id' => $d->room_id,
                     'room_name' => Room::find($d->room_id)->name,
+                    'room_img' => Room::find($d->room_id)->img,
                     'date' => $d->date,
                     'people' => $d->people,
                     'purpose' => $d->purpose,
