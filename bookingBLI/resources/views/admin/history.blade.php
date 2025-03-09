@@ -9,10 +9,9 @@
     
       <!-- History Card Section (Centered) -->
       @foreach($data as $item)
-        @if($item['date'] != now()->toDateString())
         <div class="rounded-2xl shadow-lg flex flex-col md:flex-row gap-6 items-stretch bg-blue-100 w-full mt-6">
             <div class="relative w-full md:w-[400px] h-[400px] rounded-l-2xl">
-                <img id="slider-image" src="{{ asset('./assets/pic.png') }}" alt="Room Image" class="object-cover w-full h-full rounded-l-2xl">
+                <img id="slider-image" src="{{ asset('rooms/' . $item['room_img']) }}" alt="Room Image" class="object-cover w-full h-full rounded-l-2xl">
                 <div class="absolute top-1/2 transform -translate-y-1/2 w-full flex justify-between px-4">
                 </div>
             </div>
@@ -35,7 +34,6 @@
                 <p class="text-gray-600 text-[15px]">{{ $item['purpose'] }}</p>
             </div>
         </div>
-        @endif
       @endforeach
 
     </div>
