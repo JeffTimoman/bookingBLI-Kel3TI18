@@ -113,7 +113,7 @@
 
 
     <!-- Room Cards Container -->
-    <div class="flex flex-wrap items-center justify-start rounded-lg mx-auto mt-6 md:mt-12 mb-4 md:mb-7 px-6 md:px-24">
+    <div class="flex flex-wrap items-center justify-start rounded-lg mx-auto mt-6 md:mt-12 mb-4 md:mb-7 px-6 md:px-24 min-h-[45vh]">
         <div class="flex flex-col gap-4 md:gap-6 w-full" id="room-cards-container">
             @foreach ($data as $item)
                 @if($item->status == True)
