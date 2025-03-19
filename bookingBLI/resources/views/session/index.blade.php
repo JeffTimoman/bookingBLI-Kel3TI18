@@ -33,7 +33,7 @@
             @csrf
             <!-- Username Input -->
             <div class="relative w-full mb-4">
-                <img src="./login/1.png" alt="User Icon" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-10 h-10">
+                <img src="./login/2.png" alt="User Icon" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-10 h-10">
                 <input 
                     type="text" 
                     placeholder="Enter your username" 
@@ -42,16 +42,12 @@
             </div>
             <!-- Password Input -->
             <div class="relative w-full mb-4">
-                <img src="./login/2.png" alt="Password Icon" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-10 h-10">
+                <img src="./login/1.png" alt="Password Icon" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-10 h-10">
                 <input 
                     type="password" 
                     placeholder="Enter your password" 
                     class="w-full p-3 pl-16 bg-transparent border-[3px] border-white rounded-lg text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     name="password" id="password">
-            </div>
-            <!-- Forgot Password -->
-            <div class="w-full text-right text-white text-sm mb-4" style="font-family: 'AlbertSansRegular'">
-                <a href="#" class="underline hover:text-gray-300">I've forgotten my password</a>
             </div>
             <!-- Submit Button -->
             <button 
